@@ -1,0 +1,10 @@
+requests
+PyYAML
+numpy
+chromadb
+ollama
+sentence-transformers
+nltk
+scikit-learn
+pandas
+python-dotenv

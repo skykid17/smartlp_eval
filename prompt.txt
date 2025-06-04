@@ -1,0 +1,29 @@
+Build a Retrieval-Augmented Generation (RAG) system that takes in a log, analyzes its type, and recommends an integration package from the Elastic integration repository if a match is found.
+
+Tech Stack:
+- Python for implementation
+- Ollama to host the LLM and embedding model
+- Chroma as the vector database
+
+Functional Approach:
+
+- Log Ingestion:
+- Accept logs as input (string format).
+- Preprocess logs (cleaning, tokenization, normalization).
+
+- Log Type Analysis:
+- Let LLM identify log_type
+- Generate embeddings using Ollama's embedding model.
+
+- Vector Search in Milvus:
+- Store precomputed embeddings of known log_types from the Elastic integration repository stored locally in "C:\Users\geola\Documents\GitHub\elastic_integrations". 
+- Compare incoming log embeddings against stored embeddings to find the closest match.
+
+- Integration Recommendation:
+- If a match is found, recommend the corresponding Elastic integration package.
+- If no match is found, return "no package found"
+
+- Functional Coding Style:
+- Use modular functions instead of classes.
+- Ensure each function has a single responsibility.
+- Optimize for readability and maintainability.
