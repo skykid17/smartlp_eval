@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from integration_discovery import discover_integration_packages
 import logging
 
 # Force the correct path

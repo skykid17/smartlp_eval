@@ -1,10 +1,8 @@
-requests
 PyYAML
-numpy
+langchain 
+langchain-community 
+langchain-text-splitters
+hf_xet
 chromadb
-ollama
 sentence-transformers
-nltk
-scikit-learn
-pandas
-python-dotenv
+jq
