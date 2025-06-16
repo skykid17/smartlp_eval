@@ -108,7 +108,8 @@ class ElasticPackagesIndexer:
             '.md': 'text', 
             '.txt': 'text',
             '.yml': 'yaml',
-            '.yaml': 'yaml'
+            '.yaml': 'yaml',
+            '.conf': 'text'
         }
         
         # Binary extensions to skip
@@ -118,7 +119,7 @@ class ElasticPackagesIndexer:
             '.zip', '.tar', '.gz', '.bz2', '.7z', '.rar',
             '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx',
             '.mp3', '.wav', '.mp4', '.avi', '.mov', '.wmv',
-            '.bin', '.dat', '.db', '.sqlite'
+            '.bin', '.dat', '.db', '.sqlite', '.rtf'
         }
     
     def load_checkpoint(self) -> set:

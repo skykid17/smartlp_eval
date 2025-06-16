@@ -1,0 +1,87 @@
+2025-06-16 17:28:48,866 - INFO - Loading embedding model: all-MiniLM-L6-v2
+2025-06-16 17:28:48,869 - INFO - Use pytorch device_name: cpu
+2025-06-16 17:28:48,869 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-16 17:28:54,843 - INFO - Created new ChromaDB collection: splunk_addons
+2025-06-16 17:28:54,843 - INFO - Starting processing of Splunk add-ons in: C:\Users\geola\Documents\GitHub\splunk_add_ons
+2025-06-16 17:28:54,850 - INFO - Processing Splunk add-on: SA-ExchangeIndex
+2025-06-16 17:28:54,912 - INFO - Generating embeddings for 55 chunks from SA-ExchangeIndex
+2025-06-16 17:28:58,551 - INFO - Stored 55 chunks from SA-ExchangeIndex in ChromaDB
+2025-06-16 17:28:58,552 - INFO - Add-on SA-ExchangeIndex completed: 4 documents, 55 chunks, 4 files processed, 6 files skipped
+2025-06-16 17:28:58,553 - INFO - Processing Splunk add-on: SA-Hydra
+2025-06-16 17:28:58,682 - INFO - Generating embeddings for 11 chunks from SA-Hydra
+2025-06-16 17:28:59,256 - INFO - Stored 11 chunks from SA-Hydra in ChromaDB
+2025-06-16 17:28:59,256 - INFO - Add-on SA-Hydra completed: 11 documents, 11 chunks, 11 files processed, 25 files skipped
+2025-06-16 17:28:59,258 - INFO - Processing Splunk add-on: SA-Hydra-inframon
+2025-06-16 17:28:59,343 - INFO - Generating embeddings for 8 chunks from SA-Hydra-inframon
+2025-06-16 17:28:59,750 - INFO - Stored 8 chunks from SA-Hydra-inframon in ChromaDB
+2025-06-16 17:28:59,751 - INFO - Add-on SA-Hydra-inframon completed: 8 documents, 8 chunks, 8 files processed, 23 files skipped
+2025-06-16 17:28:59,752 - INFO - Processing Splunk add-on: SA-ONTAPIndex
+2025-06-16 17:28:59,816 - INFO - Generating embeddings for 55 chunks from SA-ONTAPIndex
+2025-06-16 17:29:02,621 - INFO - Stored 55 chunks from SA-ONTAPIndex in ChromaDB
+2025-06-16 17:29:02,621 - INFO - Add-on SA-ONTAPIndex completed: 4 documents, 55 chunks, 4 files processed, 6 files skipped
+2025-06-16 17:29:02,622 - INFO - Processing Splunk add-on: SA-VMWIndex
+2025-06-16 17:29:02,686 - INFO - Generating embeddings for 55 chunks from SA-VMWIndex
+2025-06-16 17:29:05,510 - INFO - Stored 55 chunks from SA-VMWIndex in ChromaDB
+2025-06-16 17:29:05,511 - INFO - Add-on SA-VMWIndex completed: 4 documents, 55 chunks, 4 files processed, 6 files skipped
+2025-06-16 17:29:05,512 - INFO - Processing Splunk add-on: SA-VMWIndex-inframon
+2025-06-16 17:29:05,580 - INFO - Generating embeddings for 55 chunks from SA-VMWIndex-inframon
+2025-06-16 17:29:08,904 - INFO - Stored 55 chunks from SA-VMWIndex-inframon in ChromaDB
+2025-06-16 17:29:08,905 - INFO - Add-on SA-VMWIndex-inframon completed: 4 documents, 55 chunks, 4 files processed, 6 files skipped
+2025-06-16 17:29:08,907 - INFO - Processing Splunk add-on: splunk_app_addon-builder
+2025-06-16 17:29:11,345 - INFO - Generating embeddings for 1408 chunks from splunk_app_addon-builder
+2025-06-16 17:30:17,753 - INFO - Stored 1408 chunks from splunk_app_addon-builder in ChromaDB
+2025-06-16 17:30:17,765 - INFO - Add-on splunk_app_addon-builder completed: 171 documents, 1408 chunks, 171 files processed, 2681 files skipped
+2025-06-16 17:30:17,766 - INFO - Processing Splunk add-on: splunk_app_db_connect
+2025-06-16 17:30:18,342 - INFO - Generating embeddings for 149 chunks from splunk_app_db_connect
+2025-06-16 17:30:25,702 - INFO - Stored 149 chunks from splunk_app_db_connect in ChromaDB
+2025-06-16 17:30:25,703 - INFO - Add-on splunk_app_db_connect completed: 34 documents, 149 chunks, 34 files processed, 190 files skipped
+2025-06-16 17:30:25,704 - INFO - Processing Splunk add-on: splunk_app_soar
+2025-06-16 17:30:26,661 - INFO - Generating embeddings for 410 chunks from splunk_app_soar
+2025-06-16 17:30:44,972 - INFO - Stored 410 chunks from splunk_app_soar in ChromaDB
+2025-06-16 17:30:44,974 - INFO - Add-on splunk_app_soar completed: 80 documents, 410 chunks, 80 files processed, 1367 files skipped
+2025-06-16 17:30:44,976 - INFO - Processing Splunk add-on: splunk_app_stream
+2025-06-16 17:30:45,276 - INFO - Generating embeddings for 74 chunks from splunk_app_stream
+2025-06-16 17:30:48,981 - INFO - Stored 74 chunks from splunk_app_stream in ChromaDB
+2025-06-16 17:30:48,982 - INFO - Add-on splunk_app_stream completed: 18 documents, 74 chunks, 18 files processed, 428 files skipped
+2025-06-16 17:30:48,984 - INFO - Processing Splunk add-on: Splunk_JDBC_db2
+2025-06-16 17:30:49,041 - INFO - Generating embeddings for 55 chunks from Splunk_JDBC_db2
+2025-06-16 17:30:51,888 - INFO - Stored 55 chunks from Splunk_JDBC_db2 in ChromaDB
+2025-06-16 17:30:51,889 - INFO - Add-on Splunk_JDBC_db2 completed: 3 documents, 55 chunks, 3 files processed, 9 files skipped
+2025-06-16 17:30:51,890 - INFO - Processing Splunk add-on: Splunk_JDBC_influxDB
+2025-06-16 17:30:51,951 - INFO - Generating embeddings for 55 chunks from Splunk_JDBC_influxDB
+2025-06-16 17:30:54,799 - INFO - Stored 55 chunks from Splunk_JDBC_influxDB in ChromaDB
+2025-06-16 17:30:54,800 - INFO - Add-on Splunk_JDBC_influxDB completed: 3 documents, 55 chunks, 3 files processed, 29 files skipped
+2025-06-16 17:30:54,801 - INFO - Processing Splunk add-on: Splunk_JDBC_mongodb
+2025-06-16 17:30:54,880 - INFO - Generating embeddings for 69 chunks from Splunk_JDBC_mongodb
+2025-06-16 17:30:58,675 - INFO - Stored 69 chunks from Splunk_JDBC_mongodb in ChromaDB
+2025-06-16 17:30:58,676 - INFO - Add-on Splunk_JDBC_mongodb completed: 4 documents, 69 chunks, 4 files processed, 9 files skipped
+2025-06-16 17:30:58,677 - INFO - Processing Splunk add-on: Splunk_JDBC_mssql
+2025-06-16 17:30:58,767 - INFO - Generating embeddings for 70 chunks from Splunk_JDBC_mssql
+2025-06-16 17:31:02,615 - INFO - Stored 70 chunks from Splunk_JDBC_mssql in ChromaDB
+2025-06-16 17:31:02,616 - INFO - Add-on Splunk_JDBC_mssql completed: 5 documents, 70 chunks, 5 files processed, 9 files skipped
+2025-06-16 17:31:02,617 - INFO - Processing Splunk add-on: Splunk_JDBC_mysql
+2025-06-16 17:31:02,684 - INFO - Generating embeddings for 56 chunks from Splunk_JDBC_mysql
+2025-06-16 17:31:05,523 - INFO - Stored 56 chunks from Splunk_JDBC_mysql in ChromaDB
+2025-06-16 17:31:05,524 - INFO - Add-on Splunk_JDBC_mysql completed: 4 documents, 56 chunks, 4 files processed, 9 files skipped
+2025-06-16 17:31:05,525 - INFO - Processing Splunk add-on: Splunk_JDBC_oracle
+2025-06-16 17:31:05,593 - INFO - Generating embeddings for 56 chunks from Splunk_JDBC_oracle
+2025-06-16 17:31:08,624 - INFO - Stored 56 chunks from Splunk_JDBC_oracle in ChromaDB
+2025-06-16 17:31:08,625 - INFO - Add-on Splunk_JDBC_oracle completed: 4 documents, 56 chunks, 4 files processed, 9 files skipped
+2025-06-16 17:31:08,626 - INFO - Processing Splunk add-on: Splunk_JDBC_postgress
+2025-06-16 17:31:08,696 - INFO - Generating embeddings for 56 chunks from Splunk_JDBC_postgress
+2025-06-16 17:31:11,584 - INFO - Stored 56 chunks from Splunk_JDBC_postgress in ChromaDB
+2025-06-16 17:31:11,584 - INFO - Add-on Splunk_JDBC_postgress completed: 4 documents, 56 chunks, 4 files processed, 9 files skipped
+2025-06-16 17:31:11,586 - INFO - Processing Splunk add-on: Splunk_JDBC_redshift
+2025-06-16 17:31:11,653 - INFO - Generating embeddings for 56 chunks from Splunk_JDBC_redshift
+2025-06-16 17:31:14,668 - INFO - Stored 56 chunks from Splunk_JDBC_redshift in ChromaDB
+2025-06-16 17:31:14,669 - INFO - Add-on Splunk_JDBC_redshift completed: 4 documents, 56 chunks, 4 files processed, 9 files skipped
+2025-06-16 17:31:14,670 - INFO - Processing Splunk add-on: Splunk_JDBC_snowflake
+2025-06-16 17:31:14,763 - INFO - Generating embeddings for 70 chunks from Splunk_JDBC_snowflake
+2025-06-16 17:31:18,525 - INFO - Stored 70 chunks from Splunk_JDBC_snowflake in ChromaDB
+2025-06-16 17:31:18,525 - INFO - Add-on Splunk_JDBC_snowflake completed: 5 documents, 70 chunks, 5 files processed, 9 files skipped
+2025-06-16 17:31:18,527 - INFO - Processing Splunk add-on: Splunk_SA_CIM
+2025-06-16 17:31:19,577 - INFO - Generating embeddings for 396 chunks from Splunk_SA_CIM
+2025-06-16 17:31:39,685 - INFO - Stored 396 chunks from Splunk_SA_CIM in ChromaDB
+2025-06-16 17:31:39,688 - INFO - Add-on Splunk_SA_CIM completed: 49 documents, 396 chunks, 49 files processed, 94 files skipped
+2025-06-16 17:31:39,689 - INFO - Processing Splunk add-on: Splunk_SA_Scientific_Python_darwin_x86_64
+2025-06-16 17:32:48,375 - INFO - Generating embeddings for 48887 chunks from Splunk_SA_Scientific_Python_darwin_x86_64
