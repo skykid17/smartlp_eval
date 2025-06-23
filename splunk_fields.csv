@@ -1,4 +1,4 @@
-Dataset name,Field name,Data type,Description,Notes
+Dataset_name,Field_name,Data_type,Description,Notes
 Alerts,app,string,"The system, service, or application that generated the alert event. Examples include, but are not limited to the following: GuardDuty, SecurityCenter, 3rd party services, win:app:trendmicro, vmware, nagios.","recommended
 required for pytest-splunk-addon"
 Alerts,body,string,The body of a message. This field is deprecated in favor of description.,required for pytest-splunk-addon

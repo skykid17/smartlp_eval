@@ -20,13 +20,6 @@ def download_elastic_packages():
         response = requests.get(api_url)
         response.raise_for_status()
         
-        packages_data = response.json()
-        
-        # Save package information
-        with open("elastic_packages.json", "w", encoding="utf-8") as file:
-            json.dump(packages_data, file, indent=2)
-        print("Elastic packages list downloaded successfully.")
-        
         # Handle local repository
         if os.path.exists(local_repo_path):
             print(f"Local repository '{local_repo_path}' exists. Updating...")
@@ -86,50 +79,4 @@ def update_local_repository(local_path):
         except:
             pass
 
-
-def get_package_details(package_name):
-    """
-    Get detailed information about a specific package.
-    """
-    try:
-        with open("elastic_packages.json", "r", encoding="utf-8") as file:
-            packages = json.load(file)
-        
-        for package in packages:
-            if package["name"] == package_name:
-                return package
-        
-        print(f"Package '{package_name}' not found")
-        return None
-    except FileNotFoundError:
-        print("elastic_packages.json not found. Run download_elastic_packages() first.")
-        return None
-
-
-def list_available_packages():
-    """
-    List all available packages from the downloaded data.
-    """
-    try:
-        with open("elastic_packages.json", "r", encoding="utf-8") as file:
-            packages = json.load(file)
-        
-        print("Available Elastic packages:")
-        for package in packages:
-            if package["type"] == "dir":
-                print(f"- {package['name']}")
-    except FileNotFoundError:
-        print("elastic_packages.json not found. Run download_elastic_packages() first.")
-
-
-if __name__ == "__main__":
-    # Check if git is available
-    try:
-        subprocess.run(["git", "--version"], check=True, capture_output=True)
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        print("Git is not installed or not available in PATH. Please install Git to use repository features.")
-        exit(1)
-    
-    download_elastic_packages()
-    print("\nListing available packages:")
-    list_available_packages()
+download_elastic_packages()

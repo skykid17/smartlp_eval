@@ -75,9 +75,9 @@ def download_splunk_fields():
                         continue
                     
                     row_data = {
-                        "Dataset name": cells[0].text.strip(),
-                        "Field name": cells[1].text.strip(),
-                        "Data type": cells[2].text.strip(),
+                        "Dataset_name": cells[0].text.strip(),
+                        "Field_name": cells[1].text.strip(),
+                        "Data_type": cells[2].text.strip(),
                         "Description": cells[3].text.strip(),
                         "Notes": cells[4].text.strip()  # Always save as "Notes" regardless of original column name
                     }

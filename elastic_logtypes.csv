@@ -1,4 +1,4 @@
-﻿Package,Logtype,Documentation URL
+Package,Logtype,Documentation_URL
 1password,1password,https://github.com/elastic/integrations/tree/main/packages/1password
 abnormal_security,abnormal_security,https://github.com/elastic/integrations/tree/main/packages/abnormal_security
 activemq,activemq,https://github.com/elastic/integrations/tree/main/packages/activemq
