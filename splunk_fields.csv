@@ -37,6 +37,28 @@ Alerts,user_name,string,The name of the user involved in the alert event.,recomm
 Alerts,user_priority,string,The priority of the user involved in the alert event. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
 Alerts,vendor_account,string,"The account associated with the alert event. The account represents the organization, or a Cloud  customer or a Cloud account.",
 Alerts,vendor_region,string,"The data center region involved in the alert event, such as us-west-2.",
+All_Application_State,dest,string,"The compute resource where the service is installed. You can alias this from more specific fields, such as dest_host, dest_ip, or dest_name.",recommended
+All_Application_State,dest_bunit,string,,These fields are automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for these fields when writing add-ons.
+All_Application_State,dest_category,string,,
+All_Application_State,dest_priority,string,,
+All_Application_State,dest_requires_av,boolean,,
+All_Application_State,dest_should_timesync,boolean,,
+All_Application_State,dest_should_update,boolean,,
+All_Application_State,process,string,"The name of a process or service file, such as sqlsrvr.exe or httpd.Note: This field is not appropriate for service or daemon names, such as SQL Server or Apache Web Server. Service or daemon names belong to the service field (see below).",recommended
+All_Application_State,process_name,string,The name of a process.,
+All_Application_State,tag,string,This automatically generated field is used to access tags from within data models. Do not define extractions for this field when writing add-ons.,
+All_Application_State,user,string,"The user account the service is running as, such as System or httpdsvc.",
+Ports,dest_port,number,"Network ports communicated to by the process, such as 53.",recommended
+Ports,transport,string,"The network ports listened to by the application process, such as tcp, udp, etc.",recommended
+Ports,transport_dest_port,string,"Calculated as transport/dest_port, such as tcp/53.",
+Processes,cpu_load_mhz,number,CPU Load in megahertz,
+Processes,cpu_load_percent,number,CPU Load in percent,
+Processes,cpu_time,string,CPU Time,
+Processes,mem_used,number,Memory used in bytes,
+Services,service,string,"The name of the service, such as SQL Server or Apache Web Server.Note: This field is not appropriate for filenames, such as sqlsrvr.exe or httpd. Filenames should belong to the process field instead. Also, note that field is a string. Use the service_id field for service ID fields that are integer data types.",recommended
+Services,service_id,string,A numeric indicator for a service.,recommended
+Services,start_mode,string,The start mode for the service.,"disabled, manual, auto.recommended"
+Services,status,string,The status of the service.,"critical, started, stopped, warningrecommended"
 Authentication,action,string,The action performed on the resource.,"Prescribed values: success, failure, pending, errorRecommended. Also, required for pytest-splunk-addon"
 Authentication,app,string,The application involved in the event.,"ssh splunk win:localsignin.amazonaws.comRecommended. Also, required for pytest-splunk-addon"
 Authentication,authentication_method,string,The method used to authenticate the request.,Optional
@@ -175,6 +197,90 @@ Network_Changes,direction,string,"For network events, this field represents whet
 Network_Changes,rule_action,string,"For network events, this field represents whether to allow or deny traffic.",
 Network_Changes,src_ip_range,string,"For network events, this field represents the incoming traffic from a specific source IP address or range. Specify a single IP address or an IP address range in CIDR notation. For example, 203.0.113.5 or 203.0.113.5/32.",
 Network_Changes,src_port_range,string,"For network events, this field represents source port or range. For example, 80 or 8000 - 8080 or 80,443.",
+All_Changes,action,string,The action performed on the resource.,"Values:acl_modified, cleared, created, deleted, modified, read, stopped, updatedrecommended"
+All_Changes,change_type,string,"The type of change, such as filesystem or AAA (authentication, authorization, and accounting).",Values: restartrecommended
+All_Changes,command,string,The command that initiated the change.,recommended
+All_Changes,dest,string,"The resource where change occurred. You can alias this from more specific fields not included in this data model, such as dest_host, dest_ip, or dest_name.",recommended
+All_Changes,dvc,string,"The device that reported the change, if applicable, such as a FIP or CIM server. You can alias this from more specific fields not included in this data model, such as dvc_host, dvc_ip, or dvc_name.",recommended
+All_Changes,object,string,"Name of the affected object on the resource (such as a router interface, user account, or server volume).",recommended
+All_Changes,object_attrs,string,"The attributes that were updated on the updated resource object, if applicable.",recommended
+All_Changes,object_category,string,Generic name for the class of the updated resource object. Expected values may be specific to an app.,"Values:directory, file, group, registry, userrecommended"
+All_Changes,object_id,string,"The unique updated resource object ID as presented to the system, if applicable (for instance, a SID, UUID, or GUID value).",recommended
+All_Changes,object_path,string,"The path of the modified resource object, if applicable (such as a file, directory, or volume).",recommended
+All_Changes,result,string,"The vendor-specific result of a change, or clarification of an action status. For instance, status=failure may be accompanied by result=blocked by policy or result=disk full. result is a string. Please use a msg_severity_id field (not included in the data model) for severity ID fields that are integer data types.",Values: lockoutrecommended
+All_Changes,result_id,string,A result indicator for an action status.,recommended
+All_Changes,src,string,"The resource where the change was originated. You can alias this from more specific fields not included in the data model, such as src_host, src_ip, or src_name.",recommended
+All_Changes,status,string,Status of the update.,"Values:success, failurerecommended"
+All_Changes,tag,string,This automatically generated field is used to access tags from within datamodels. Do not define extractions for this field when writing add-ons.,
+All_Changes,user,string,"The user or entity performing the change. For account changes, this is the account that was changed. See src_user for user or entity performing the change.",recommended
+All_Changes,vendor_product,string,The vendor and product or service that detected the change. This field can be automatically populated by vendor and product fields in your data.,recommended
+Account_Management,dest_nt_domain,string,"The NT domain of the destination, if applicable.",
+Account_Management,src_nt_domain,string,"The NT domain of the source, if applicable.",
+Account_Management,src_user,string,"For account changes, the user or entity performing the change.",
+Filesystem_Changes,file_access_time,time,The time the file (the object of the event) was accessed.,
+Filesystem_Changes,file_acl,string,Access controls associated with the file affected by the event.,
+Filesystem_Changes,file_create_time,time,The time the file (the object of the event) was created.,
+Filesystem_Changes,file_hash,string,A cryptographic identifier assigned to the file object affected by the event.,
+Filesystem_Changes,file_modify_time,time,The time the file (the object of the event) was altered.,
+Filesystem_Changes,file_name,string,The name of the file that is the object of the event (without location information related to local file or directory structure).,
+Filesystem_Changes,file_path,string,"The location of the file that is the object of the event, in local file and directory structure terms.",
+Filesystem_Changes,file_size,number,"The size of the file that is the object of the event, in kilobytes.",
+All_Inventory,description,string,The description of the inventory system.,
+All_Inventory,dest,string,"The system where the data originated, the source of the event. You can alias' this from more specific fields, such as dest_host, dest_ip, or dest_name.",
+All_Inventory,dest_bunit,string,The business unit of the system where the data is going. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+All_Inventory,dest_category,string,"The category of the system where the data is going, such as email_server or SOX-compliant. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.",
+All_Inventory,dest_priority,string,The priority of the system where the data is going. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+All_Inventory,enabled,boolean,Indicates whether the resource is enabled or disabled.,
+All_Inventory,family,string,"The product family of the resource, such as 686_64 or RISC.",
+All_Inventory,hypervisor_id,string,"The hypervisor identifier, if applicable.",
+All_Inventory,serial,string,The serial number of the resource.,
+All_Inventory,status,string,The current reported state of the resource.,
+All_Inventory,tag,string,Splunk uses this automatically generated field to access tags from within data models. You do not need to populate it.,
+All_Inventory,vendor_product,string,"The vendor and product name of the resource, such as Cisco Catalyst 3850. This field can be automatically populated by vendor and product fields in your data.",
+All_Inventory,version,string,"The  version of a computer resource, such as 2008r2 or 3.0.0.",
+CPU,cpu_cores,number,"The number of CPU cores reported by the resource (total, not per CPU).",
+CPU,cpu_count,number,The number of CPUs reported by the resource.,
+CPU,cpu_mhz,number,The maximum speed of the CPU reported by the resource (in megahertz).,
+Memory,mem,number,"The total amount of memory installed in or allocated to the resource, in megabytes.",
+Network,dest_ip,string,The IP address for the system that the data is going to.,
+Network,dns,string,The domain name server for the resource.,
+Network,inline_nat,string,Identifies whether the resource is a network address translation pool.,
+Network,interface,string,"The network interfaces of the computing resource, such as eth0, eth1 or Wired Ethernet Connection, Teredo Tunneling Pseudo-Interface.",
+Network,ip,string,"The network address of the computing resource, such as 192.168.1.1 or E80:0000:0000:0000:0202:B3FF:FE1E:8329.",
+Network,lb_method,string,"The load balancing method used by the computing resource such as method, round robin, or least weight.",
+Network,mac,string,"A MAC (media access control) address associated with the resource, such as 06:10:9f:eb:8f:14. Note: Always force lower case on this field. Note: Always use colons instead of dashes, spaces, or no separator.",
+Network,name,string,A name field provided in some data sources.,
+Network,node,string,Represents a node hit.,
+Network,node_port,number,The number of the destination port on the server that you requested from.,
+Network,src_ip,string,The IP address for the system from which the data originates.,
+Network,vip_port,number,The port number for the virtual IP address (VIP). A VIP allows multiple MACs to use one IP address. VIPs are often used by load balancers.,
+OS,os,string,"The operating system of the resource, such as Microsoft Windows Server 2008r2. This field is constructed from vendor_product and version fields.",
+Storage,array,string,"The array that the storage resource is a member of, if applicable",
+Storage,blocksize,number,"The block size used by the storage resource, in kilobytes.",
+Storage,cluster,string,"The index cluster that the resource is a member of, if applicable.",
+Storage,fd_max,number,The maximum number of file descriptors available.,
+Storage,latency,number,"The latency reported by the resource, in milliseconds.",
+Storage,mount,string,The path at which a storage resource is mounted.,
+Storage,parent,string,"A higher level object that this resource is owned by, if applicable.",
+Storage,read_blocks,number,The maximum possible number of blocks read per second during a polling period .,
+Storage,read_latency,number,"For a polling period, the average amount of time elapsed until a read request is filled by the host disks (in ms).",
+Storage,read_ops,number,The total number of read operations in the polling period.,
+Storage,storage,number,"The amount of storage capacity allocated to the resource, in megabytes.",
+Storage,write_blocks,number,The maximum possible number of blocks written per second during a polling period.,
+Storage,write_latency,number,"For a polling period, the average amount of time elapsed until a write request is filled by the host disks (in ms).",
+Storage,write_ops,number,The total number of write operations in the polling period.,
+User,interactive,boolean,Indicates whether a locally defined account on a resource can be interactively logged in.,
+User,password,string,"Displays the stored password(s) for a locally defined account, if it has any. For instance, an add-on may report the password column from /etc/passwd in this field.",
+User,shell,string,Indicates the shell program used by a locally defined account.,
+User,user,string,The full name of a locally defined account.,
+User,user_bunit,string,The business unit of the locally-defined user account. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+User,user_category,string,"The category of the system where the data originated, such as email_server or SOX-compliant. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.",
+User,user_id,number,The user identification for a locally defined account.,
+User,user_priority,string,The priority of a locally-defined account. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+Virtual_OS,hypervisor,string,The hypervisor parent of a virtual guest OS.,
+Snapshot,size,number,"The snapshot file size, in megabytes.",
+Snapshot,snapshot,string,The name of a snapshot file.,
+Snapshot,time,time,The time at which the snapshot was taken.,
 Data_Access,action,string,The data access action taken by the user.,"recommended
 prescribed values:commented, copied, created, deleted, disabled, downloaded, enabled, granted, forwarded, modified, read, revoked, shared, stopped, uncommented, unlocked, unshared, updated, uploaded,"
 Data_Access,app,string,The application involved in the event.,recommended
@@ -211,6 +317,53 @@ Data_Access,user_type,string,"The type of the user involved in the event or who 
 Data_Access,vendor_product,string,The vendor and product name of the vendor.,recommended
 Data_Access,vendor_product_id,string,The vendor and product name ID as defined by the vendor.,
 Data_Access,vendor_region,string,"The data center region where the change occurred, such as us-west-2.",optional
+DLP_Incidents,action,string,The action taken by the DLP device.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,app,string,The application involved in the event.,required for pytest-splunk-addon
+DLP_Incidents,category,string,The category of the DLP event.,"recommenderd
+required for pytest-splunk-addon"
+DLP_Incidents,dest,string,The target of the DLP event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,dest_bunit,string,The business unit of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dest_category,string,The category of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dest_priority,string,The priority of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dest_zone,string,The zone of the DLP target.,
+DLP_Incidents,dlp_type,string,The type of DLP system that generated the event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,dvc,string,The device that reported the DLP event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,dvc_bunit,string,The business unit of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dvc_category,string,The category of the DLP device. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dvc_priority,string,The priority of the DLP device. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,dvc_zone,string,The zone of the DLP device.,
+DLP_Incidents,object,string,The name of the affected object.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,object_category,string,The category of the affected object.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,object_path,string,The path of the affected object.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,severity,string,The severity of the DLP event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,severity_id,string,The numeric or vendor specific severity indicator corresponding to the event severity.,
+DLP_Incidents,signature,string,The name of the DLP event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,signature_id,string,The unique identifier or event code of the event signature.,
+DLP_Incidents,src,string,The source of the DLP event.,recommended
+DLP_Incidents,src_bunit,string,The business unit of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_category,string,The category of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_priority,string,The priority of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_user,string,The source user of the DLP event.,"recommended
+required for pytest-splunk-addon"
+DLP_Incidents,src_user_bunit,string,The business unit of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_user_category,string,The category of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_user_priority,string,The priority of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,src_zone,string,The zone of the DLP source.,
+DLP_Incidents,tag,string,This automatically generated field is used to access tags from within datamodels. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,user,string,The target user of the DLP event.,recommended
+DLP_Incidents,user_bunit,string,The business unit of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,user_category,string,The category of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,user_priority,string,The priority of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
+DLP_Incidents,vendor_product,string,The vendor and product name of the DLP system.,recommended
 All_Databases,dest,string,"The destination of the database event. You can alias this from more specific fields, such as dest_host, dest_ip, or dest_name.",
 All_Databases,dest_bunit,string,The business unit of the destination. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
 All_Databases,dest_category,string,The category of the destination. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
@@ -286,53 +439,6 @@ Query_Stats,indexes_hit,string,The names of the indexes hit by the database quer
 Query_Stats,query_plan_hit,string,The name of the query plan hit by the query.,
 Query_Stats,stored_procedures_called,string,The names of the stored procedures called by the query.,
 Query_Stats,tables_hit,string,The names of the tables hit by the query.,
-DLP_Incidents,action,string,The action taken by the DLP device.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,app,string,The application involved in the event.,required for pytest-splunk-addon
-DLP_Incidents,category,string,The category of the DLP event.,"recommenderd
-required for pytest-splunk-addon"
-DLP_Incidents,dest,string,The target of the DLP event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,dest_bunit,string,The business unit of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dest_category,string,The category of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dest_priority,string,The priority of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dest_zone,string,The zone of the DLP target.,
-DLP_Incidents,dlp_type,string,The type of DLP system that generated the event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,dvc,string,The device that reported the DLP event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,dvc_bunit,string,The business unit of the DLP target. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dvc_category,string,The category of the DLP device. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dvc_priority,string,The priority of the DLP device. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,dvc_zone,string,The zone of the DLP device.,
-DLP_Incidents,object,string,The name of the affected object.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,object_category,string,The category of the affected object.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,object_path,string,The path of the affected object.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,severity,string,The severity of the DLP event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,severity_id,string,The numeric or vendor specific severity indicator corresponding to the event severity.,
-DLP_Incidents,signature,string,The name of the DLP event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,signature_id,string,The unique identifier or event code of the event signature.,
-DLP_Incidents,src,string,The source of the DLP event.,recommended
-DLP_Incidents,src_bunit,string,The business unit of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_category,string,The category of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_priority,string,The priority of the DLP source. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_user,string,The source user of the DLP event.,"recommended
-required for pytest-splunk-addon"
-DLP_Incidents,src_user_bunit,string,The business unit of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_user_category,string,The category of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_user_priority,string,The priority of the DLP source user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,src_zone,string,The zone of the DLP source.,
-DLP_Incidents,tag,string,This automatically generated field is used to access tags from within datamodels. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,user,string,The target user of the DLP event.,recommended
-DLP_Incidents,user_bunit,string,The business unit of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,user_category,string,The category of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,user_priority,string,The priority of the DLP user. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-DLP_Incidents,vendor_product,string,The vendor and product name of the DLP system.,recommended
 All_Email,action,string,Action taken by the reporting device.,"recommended
 required for pytest-splunk-addon
 prescribed values:delivered, blocked, quarantined, deleted"
@@ -702,62 +808,51 @@ tcp,
 udp"
 IDS_Attacks,user,string,The user involved with the intrusion detection event.,recommended
 IDS_Attacks,vendor_product,string,"The vendor and product name of the IDS or IPS system that detected the vulnerability, such as HP Tipping Point. This field can be automatically populated by vendor and product fields in your data.",recommended
-All_Inventory,description,string,The description of the inventory system.,
-All_Inventory,dest,string,"The system where the data originated, the source of the event. You can alias' this from more specific fields, such as dest_host, dest_ip, or dest_name.",
-All_Inventory,dest_bunit,string,The business unit of the system where the data is going. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-All_Inventory,dest_category,string,"The category of the system where the data is going, such as email_server or SOX-compliant. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.",
-All_Inventory,dest_priority,string,The priority of the system where the data is going. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-All_Inventory,enabled,boolean,Indicates whether the resource is enabled or disabled.,
-All_Inventory,family,string,"The product family of the resource, such as 686_64 or RISC.",
-All_Inventory,hypervisor_id,string,"The hypervisor identifier, if applicable.",
-All_Inventory,serial,string,The serial number of the resource.,
-All_Inventory,status,string,The current reported state of the resource.,
-All_Inventory,tag,string,Splunk uses this automatically generated field to access tags from within data models. You do not need to populate it.,
-All_Inventory,vendor_product,string,"The vendor and product name of the resource, such as Cisco Catalyst 3850. This field can be automatically populated by vendor and product fields in your data.",
-All_Inventory,version,string,"The  version of a computer resource, such as 2008r2 or 3.0.0.",
-CPU,cpu_cores,number,"The number of CPU cores reported by the resource (total, not per CPU).",
-CPU,cpu_count,number,The number of CPUs reported by the resource.,
-CPU,cpu_mhz,number,The maximum speed of the CPU reported by the resource (in megahertz).,
-Memory,mem,number,"The total amount of memory installed in or allocated to the resource, in megabytes.",
-Network,dest_ip,string,The IP address for the system that the data is going to.,
-Network,dns,string,The domain name server for the resource.,
-Network,inline_nat,string,Identifies whether the resource is a network address translation pool.,
-Network,interface,string,"The network interfaces of the computing resource, such as eth0, eth1 or Wired Ethernet Connection, Teredo Tunneling Pseudo-Interface.",
-Network,ip,string,"The network address of the computing resource, such as 192.168.1.1 or E80:0000:0000:0000:0202:B3FF:FE1E:8329.",
-Network,lb_method,string,"The load balancing method used by the computing resource such as method, round robin, or least weight.",
-Network,mac,string,"A MAC (media access control) address associated with the resource, such as 06:10:9f:eb:8f:14. Note: Always force lower case on this field. Note: Always use colons instead of dashes, spaces, or no separator.",
-Network,name,string,A name field provided in some data sources.,
-Network,node,string,Represents a node hit.,
-Network,node_port,number,The number of the destination port on the server that you requested from.,
-Network,src_ip,string,The IP address for the system from which the data originates.,
-Network,vip_port,number,The port number for the virtual IP address (VIP). A VIP allows multiple MACs to use one IP address. VIPs are often used by load balancers.,
-OS,os,string,"The operating system of the resource, such as Microsoft Windows Server 2008r2. This field is constructed from vendor_product and version fields.",
-Storage,array,string,"The array that the storage resource is a member of, if applicable",
-Storage,blocksize,number,"The block size used by the storage resource, in kilobytes.",
-Storage,cluster,string,"The index cluster that the resource is a member of, if applicable.",
-Storage,fd_max,number,The maximum number of file descriptors available.,
-Storage,latency,number,"The latency reported by the resource, in milliseconds.",
-Storage,mount,string,The path at which a storage resource is mounted.,
-Storage,parent,string,"A higher level object that this resource is owned by, if applicable.",
-Storage,read_blocks,number,The maximum possible number of blocks read per second during a polling period .,
-Storage,read_latency,number,"For a polling period, the average amount of time elapsed until a read request is filled by the host disks (in ms).",
-Storage,read_ops,number,The total number of read operations in the polling period.,
-Storage,storage,number,"The amount of storage capacity allocated to the resource, in megabytes.",
-Storage,write_blocks,number,The maximum possible number of blocks written per second during a polling period.,
-Storage,write_latency,number,"For a polling period, the average amount of time elapsed until a write request is filled by the host disks (in ms).",
-Storage,write_ops,number,The total number of write operations in the polling period.,
-User,interactive,boolean,Indicates whether a locally defined account on a resource can be interactively logged in.,
-User,password,string,"Displays the stored password(s) for a locally defined account, if it has any. For instance, an add-on may report the password column from /etc/passwd in this field.",
-User,shell,string,Indicates the shell program used by a locally defined account.,
-User,user,string,The full name of a locally defined account.,
-User,user_bunit,string,The business unit of the locally-defined user account. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-User,user_category,string,"The category of the system where the data originated, such as email_server or SOX-compliant. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.",
-User,user_id,number,The user identification for a locally defined account.,
-User,user_priority,string,The priority of a locally-defined account. This field is automatically provided by asset and identity correlation features of applications like Splunk Enterprise Security. Do not define extractions for this field when writing add-ons.,
-Virtual_OS,hypervisor,string,The hypervisor parent of a virtual guest OS.,
-Snapshot,size,number,"The snapshot file size, in megabytes.",
-Snapshot,snapshot,string,The name of a snapshot file.,
-Snapshot,time,time,The time at which the snapshot was taken.,
+JVM,jvm_description,string,A description field provided in some data sources.,
+JVM,tag,string,This automatically generated field is used to access tags from within datamodels. Add-on builders do not need to populate it.,
+Threading,cm_enabled,boolean,Indicates whether thread contention monitoring is enabled.,"prescribed values:true, false, 1, 0"
+Threading,cm_supported,boolean,Indicates whether the JVM supports thread contention monitoring.,"prescribed values:true, false, 1, 0"
+Threading,cpu_time_enabled,boolean,Indicates whether thread CPU time measurement is enabled.,"prescribed values:true, false, 1, 0"
+Threading,cpu_time_supported,boolean,Indicates whether the Java virtual machine supports CPU time measurement for the current thread.,"prescribed values:true, false, 1, 0"
+Threading,current_cpu_time,number,"CPU-space time taken by the JVM, in seconds.",
+Threading,current_user_time,number,"User-space time taken by the JVM, in seconds.",
+Threading,daemon_thread_count,number,The JVM's current daemon count.,
+Threading,omu_supported,boolean,Indicates whether the JVM supports monitoring of object monitor usage.,"prescribed values:true, false, 1, 0"
+Threading,peak_thread_count,number,The JVM's peak thread count.,
+Threading,synch_supported,boolean,Indicates whether the JVM supports monitoring of ownable synchronizer usage.,"prescribed values:true, false, 1, 0"
+Threading,thread_count,number,The JVM's current thread count.,
+Threading,threads_started,number,The total number of threads started in the JVM.,
+Runtime,process_name,string,Process name of the JVM process.,
+Runtime,start_time,timestamp,Start time of the JVM process.,
+Runtime,uptime,number,"Uptime of the JVM process, in seconds.",
+Runtime,vendor_product,string,The JVM product or service. This field can be automatically populated by the the vendor and product fields in your raw data.,
+Runtime,version,string,Version of the JVM.,
+OS,committed_memory,number,"Amount of memory committed to the JVM, in bytes.",
+OS,cpu_time,number,"Amount of CPU time taken by the JVM, in seconds.",
+OS,free_physical_memory,number,"Amount of free physical memory remaining to the JVM, in bytes.",
+OS,free_swap,number,"Amount of free swap memory remaining to the JVM, in bytes.",
+OS,max_file_descriptors,number,Maximum file descriptors available to the JVM.,
+OS,open_file_descriptors,number,Number of file descriptors opened by the JVM.,
+OS,os,string,OS that the JVM is running on.,
+OS,os_architecture,string,OS architecture that the JVM is running on.,
+OS,os_version,string,OS version that the JVM is running on.,
+OS,physical_memory,number,"Physical memory available to the OS that the JVM is running on, in bytes.",
+OS,swap_space,number,"Swap memory space available to the OS that the JVM is running on, in bytes.",
+OS,system_load,number,System load of the OS that the JVM is running on.,
+OS,total_processors,number,Total processor cores available to the OS that the JVM is running on.,
+Compilation,compilation_time,number,"Time taken by JIT compilation, in seconds.",
+Classloading,current_loaded,number,The current count of classes loaded in the JVM.,
+Classloading,total_loaded,number,The total count of classes loaded in the JVM.,
+Classloading,total_unloaded,number,The total count of classes unloaded from the JVM.,
+Memory,heap_committed,number,"Committed amount of heap memory used by the JVM, in bytes.",
+Memory,heap_initial,number,"Initial amount of heap memory used by the JVM, in bytes.",
+Memory,heap_max,number,"Maximum amount of heap memory used by the JVM, in bytes.",
+Memory,heap_used,number,"Heap memory used by the JVM, in bytes.",
+Memory,non_heap_committed,number,"Committed amount of non-heap memory used by the JVM, in bytes.",
+Memory,non_heap_initial,number,"Initial amount of non-heap memory used by the JVM, in bytes.",
+Memory,non_heap_max,number,"Maximum amount of non-heap memory used by the JVM, in bytes.",
+Memory,non_heap_used,number,"Non-heap memory used by the JVM, in bytes.",
+Memory,objects_pending,number,"Number of objects pending in the JVM, in bytes.",
 Malware_Attacks,action,string,The action taken by the reporting device.,"recommended
 required for pytest-splunk-addon
 prescribed values:allowed, blocked, deferred"

@@ -69,7 +69,7 @@ class ElasticPackagesIndexer:
     def __init__(self, packages_dir: str, persist_dir: str = "./chroma_db"):
         self.packages_dir = Path(packages_dir)
         self.persist_dir = persist_dir
-        self.checkpoint_file = "processed_dirs.json"
+        self.checkpoint_file = "elastic_processed_dirs.json"
         
         # Initialize components
         self.text_splitter = RecursiveCharacterTextSplitter(
@@ -321,7 +321,7 @@ class ElasticPackagesIndexer:
 def main():
     """Main function to run the indexer"""
     # Configuration
-    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\elastic_integrations\packages"
+    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\elastic_repo\packages"
     PERSIST_DIR = "./chroma_db"
     
     # Create indexer and run
@@ -330,5 +330,5 @@ def main():
 
 if __name__ == "__main__":
     # Set global variable for use in CustomYAMLLoader
-    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\elastic_integrations\packages"
+    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\elastic_repo\packages"
     main()

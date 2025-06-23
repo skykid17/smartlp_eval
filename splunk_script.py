@@ -357,6 +357,6 @@ def main():
 
 if __name__ == "__main__":
     # Set global variable for use in CustomYAMLLoader
-    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\splunk_add_ons"
+    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\soc_rag\splunk_repo"
     PERSIST_DIR = "./chroma_db"
     main()

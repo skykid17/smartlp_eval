@@ -1,8 +1,6 @@
 from langchain.chains import RetrievalQA
 from langchain_ollama import OllamaEmbeddings, OllamaLLM
 from langchain_chroma import Chroma
-import chromadb
-import os
 
 TOP_K = 5  # Number of top results to retrieve
 
