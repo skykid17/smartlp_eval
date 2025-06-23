@@ -4,7 +4,7 @@ import re
 
 def extract_elastic_logtypes():
     # Return a list of sub-directories in the Elastic packages directory
-    packages_dir = "elastic_repo/packages"
+    packages_dir = "repos/elastic_repo/packages"
     try:
         logtypes = [d for d in os.listdir(packages_dir) if os.path.isdir(os.path.join(packages_dir, d))]
         
@@ -31,7 +31,7 @@ def extract_elastic_logtypes():
 
 def extract_splunk_sourcetypes():
     """Extract sourcetypes from all Splunk packages and write to CSV."""
-    packages_dir = "splunk_repo"
+    packages_dir = "repos/splunk_repo"
     csv_filename = "splunk_sourcetypes.csv"
     
     try:

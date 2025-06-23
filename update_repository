@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 
-def download_elastic_packages():
+def update_elastic_repo():
     """
     Download the list of Elastic packages using GitHub API and maintain local repository.
     """
@@ -79,4 +79,4 @@ def update_local_repository(local_path):
         except:
             pass
 
-download_elastic_packages()
+update_elastic_repo()

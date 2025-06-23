@@ -2,5 +2,4 @@
 .venv/
 __pycache__/
 chroma_db/
-elastic_repo/
-splunk_repo/
+repos/
