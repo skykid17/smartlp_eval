@@ -458,3 +458,337 @@
 2025-06-17 12:38:06,035 - INFO - Total files processed: 5566
 2025-06-17 12:38:06,035 - INFO - Total files skipped: 31201
 2025-06-17 12:38:06,035 - INFO - ==================================================
+2025-06-17 12:47:47,473 - INFO - Loading embedding model: all-MiniLM-L6-v2
+2025-06-17 12:47:47,475 - INFO - Use pytorch device_name: cpu
+2025-06-17 12:47:47,475 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-06-17 12:47:53,494 - INFO - Using existing ChromaDB collection: splunk_addons
+2025-06-17 12:47:53,495 - INFO - Starting processing of Splunk add-ons in: C:\Users\geola\Documents\GitHub\splunk_add_ons
+2025-06-17 12:47:53,503 - INFO - Skipping already processed add-on: SA-Hydra
+2025-06-17 12:47:53,503 - INFO - Skipping already processed add-on: SA-Hydra-inframon
+2025-06-17 12:47:53,503 - INFO - Skipping already processed add-on: splunk_app_addon-builder
+2025-06-17 12:47:53,504 - INFO - Skipping already processed add-on: splunk_app_db_connect
+2025-06-17 12:47:53,504 - INFO - Skipping already processed add-on: splunk_app_soar
+2025-06-17 12:47:53,505 - INFO - Skipping already processed add-on: Splunk_SA_CIM
+2025-06-17 12:47:53,505 - INFO - Processing Splunk add-on: Splunk_Security_Essentials
+2025-06-17 12:48:11,247 - INFO - Processing 37168 chunks from Splunk_Security_Essentials
+2025-06-17 12:48:11,248 - INFO - Chunks (37168) exceed max batch size (5461). Processing in batches.
+2025-06-17 12:48:11,248 - INFO - Processing batch 1/7 (chunks 1-5461 of 37168) for Splunk_Security_Essentials
+2025-06-17 12:48:11,260 - INFO - Generating embeddings for 5461 chunks (batch starting at index 0)
+2025-06-17 12:51:46,799 - INFO - Successfully stored 5461 chunks from batch starting at index 0 for Splunk_Security_Essentials
+2025-06-17 12:51:46,833 - INFO - Processing batch 2/7 (chunks 5462-10922 of 37168) for Splunk_Security_Essentials
+2025-06-17 12:51:46,843 - INFO - Generating embeddings for 5461 chunks (batch starting at index 5461)
+2025-06-17 12:55:21,438 - INFO - Successfully stored 5461 chunks from batch starting at index 5461 for Splunk_Security_Essentials
+2025-06-17 12:55:21,475 - INFO - Processing batch 3/7 (chunks 10923-16383 of 37168) for Splunk_Security_Essentials
+2025-06-17 12:55:21,487 - INFO - Generating embeddings for 5461 chunks (batch starting at index 10922)
+2025-06-17 12:59:39,762 - INFO - Successfully stored 5461 chunks from batch starting at index 10922 for Splunk_Security_Essentials
+2025-06-17 12:59:39,810 - INFO - Processing batch 4/7 (chunks 16384-21844 of 37168) for Splunk_Security_Essentials
+2025-06-17 12:59:39,821 - INFO - Generating embeddings for 5461 chunks (batch starting at index 16383)
+2025-06-17 13:03:51,659 - INFO - Successfully stored 5461 chunks from batch starting at index 16383 for Splunk_Security_Essentials
+2025-06-17 13:03:51,697 - INFO - Processing batch 5/7 (chunks 21845-27305 of 37168) for Splunk_Security_Essentials
+2025-06-17 13:03:51,706 - INFO - Generating embeddings for 5461 chunks (batch starting at index 21844)
+2025-06-17 13:07:59,445 - INFO - Successfully stored 5461 chunks from batch starting at index 21844 for Splunk_Security_Essentials
+2025-06-17 13:07:59,489 - INFO - Processing batch 6/7 (chunks 27306-32766 of 37168) for Splunk_Security_Essentials
+2025-06-17 13:07:59,501 - INFO - Generating embeddings for 5461 chunks (batch starting at index 27305)
+2025-06-17 13:12:00,015 - INFO - Successfully stored 5461 chunks from batch starting at index 27305 for Splunk_Security_Essentials
+2025-06-17 13:12:00,063 - INFO - Processing batch 7/7 (chunks 32767-37168 of 37168) for Splunk_Security_Essentials
+2025-06-17 13:12:00,071 - INFO - Generating embeddings for 4402 chunks (batch starting at index 32766)
+2025-06-17 13:15:16,923 - INFO - Successfully stored 4402 chunks from batch starting at index 32766 for Splunk_Security_Essentials
+2025-06-17 13:15:17,007 - INFO - Add-on Splunk_Security_Essentials completed: 73 documents, 37168 chunks, 73 files processed, 1143 files skipped
+2025-06-17 13:15:17,009 - INFO - Skipping already processed add-on: Splunk_TA_apache
+2025-06-17 13:15:17,010 - INFO - Skipping already processed add-on: Splunk_TA_ari_linux
+2025-06-17 13:15:17,010 - INFO - Skipping already processed add-on: Splunk_TA_ari_mac
+2025-06-17 13:15:17,011 - INFO - Skipping already processed add-on: Splunk_TA_ari_win
+2025-06-17 13:15:17,011 - INFO - Processing Splunk add-on: Splunk_TA_aws
+2025-06-17 13:16:02,482 - INFO - Processing 39107 chunks from Splunk_TA_aws
+2025-06-17 13:16:02,482 - INFO - Chunks (39107) exceed max batch size (5461). Processing in batches.
+2025-06-17 13:16:02,483 - INFO - Processing batch 1/8 (chunks 1-5461 of 39107) for Splunk_TA_aws
+2025-06-17 13:16:02,494 - INFO - Generating embeddings for 5461 chunks (batch starting at index 0)
+2025-06-17 13:20:13,627 - INFO - Successfully stored 5461 chunks from batch starting at index 0 for Splunk_TA_aws
+2025-06-17 13:20:13,662 - INFO - Processing batch 2/8 (chunks 5462-10922 of 39107) for Splunk_TA_aws
+2025-06-17 13:20:13,673 - INFO - Generating embeddings for 5461 chunks (batch starting at index 5461)
+2025-06-17 13:24:07,635 - INFO - Successfully stored 5461 chunks from batch starting at index 5461 for Splunk_TA_aws
+2025-06-17 13:24:07,676 - INFO - Processing batch 3/8 (chunks 10923-16383 of 39107) for Splunk_TA_aws
+2025-06-17 13:24:07,687 - INFO - Generating embeddings for 5461 chunks (batch starting at index 10922)
+2025-06-17 13:28:08,054 - INFO - Successfully stored 5461 chunks from batch starting at index 10922 for Splunk_TA_aws
+2025-06-17 13:28:08,097 - INFO - Processing batch 4/8 (chunks 16384-21844 of 39107) for Splunk_TA_aws
+2025-06-17 13:28:08,108 - INFO - Generating embeddings for 5461 chunks (batch starting at index 16383)
+2025-06-17 13:31:56,723 - INFO - Successfully stored 5461 chunks from batch starting at index 16383 for Splunk_TA_aws
+2025-06-17 13:31:56,756 - INFO - Processing batch 5/8 (chunks 21845-27305 of 39107) for Splunk_TA_aws
+2025-06-17 13:31:56,767 - INFO - Generating embeddings for 5461 chunks (batch starting at index 21844)
+2025-06-17 13:35:38,193 - INFO - Successfully stored 5461 chunks from batch starting at index 21844 for Splunk_TA_aws
+2025-06-17 13:35:38,228 - INFO - Processing batch 6/8 (chunks 27306-32766 of 39107) for Splunk_TA_aws
+2025-06-17 13:35:38,238 - INFO - Generating embeddings for 5461 chunks (batch starting at index 27305)
+2025-06-17 13:39:32,801 - INFO - Successfully stored 5461 chunks from batch starting at index 27305 for Splunk_TA_aws
+2025-06-17 13:39:32,835 - INFO - Processing batch 7/8 (chunks 32767-38227 of 39107) for Splunk_TA_aws
+2025-06-17 13:39:32,848 - INFO - Generating embeddings for 5461 chunks (batch starting at index 32766)
+2025-06-17 13:43:41,524 - INFO - Successfully stored 5461 chunks from batch starting at index 32766 for Splunk_TA_aws
+2025-06-17 13:43:41,563 - INFO - Processing batch 8/8 (chunks 38228-39107 of 39107) for Splunk_TA_aws
+2025-06-17 13:43:41,565 - INFO - Generating embeddings for 880 chunks (batch starting at index 38227)
+2025-06-17 13:44:23,468 - INFO - Successfully stored 880 chunks from batch starting at index 38227 for Splunk_TA_aws
+2025-06-17 13:44:23,525 - INFO - Add-on Splunk_TA_aws completed: 1324 documents, 39107 chunks, 1324 files processed, 2211 files skipped
+2025-06-17 13:44:23,527 - INFO - Skipping already processed add-on: Splunk_TA_aws-kinesis-firehose
+2025-06-17 13:44:23,527 - INFO - Skipping already processed add-on: Splunk_TA_bit9-carbonblack
+2025-06-17 13:44:23,528 - INFO - Skipping already processed add-on: Splunk_TA_bluecoat-proxysg
+2025-06-17 13:44:23,528 - INFO - Skipping already processed add-on: Splunk_TA_box
+2025-06-17 13:44:23,528 - INFO - Skipping already processed add-on: Splunk_TA_checkpoint_log_exporter
+2025-06-17 13:44:23,529 - INFO - Skipping already processed add-on: Splunk_TA_cisco-asa
+2025-06-17 13:44:23,529 - INFO - Skipping already processed add-on: Splunk_TA_cisco-esa
+2025-06-17 13:44:23,529 - INFO - Skipping already processed add-on: Splunk_TA_cisco-ise
+2025-06-17 13:44:23,530 - INFO - Skipping already processed add-on: Splunk_TA_cisco-ucs
+2025-06-17 13:44:23,530 - INFO - Skipping already processed add-on: Splunk_TA_cisco-wsa
+2025-06-17 13:44:23,530 - INFO - Skipping already processed add-on: Splunk_TA_citrix-netscaler
+2025-06-17 13:44:23,530 - INFO - Skipping already processed add-on: Splunk_TA_CrowdStrike_FDR
+2025-06-17 13:44:23,531 - INFO - Skipping already processed add-on: Splunk_TA_cyberark
+2025-06-17 13:44:23,531 - INFO - Skipping already processed add-on: Splunk_TA_cyberark_epm
+2025-06-17 13:44:23,531 - INFO - Skipping already processed add-on: Splunk_TA_esxilogs
+2025-06-17 13:44:23,532 - INFO - Skipping already processed add-on: Splunk_TA_f5-bigip
+2025-06-17 13:44:23,532 - INFO - Skipping already processed add-on: Splunk_TA_github
+2025-06-17 13:44:23,532 - INFO - Processing Splunk add-on: Splunk_TA_google-cloudplatform
+2025-06-17 13:45:02,829 - INFO - Processing 47270 chunks from Splunk_TA_google-cloudplatform
+2025-06-17 13:45:02,830 - INFO - Chunks (47270) exceed max batch size (5461). Processing in batches.
+2025-06-17 13:45:02,830 - INFO - Processing batch 1/9 (chunks 1-5461 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 13:45:02,841 - INFO - Generating embeddings for 5461 chunks (batch starting at index 0)
+2025-06-17 13:49:03,186 - INFO - Successfully stored 5461 chunks from batch starting at index 0 for Splunk_TA_google-cloudplatform
+2025-06-17 13:49:03,228 - INFO - Processing batch 2/9 (chunks 5462-10922 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 13:49:03,240 - INFO - Generating embeddings for 5461 chunks (batch starting at index 5461)
+2025-06-17 13:52:45,042 - INFO - Successfully stored 5461 chunks from batch starting at index 5461 for Splunk_TA_google-cloudplatform
+2025-06-17 13:52:45,076 - INFO - Processing batch 3/9 (chunks 10923-16383 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 13:52:45,086 - INFO - Generating embeddings for 5461 chunks (batch starting at index 10922)
+2025-06-17 13:56:36,964 - INFO - Successfully stored 5461 chunks from batch starting at index 10922 for Splunk_TA_google-cloudplatform
+2025-06-17 13:56:36,997 - INFO - Processing batch 4/9 (chunks 16384-21844 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 13:56:37,008 - INFO - Generating embeddings for 5461 chunks (batch starting at index 16383)
+2025-06-17 14:00:30,964 - INFO - Successfully stored 5461 chunks from batch starting at index 16383 for Splunk_TA_google-cloudplatform
+2025-06-17 14:00:31,011 - INFO - Processing batch 5/9 (chunks 21845-27305 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 14:00:31,022 - INFO - Generating embeddings for 5461 chunks (batch starting at index 21844)
+2025-06-17 14:04:35,916 - INFO - Successfully stored 5461 chunks from batch starting at index 21844 for Splunk_TA_google-cloudplatform
+2025-06-17 14:04:35,957 - INFO - Processing batch 6/9 (chunks 27306-32766 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 14:04:35,968 - INFO - Generating embeddings for 5461 chunks (batch starting at index 27305)
+2025-06-17 14:08:41,305 - INFO - Successfully stored 5461 chunks from batch starting at index 27305 for Splunk_TA_google-cloudplatform
+2025-06-17 14:08:41,350 - INFO - Processing batch 7/9 (chunks 32767-38227 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 14:08:41,362 - INFO - Generating embeddings for 5461 chunks (batch starting at index 32766)
+2025-06-17 14:12:48,194 - INFO - Successfully stored 5461 chunks from batch starting at index 32766 for Splunk_TA_google-cloudplatform
+2025-06-17 14:12:48,242 - INFO - Processing batch 8/9 (chunks 38228-43688 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 14:12:48,252 - INFO - Generating embeddings for 5461 chunks (batch starting at index 38227)
+2025-06-17 14:17:03,178 - INFO - Successfully stored 5461 chunks from batch starting at index 38227 for Splunk_TA_google-cloudplatform
+2025-06-17 14:17:03,213 - INFO - Processing batch 9/9 (chunks 43689-47270 of 47270) for Splunk_TA_google-cloudplatform
+2025-06-17 14:17:03,221 - INFO - Generating embeddings for 3582 chunks (batch starting at index 43688)
+2025-06-17 14:19:38,577 - INFO - Successfully stored 3582 chunks from batch starting at index 43688 for Splunk_TA_google-cloudplatform
+2025-06-17 14:19:38,707 - INFO - Add-on Splunk_TA_google-cloudplatform completed: 640 documents, 47270 chunks, 640 files processed, 3567 files skipped
+2025-06-17 14:19:38,713 - INFO - Processing Splunk add-on: Splunk_TA_Google_Workspace
+2025-06-17 14:20:15,140 - INFO - Processing 43805 chunks from Splunk_TA_Google_Workspace
+2025-06-17 14:20:15,140 - INFO - Chunks (43805) exceed max batch size (5461). Processing in batches.
+2025-06-17 14:20:15,141 - INFO - Processing batch 1/9 (chunks 1-5461 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:20:15,154 - INFO - Generating embeddings for 5461 chunks (batch starting at index 0)
+2025-06-17 14:24:12,313 - INFO - Successfully stored 5461 chunks from batch starting at index 0 for Splunk_TA_Google_Workspace
+2025-06-17 14:24:12,355 - INFO - Processing batch 2/9 (chunks 5462-10922 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:24:12,366 - INFO - Generating embeddings for 5461 chunks (batch starting at index 5461)
+2025-06-17 14:28:15,395 - INFO - Successfully stored 5461 chunks from batch starting at index 5461 for Splunk_TA_Google_Workspace
+2025-06-17 14:28:15,439 - INFO - Processing batch 3/9 (chunks 10923-16383 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:28:15,452 - INFO - Generating embeddings for 5461 chunks (batch starting at index 10922)
+2025-06-17 14:32:39,011 - INFO - Successfully stored 5461 chunks from batch starting at index 10922 for Splunk_TA_Google_Workspace
+2025-06-17 14:32:39,058 - INFO - Processing batch 4/9 (chunks 16384-21844 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:32:39,072 - INFO - Generating embeddings for 5461 chunks (batch starting at index 16383)
+2025-06-17 14:36:59,175 - INFO - Successfully stored 5461 chunks from batch starting at index 16383 for Splunk_TA_Google_Workspace
+2025-06-17 14:36:59,218 - INFO - Processing batch 5/9 (chunks 21845-27305 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:36:59,230 - INFO - Generating embeddings for 5461 chunks (batch starting at index 21844)
+2025-06-17 14:41:32,743 - INFO - Successfully stored 5461 chunks from batch starting at index 21844 for Splunk_TA_Google_Workspace
+2025-06-17 14:41:32,789 - INFO - Processing batch 6/9 (chunks 27306-32766 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:41:32,806 - INFO - Generating embeddings for 5461 chunks (batch starting at index 27305)
+2025-06-17 14:45:54,939 - INFO - Successfully stored 5461 chunks from batch starting at index 27305 for Splunk_TA_Google_Workspace
+2025-06-17 14:45:54,977 - INFO - Processing batch 7/9 (chunks 32767-38227 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:45:54,988 - INFO - Generating embeddings for 5461 chunks (batch starting at index 32766)
+2025-06-17 14:50:47,128 - INFO - Successfully stored 5461 chunks from batch starting at index 32766 for Splunk_TA_Google_Workspace
+2025-06-17 14:50:47,166 - INFO - Processing batch 8/9 (chunks 38228-43688 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:50:47,191 - INFO - Generating embeddings for 5461 chunks (batch starting at index 38227)
+2025-06-17 14:55:03,130 - INFO - Successfully stored 5461 chunks from batch starting at index 38227 for Splunk_TA_Google_Workspace
+2025-06-17 14:55:03,167 - INFO - Processing batch 9/9 (chunks 43689-43805 of 43805) for Splunk_TA_Google_Workspace
+2025-06-17 14:55:03,168 - INFO - Generating embeddings for 117 chunks (batch starting at index 43688)
+2025-06-17 14:55:08,312 - INFO - Successfully stored 117 chunks from batch starting at index 43688 for Splunk_TA_Google_Workspace
+2025-06-17 14:55:08,430 - INFO - Add-on Splunk_TA_Google_Workspace completed: 609 documents, 43805 chunks, 609 files processed, 2199 files skipped
+2025-06-17 14:55:08,435 - INFO - Skipping already processed add-on: Splunk_TA_haproxy
+2025-06-17 14:55:08,435 - INFO - Skipping already processed add-on: Splunk_TA_ibm-was
+2025-06-17 14:55:08,436 - INFO - Skipping already processed add-on: Splunk_TA_imperva-waf
+2025-06-17 14:55:08,436 - INFO - Skipping already processed add-on: Splunk_TA_infoblox
+2025-06-17 14:55:08,437 - INFO - Skipping already processed add-on: Splunk_TA_isc-bind
+2025-06-17 14:55:08,438 - INFO - Skipping already processed add-on: Splunk_TA_isc-dhcp
+2025-06-17 14:55:08,438 - INFO - Skipping already processed add-on: Splunk_TA_Jira_Cloud
+2025-06-17 14:55:08,439 - INFO - Skipping already processed add-on: Splunk_TA_Jira_Data_Center
+2025-06-17 14:55:08,439 - INFO - Skipping already processed add-on: Splunk_TA_jmx
+2025-06-17 14:55:08,440 - INFO - Skipping already processed add-on: Splunk_TA_juniper
+2025-06-17 14:55:08,440 - INFO - Skipping already processed add-on: Splunk_TA_kafka
+2025-06-17 14:55:08,441 - INFO - Skipping already processed add-on: Splunk_TA_linux
+2025-06-17 14:55:08,442 - INFO - Skipping already processed add-on: Splunk_TA_mcafee-wg
+2025-06-17 14:55:08,442 - INFO - Skipping already processed add-on: Splunk_TA_mcafee_epo_syslog
+2025-06-17 14:55:08,442 - INFO - Skipping already processed add-on: Splunk_TA_mcafee_nsp
+2025-06-17 14:55:08,443 - INFO - Skipping already processed add-on: Splunk_TA_microsoft-cloudservices
+2025-06-17 14:55:08,443 - INFO - Skipping already processed add-on: Splunk_TA_microsoft-hyperv
+2025-06-17 14:55:08,444 - INFO - Skipping already processed add-on: Splunk_TA_microsoft-iis
+2025-06-17 14:55:08,445 - INFO - Skipping already processed add-on: Splunk_TA_microsoft-scom
+2025-06-17 14:55:08,445 - INFO - Skipping already processed add-on: Splunk_TA_microsoft-sqlserver
+2025-06-17 14:55:08,446 - INFO - Skipping already processed add-on: Splunk_TA_microsoft_sysmon
+2025-06-17 14:55:08,446 - INFO - Skipping already processed add-on: Splunk_TA_mysql
+2025-06-17 14:55:08,447 - INFO - Skipping already processed add-on: Splunk_TA_nagios-core
+2025-06-17 14:55:08,447 - INFO - Skipping already processed add-on: Splunk_TA_nginx
+2025-06-17 14:55:08,448 - INFO - Skipping already processed add-on: Splunk_TA_nix
+2025-06-17 14:55:08,448 - INFO - Skipping already processed add-on: splunk_ta_o365
+2025-06-17 14:55:08,449 - INFO - Skipping already processed add-on: Splunk_TA_okta_identity_cloud
+2025-06-17 14:55:08,449 - INFO - Skipping already processed add-on: Splunk_TA_oracle
+2025-06-17 14:55:08,450 - INFO - Skipping already processed add-on: Splunk_TA_ossec
+2025-06-17 14:55:08,450 - INFO - Skipping already processed add-on: Splunk_TA_paloalto_networks
+2025-06-17 14:55:08,451 - INFO - Skipping already processed add-on: Splunk_TA_Phantom
+2025-06-17 14:55:08,451 - INFO - Skipping already processed add-on: Splunk_TA_remedy
+2025-06-17 14:55:08,451 - INFO - Skipping already processed add-on: Splunk_TA_rsa-dlp
+2025-06-17 14:55:08,452 - INFO - Skipping already processed add-on: Splunk_TA_rsa-securid
+2025-06-17 14:55:08,452 - INFO - Skipping already processed add-on: Splunk_TA_rsa_securid_cas
+2025-06-17 14:55:08,453 - INFO - Processing Splunk add-on: Splunk_TA_SAA
+2025-06-17 14:55:08,985 - INFO - Processing 1046 chunks from Splunk_TA_SAA
+2025-06-17 14:55:08,986 - INFO - Processing all 1046 chunks in single batch for Splunk_TA_SAA
+2025-06-17 14:55:08,988 - INFO - Generating embeddings for 1046 chunks (batch starting at index 0)
+2025-06-17 14:55:56,076 - INFO - Successfully stored 1046 chunks from batch starting at index 0 for Splunk_TA_SAA
+2025-06-17 14:55:56,090 - INFO - Add-on Splunk_TA_SAA completed: 65 documents, 1046 chunks, 65 files processed, 536 files skipped
+2025-06-17 14:55:56,092 - INFO - Processing Splunk add-on: Splunk_TA_salesforce
+2025-06-17 14:55:56,587 - INFO - Processing 1017 chunks from Splunk_TA_salesforce
+2025-06-17 14:55:56,587 - INFO - Processing all 1017 chunks in single batch for Splunk_TA_salesforce
+2025-06-17 14:55:56,591 - INFO - Generating embeddings for 1017 chunks (batch starting at index 0)
+2025-06-17 14:56:45,486 - INFO - Successfully stored 1017 chunks from batch starting at index 0 for Splunk_TA_salesforce
+2025-06-17 14:56:45,496 - INFO - Add-on Splunk_TA_salesforce completed: 39 documents, 1017 chunks, 39 files processed, 363 files skipped
+2025-06-17 14:56:45,498 - INFO - Processing Splunk add-on: splunk_ta_sim
+2025-06-17 14:56:45,627 - INFO - Processing 52 chunks from splunk_ta_sim
+2025-06-17 14:56:45,627 - INFO - Processing all 52 chunks in single batch for splunk_ta_sim
+2025-06-17 14:56:45,628 - INFO - Generating embeddings for 52 chunks (batch starting at index 0)
+2025-06-17 14:56:47,483 - INFO - Successfully stored 52 chunks from batch starting at index 0 for splunk_ta_sim
+2025-06-17 14:56:47,484 - INFO - Add-on splunk_ta_sim completed: 33 documents, 52 chunks, 33 files processed, 415 files skipped
+2025-06-17 14:56:47,486 - INFO - Processing Splunk add-on: Splunk_TA_snow
+2025-06-17 14:56:47,846 - INFO - Processing 1042 chunks from Splunk_TA_snow
+2025-06-17 14:56:47,846 - INFO - Processing all 1042 chunks in single batch for Splunk_TA_snow
+2025-06-17 14:56:47,848 - INFO - Generating embeddings for 1042 chunks (batch starting at index 0)
+2025-06-17 14:57:36,902 - INFO - Successfully stored 1042 chunks from batch starting at index 0 for Splunk_TA_snow
+2025-06-17 14:57:36,910 - INFO - Add-on Splunk_TA_snow completed: 45 documents, 1042 chunks, 45 files processed, 447 files skipped
+2025-06-17 14:57:36,912 - INFO - Processing Splunk add-on: Splunk_TA_sophos
+2025-06-17 14:57:37,046 - INFO - Processing 70 chunks from Splunk_TA_sophos
+2025-06-17 14:57:37,047 - INFO - Processing all 70 chunks in single batch for Splunk_TA_sophos
+2025-06-17 14:57:37,047 - INFO - Generating embeddings for 70 chunks (batch starting at index 0)
+2025-06-17 14:57:40,289 - INFO - Successfully stored 70 chunks from batch starting at index 0 for Splunk_TA_sophos
+2025-06-17 14:57:40,291 - INFO - Add-on Splunk_TA_sophos completed: 9 documents, 70 chunks, 9 files processed, 18 files skipped
+2025-06-17 14:57:40,292 - INFO - Processing Splunk add-on: Splunk_TA_squid
+2025-06-17 14:57:40,385 - INFO - Processing 61 chunks from Splunk_TA_squid
+2025-06-17 14:57:40,385 - INFO - Processing all 61 chunks in single batch for Splunk_TA_squid
+2025-06-17 14:57:40,386 - INFO - Generating embeddings for 61 chunks (batch starting at index 0)
+2025-06-17 14:57:43,228 - INFO - Successfully stored 61 chunks from batch starting at index 0 for Splunk_TA_squid
+2025-06-17 14:57:43,229 - INFO - Add-on Splunk_TA_squid completed: 8 documents, 61 chunks, 8 files processed, 10 files skipped
+2025-06-17 14:57:43,231 - INFO - Processing Splunk add-on: Splunk_TA_stream_wire_data
+2025-06-17 14:57:43,356 - INFO - Processing 70 chunks from Splunk_TA_stream_wire_data
+2025-06-17 14:57:43,357 - INFO - Processing all 70 chunks in single batch for Splunk_TA_stream_wire_data
+2025-06-17 14:57:43,357 - INFO - Generating embeddings for 70 chunks (batch starting at index 0)
+2025-06-17 14:57:46,524 - INFO - Successfully stored 70 chunks from batch starting at index 0 for Splunk_TA_stream_wire_data
+2025-06-17 14:57:46,525 - INFO - Add-on Splunk_TA_stream_wire_data completed: 8 documents, 70 chunks, 8 files processed, 2 files skipped
+2025-06-17 14:57:46,527 - INFO - Processing Splunk add-on: Splunk_TA_symantec-dlp
+2025-06-17 14:57:46,631 - INFO - Processing 63 chunks from Splunk_TA_symantec-dlp
+2025-06-17 14:57:46,632 - INFO - Processing all 63 chunks in single batch for Splunk_TA_symantec-dlp
+2025-06-17 14:57:46,632 - INFO - Generating embeddings for 63 chunks (batch starting at index 0)
+2025-06-17 14:57:49,553 - INFO - Successfully stored 63 chunks from batch starting at index 0 for Splunk_TA_symantec-dlp
+2025-06-17 14:57:49,554 - INFO - Add-on Splunk_TA_symantec-dlp completed: 9 documents, 63 chunks, 9 files processed, 9 files skipped
+2025-06-17 14:57:49,556 - INFO - Processing Splunk add-on: Splunk_TA_symantec-ep
+2025-06-17 14:57:49,687 - INFO - Processing 115 chunks from Splunk_TA_symantec-ep
+2025-06-17 14:57:49,688 - INFO - Processing all 115 chunks in single batch for Splunk_TA_symantec-ep
+2025-06-17 14:57:49,688 - INFO - Generating embeddings for 115 chunks (batch starting at index 0)
+2025-06-17 14:57:54,689 - INFO - Successfully stored 115 chunks from batch starting at index 0 for Splunk_TA_symantec-ep
+2025-06-17 14:57:54,690 - INFO - Add-on Splunk_TA_symantec-ep completed: 8 documents, 115 chunks, 8 files processed, 20 files skipped
+2025-06-17 14:57:54,692 - INFO - Processing Splunk add-on: Splunk_TA_sysmon-for-linux
+2025-06-17 14:57:54,810 - INFO - Processing 63 chunks from Splunk_TA_sysmon-for-linux
+2025-06-17 14:57:54,811 - INFO - Processing all 63 chunks in single batch for Splunk_TA_sysmon-for-linux
+2025-06-17 14:57:54,811 - INFO - Generating embeddings for 63 chunks (batch starting at index 0)
+2025-06-17 14:57:57,623 - INFO - Successfully stored 63 chunks from batch starting at index 0 for Splunk_TA_sysmon-for-linux
+2025-06-17 14:57:57,624 - INFO - Add-on Splunk_TA_sysmon-for-linux completed: 9 documents, 63 chunks, 9 files processed, 9 files skipped
+2025-06-17 14:57:57,626 - INFO - Processing Splunk add-on: Splunk_TA_tomcat
+2025-06-17 14:57:58,316 - INFO - Processing 1260 chunks from Splunk_TA_tomcat
+2025-06-17 14:57:58,317 - INFO - Processing all 1260 chunks in single batch for Splunk_TA_tomcat
+2025-06-17 14:57:58,319 - INFO - Generating embeddings for 1260 chunks (batch starting at index 0)
+2025-06-17 14:58:55,473 - INFO - Successfully stored 1260 chunks from batch starting at index 0 for Splunk_TA_tomcat
+2025-06-17 14:58:55,481 - INFO - Add-on Splunk_TA_tomcat completed: 50 documents, 1260 chunks, 50 files processed, 391 files skipped
+2025-06-17 14:58:55,483 - INFO - Processing Splunk add-on: Splunk_TA_vcenter
+2025-06-17 14:58:55,582 - INFO - Processing 62 chunks from Splunk_TA_vcenter
+2025-06-17 14:58:55,583 - INFO - Processing all 62 chunks in single batch for Splunk_TA_vcenter
+2025-06-17 14:58:55,583 - INFO - Generating embeddings for 62 chunks (batch starting at index 0)
+2025-06-17 14:58:58,536 - INFO - Successfully stored 62 chunks from batch starting at index 0 for Splunk_TA_vcenter
+2025-06-17 14:58:58,537 - INFO - Add-on Splunk_TA_vcenter completed: 6 documents, 62 chunks, 6 files processed, 8 files skipped
+2025-06-17 14:58:58,539 - INFO - Processing Splunk add-on: Splunk_TA_vmware
+2025-06-17 14:58:58,722 - INFO - Processing 69 chunks from Splunk_TA_vmware
+2025-06-17 14:58:58,723 - INFO - Processing all 69 chunks in single batch for Splunk_TA_vmware
+2025-06-17 14:58:58,724 - INFO - Generating embeddings for 69 chunks (batch starting at index 0)
+2025-06-17 14:59:02,041 - INFO - Successfully stored 69 chunks from batch starting at index 0 for Splunk_TA_vmware
+2025-06-17 14:59:02,042 - INFO - Add-on Splunk_TA_vmware completed: 11 documents, 69 chunks, 11 files processed, 96 files skipped
+2025-06-17 14:59:02,044 - INFO - Processing Splunk add-on: Splunk_TA_vmware_inframon
+2025-06-17 14:59:02,269 - INFO - Processing 83 chunks from Splunk_TA_vmware_inframon
+2025-06-17 14:59:02,270 - INFO - Processing all 83 chunks in single batch for Splunk_TA_vmware_inframon
+2025-06-17 14:59:02,271 - INFO - Generating embeddings for 83 chunks (batch starting at index 0)
+2025-06-17 14:59:06,228 - INFO - Successfully stored 83 chunks from batch starting at index 0 for Splunk_TA_vmware_inframon
+2025-06-17 14:59:06,229 - INFO - Add-on Splunk_TA_vmware_inframon completed: 15 documents, 83 chunks, 15 files processed, 120 files skipped
+2025-06-17 14:59:06,231 - INFO - Processing Splunk add-on: Splunk_TA_websense-cg
+2025-06-17 14:59:06,368 - INFO - Processing 53 chunks from Splunk_TA_websense-cg
+2025-06-17 14:59:06,368 - INFO - Processing all 53 chunks in single batch for Splunk_TA_websense-cg
+2025-06-17 14:59:06,369 - INFO - Generating embeddings for 53 chunks (batch starting at index 0)
+2025-06-17 14:59:09,044 - INFO - Successfully stored 53 chunks from batch starting at index 0 for Splunk_TA_websense-cg
+2025-06-17 14:59:09,045 - INFO - Add-on Splunk_TA_websense-cg completed: 8 documents, 53 chunks, 8 files processed, 11 files skipped
+2025-06-17 14:59:09,046 - INFO - Processing Splunk add-on: Splunk_TA_websense-dlp
+2025-06-17 14:59:09,222 - INFO - Processing 21 chunks from Splunk_TA_websense-dlp
+2025-06-17 14:59:09,223 - INFO - Processing all 21 chunks in single batch for Splunk_TA_websense-dlp
+2025-06-17 14:59:09,223 - INFO - Generating embeddings for 21 chunks (batch starting at index 0)
+2025-06-17 14:59:10,318 - INFO - Successfully stored 21 chunks from batch starting at index 0 for Splunk_TA_websense-dlp
+2025-06-17 14:59:10,319 - INFO - Add-on Splunk_TA_websense-dlp completed: 9 documents, 21 chunks, 9 files processed, 16 files skipped
+2025-06-17 14:59:10,320 - INFO - Processing Splunk add-on: Splunk_TA_windows
+2025-06-17 14:59:10,540 - INFO - Processing 202 chunks from Splunk_TA_windows
+2025-06-17 14:59:10,541 - INFO - Processing all 202 chunks in single batch for Splunk_TA_windows
+2025-06-17 14:59:10,542 - INFO - Generating embeddings for 202 chunks (batch starting at index 0)
+2025-06-17 14:59:20,014 - INFO - Successfully stored 202 chunks from batch starting at index 0 for Splunk_TA_windows
+2025-06-17 14:59:20,016 - INFO - Add-on Splunk_TA_windows completed: 12 documents, 202 chunks, 12 files processed, 66 files skipped
+2025-06-17 14:59:20,018 - INFO - Processing Splunk add-on: TA-Exchange-ClientAccess
+2025-06-17 14:59:20,142 - INFO - Processing 68 chunks from TA-Exchange-ClientAccess
+2025-06-17 14:59:20,142 - INFO - Processing all 68 chunks in single batch for TA-Exchange-ClientAccess
+2025-06-17 14:59:20,143 - INFO - Generating embeddings for 68 chunks (batch starting at index 0)
+2025-06-17 14:59:23,550 - INFO - Successfully stored 68 chunks from batch starting at index 0 for TA-Exchange-ClientAccess
+2025-06-17 14:59:23,551 - INFO - Add-on TA-Exchange-ClientAccess completed: 6 documents, 68 chunks, 6 files processed, 14 files skipped
+2025-06-17 14:59:23,553 - INFO - Processing Splunk add-on: TA-Exchange-Mailbox
+2025-06-17 14:59:23,675 - INFO - Processing 77 chunks from TA-Exchange-Mailbox
+2025-06-17 14:59:23,675 - INFO - Processing all 77 chunks in single batch for TA-Exchange-Mailbox
+2025-06-17 14:59:23,676 - INFO - Generating embeddings for 77 chunks (batch starting at index 0)
+2025-06-17 14:59:27,227 - INFO - Successfully stored 77 chunks from batch starting at index 0 for TA-Exchange-Mailbox
+2025-06-17 14:59:27,229 - INFO - Add-on TA-Exchange-Mailbox completed: 8 documents, 77 chunks, 8 files processed, 27 files skipped
+2025-06-17 14:59:27,231 - INFO - Processing Splunk add-on: TA-ONTAP-FieldExtractions
+2025-06-17 14:59:27,351 - INFO - Processing 68 chunks from TA-ONTAP-FieldExtractions
+2025-06-17 14:59:27,352 - INFO - Processing all 68 chunks in single batch for TA-ONTAP-FieldExtractions
+2025-06-17 14:59:27,352 - INFO - Generating embeddings for 68 chunks (batch starting at index 0)
+2025-06-17 14:59:30,456 - INFO - Successfully stored 68 chunks from batch starting at index 0 for TA-ONTAP-FieldExtractions
+2025-06-17 14:59:30,457 - INFO - Add-on TA-ONTAP-FieldExtractions completed: 9 documents, 68 chunks, 9 files processed, 9 files skipped
+2025-06-17 14:59:30,459 - INFO - Processing Splunk add-on: TA-SMTP-Reputation
+2025-06-17 14:59:30,554 - INFO - Processing 58 chunks from TA-SMTP-Reputation
+2025-06-17 14:59:30,554 - INFO - Processing all 58 chunks in single batch for TA-SMTP-Reputation
+2025-06-17 14:59:30,555 - INFO - Generating embeddings for 58 chunks (batch starting at index 0)
+2025-06-17 14:59:33,599 - INFO - Successfully stored 58 chunks from batch starting at index 0 for TA-SMTP-Reputation
+2025-06-17 14:59:33,600 - INFO - Add-on TA-SMTP-Reputation completed: 6 documents, 58 chunks, 6 files processed, 142 files skipped
+2025-06-17 14:59:33,601 - INFO - Processing Splunk add-on: TA-splunk-add-on-for-victorops
+2025-06-17 14:59:35,282 - INFO - Processing 904 chunks from TA-splunk-add-on-for-victorops
+2025-06-17 14:59:35,283 - INFO - Processing all 904 chunks in single batch for TA-splunk-add-on-for-victorops
+2025-06-17 14:59:35,285 - INFO - Generating embeddings for 904 chunks (batch starting at index 0)
+2025-06-17 15:00:23,537 - INFO - Successfully stored 904 chunks from batch starting at index 0 for TA-splunk-add-on-for-victorops
+2025-06-17 15:00:23,543 - INFO - Add-on TA-splunk-add-on-for-victorops completed: 46 documents, 904 chunks, 46 files processed, 2320 files skipped
+2025-06-17 15:00:23,546 - INFO - Processing Splunk add-on: TA-VMW-FieldExtractions
+2025-06-17 15:00:23,705 - INFO - Processing 66 chunks from TA-VMW-FieldExtractions
+2025-06-17 15:00:23,706 - INFO - Processing all 66 chunks in single batch for TA-VMW-FieldExtractions
+2025-06-17 15:00:23,706 - INFO - Generating embeddings for 66 chunks (batch starting at index 0)
+2025-06-17 15:00:26,820 - INFO - Successfully stored 66 chunks from batch starting at index 0 for TA-VMW-FieldExtractions
+2025-06-17 15:00:26,822 - INFO - Add-on TA-VMW-FieldExtractions completed: 9 documents, 66 chunks, 9 files processed, 9 files skipped
+2025-06-17 15:00:26,824 - INFO - Processing Splunk add-on: TA-Windows-Exchange-IIS
+2025-06-17 15:00:26,930 - INFO - Processing 61 chunks from TA-Windows-Exchange-IIS
+2025-06-17 15:00:26,931 - INFO - Processing all 61 chunks in single batch for TA-Windows-Exchange-IIS
+2025-06-17 15:00:26,931 - INFO - Generating embeddings for 61 chunks (batch starting at index 0)
+2025-06-17 15:00:29,758 - INFO - Successfully stored 61 chunks from batch starting at index 0 for TA-Windows-Exchange-IIS
+2025-06-17 15:00:29,759 - INFO - Add-on TA-Windows-Exchange-IIS completed: 6 documents, 61 chunks, 6 files processed, 7 files skipped
+2025-06-17 15:00:29,761 - INFO - ==================================================
+2025-06-17 15:00:29,761 - INFO - SPLUNK ADD-ONS PROCESSING COMPLETE
+2025-06-17 15:00:29,761 - INFO - Total add-ons processed: 28
+2025-06-17 15:00:29,762 - INFO - Total documents loaded: 3080
+2025-06-17 15:00:29,762 - INFO - Total chunks created: 174001
+2025-06-17 15:00:29,762 - INFO - Total files processed: 3080
+2025-06-17 15:00:29,763 - INFO - Total files skipped: 14185
+2025-06-17 15:00:29,763 - INFO - ==================================================

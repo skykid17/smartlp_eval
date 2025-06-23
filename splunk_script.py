@@ -222,8 +222,36 @@ class SplunkAddonsIndexer:
         
         return stats
     
-    def store_chunks_in_chromadb(self, chunks: List[Document], addon_name: str):
-        """Store document chunks in ChromaDB with embeddings"""
+    def store_chunks_in_chromadb(self, chunks: List[Document], addon_name: str, max_batch_size: int = 5461):
+        """Store document chunks in ChromaDB with embeddings using batch processing"""
+        if not chunks:
+            return
+            
+        total_chunks = len(chunks)
+        logger.info(f"Processing {total_chunks} chunks from {addon_name}")
+        
+        # If chunks exceed max batch size, process in batches
+        if total_chunks > max_batch_size:
+            logger.info(f"Chunks ({total_chunks}) exceed max batch size ({max_batch_size}). Processing in batches.")
+            
+            # Process chunks in batches
+            for batch_start in range(0, total_chunks, max_batch_size):
+                batch_end = min(batch_start + max_batch_size, total_chunks)
+                batch_chunks = chunks[batch_start:batch_end]
+                batch_num = (batch_start // max_batch_size) + 1
+                total_batches = (total_chunks + max_batch_size - 1) // max_batch_size
+                
+                logger.info(f"Processing batch {batch_num}/{total_batches} "
+                           f"(chunks {batch_start + 1}-{batch_end} of {total_chunks}) for {addon_name}")
+                
+                self._store_batch_in_chromadb(batch_chunks, addon_name, batch_start)
+        else:
+            # Process all chunks at once if within limit
+            logger.info(f"Processing all {total_chunks} chunks in single batch for {addon_name}")
+            self._store_batch_in_chromadb(chunks, addon_name, 0)
+    
+    def _store_batch_in_chromadb(self, chunks: List[Document], addon_name: str, start_index: int):
+        """Store a batch of document chunks in ChromaDB with embeddings"""
         if not chunks:
             return
             
@@ -233,20 +261,21 @@ class SplunkAddonsIndexer:
         ids = []
         
         for i, chunk in enumerate(chunks):
-            # Create unique ID for each chunk
-            chunk_id = f"splunk_{addon_name}_{i}_{hash(chunk.page_content[:100])}"
+            # Create unique ID for each chunk using global index
+            global_index = start_index + i
+            chunk_id = f"splunk_{addon_name}_{global_index}_{hash(chunk.page_content[:100])}"
             ids.append(chunk_id)
             
             # Prepare metadata
             metadata = dict(chunk.metadata)
             metadata['addon'] = addon_name
-            metadata['chunk_index'] = i
+            metadata['chunk_index'] = global_index
             metadata['source_type'] = 'splunk_addon'
             metadatas.append(metadata)
         
         try:
             # Generate embeddings
-            logger.info(f"Generating embeddings for {len(chunks)} chunks from {addon_name}")
+            logger.info(f"Generating embeddings for {len(chunks)} chunks (batch starting at index {start_index})")
             embeddings = self.embedding_model.encode(texts).tolist()
             
             # Store in ChromaDB
@@ -257,10 +286,11 @@ class SplunkAddonsIndexer:
                 ids=ids
             )
             
-            logger.info(f"Stored {len(chunks)} chunks from {addon_name} in ChromaDB")
+            logger.info(f"Successfully stored {len(chunks)} chunks from batch starting at index {start_index} for {addon_name}")
             
         except Exception as e:
-            logger.error(f"Error storing chunks in ChromaDB for {addon_name}: {e}")
+            logger.error(f"Error storing batch (starting at index {start_index}) in ChromaDB for {addon_name}: {e}")
+            raise
     
     def process_all_addons(self):
         """Process all add-ons in the packages directory"""
@@ -320,9 +350,7 @@ class SplunkAddonsIndexer:
 def main():
     """Main function to run the indexer"""
     # Configuration for Splunk add-ons
-    PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\splunk_add_ons"
-    PERSIST_DIR = "./chroma_db"
-    
+
     # Create indexer and run
     indexer = SplunkAddonsIndexer(PACKAGES_DIR, PERSIST_DIR)
     indexer.process_all_addons()
@@ -330,4 +358,5 @@ def main():
 if __name__ == "__main__":
     # Set global variable for use in CustomYAMLLoader
     PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\splunk_add_ons"
+    PERSIST_DIR = "./chroma_db"
     main()
