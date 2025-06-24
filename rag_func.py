@@ -13,8 +13,6 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
 from langchain_community.document_loaders import JSONLoader, TextLoader, PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import chromadb
-from chromadb.config import Settings
 
 TOP_K = 3
 
@@ -59,14 +57,6 @@ def query_rag(collection: str,
 
     return result["result"], result["source_documents"]
 
-# active_siem = "elastic"
-# logtype = "windows_xml"
-# package_prompt = f"Which package/add on do I install to parse {logtype} logs into {active_siem}? Return only the name of the package/add on."
-
-# if active_siem == "elastic":
-#     result, sources = query_rag("elastic_packages", package_prompt)
-# else:
-#     result, sources = query_rag("splunk_addons", package_prompt)
 
 def create_embeddings_from_path(
     file_or_folder_path: str,
@@ -295,9 +285,16 @@ def create_embeddings_from_path(
         logging.error(f"Error in create_embeddings_from_path: {e}")
         return False
 
-# Example usage of the new function:
+# ============================= Example usage of the functions ========================================
+# Query RAG to obtain Package for a specific log type
+# active_siem = "elastic"
+# logtype = "windows_xml"
+# package_prompt = f"Which package/add on do I install to parse {logtype} logs into {active_siem}? Return only the name of the package/add on."
+
+# result, sources = query_rag("elastic_packages", package_prompt)
+
 # Process a single file
-success = create_embeddings_from_path("elastic_fields.csv", "elastic_fields")
+success = create_embeddings_from_path("splunk_fields.csv", "splunk_fields")
 
 # Process an entire folder
 # success = create_embeddings_from_path("path/to/folder", "folder_collection")
