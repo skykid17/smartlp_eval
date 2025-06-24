@@ -1,8 +1,9 @@
 PyYAML
 langchain 
-langchain-community 
+langchain-community
+langchain-openai
 langchain-text-splitters
+langchain-huggingface
 hf_xet
 chromadb
 sentence-transformers
-jq
