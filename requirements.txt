@@ -1,9 +1,11 @@
-PyYAML
+chromadb
 langchain 
+langchain-chroma
 langchain-community
 langchain-openai
 langchain-text-splitters
 langchain-huggingface
 hf_xet
-chromadb
+PyYAML
+pypdf
 sentence-transformers
