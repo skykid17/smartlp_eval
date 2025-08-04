@@ -5,6 +5,7 @@ langchain-community
 langchain-openai
 langchain-text-splitters
 langchain-huggingface
+langchain-ollama
 hf_xet
 PyYAML
 pypdf

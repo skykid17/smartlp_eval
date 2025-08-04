@@ -1,12 +1,12 @@
 from langchain.chains import RetrievalQA
-from langchain_ollama import OllamaEmbeddings, OllamaLLM
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-
+from langchain_ollama import ChatOllama
 TOP_K = 3
 
-def query_rag(collection: str, query: str, llm_model: str = "llama3.2", embedding_model: str = "all-minilm:l6-v2", persist_directory: str = "./chroma_db", verbose: bool = False):
+def query_rag(collection: str, query: str, llm_model: str = "llama3.2", embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2", persist_directory: str = "./chroma_db", verbose: bool = False):
 
-    embeddings = OllamaEmbeddings(model=embedding_model)
+    embeddings = HuggingFaceEmbeddings(model=embedding_model)
 
     vectorstore = Chroma(
         persist_directory=persist_directory,
@@ -14,7 +14,10 @@ def query_rag(collection: str, query: str, llm_model: str = "llama3.2", embeddin
         collection_name=collection
     )
 
-    llm = OllamaLLM(model=llm_model)
+    llm = ChatOllama(
+        model=llm_model,
+        temperature=0
+    )
 
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
@@ -35,6 +38,8 @@ def query_rag(collection: str, query: str, llm_model: str = "llama3.2", embeddin
                 print(f"Source: {doc.metadata}")
 
     return result["result"], result["source_documents"]
+
+
 
 active_siem = "elastic"
 logtype = "windows_xml"
