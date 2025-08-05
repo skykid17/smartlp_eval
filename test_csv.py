@@ -1,14 +1,18 @@
+import os
+from tqdm import tqdm
 import pandas as pd
 
-# Read the CSV
-data = 'elastic.csv'
-df = pd.read_csv(data)
+df = pd.read_csv('elastic.csv')
+# df['ground_truth_regex'] = None
+# df_modified = df.drop(columns=['new_column'])
 
-# Add a new column with 1 for all rows
-df['new_column'] = 1
+# #save the modified dataframe
+# df_modified.to_csv('elastic.csv', index=False)
 
-# edit for specific row
-df.loc[df['log_id'] == 5, 'new_column'] = 1
+for index, row in tqdm(df.iterrows(), desc="Processing logs", unit="log", total=len(df)):
+    # If ground_truth_regex is already set, skip
+    if pd.notna(row['ground_truth_regex']):
+        print(f"Skipping index {index} as ground_truth_regex is already set.")
+        continue
+    print("Processing index:", index)
 
-# Save back to CSV
-df.to_csv(data, index=False)
