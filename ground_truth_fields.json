@@ -1,0 +1,1244 @@
+{
+  "1": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2025-03-07T11:37:22.109Z",
+      "host": "server52",
+      "app": "DatabaseConnector",
+      "severity": "INFO",
+      "message": "Operation started for user 520"
+    }
+  },
+  "2": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "02 21 2025 12:33:42",
+      "source_ip": "197.158.9.211",
+      "alert_id": "SAU1:ALRT",
+      "event_time": "2023-08-30T16:33:46.846392+08:00 IL-LAB-RDF01",
+      "hostname": "IL-LAB-RDF01",
+      "product": "radiflow",
+      "product_version": "isid",
+      "module": "6.5.11.14",
+      "rule_id": "71",
+      "title": "OS-WINDOWS DCERPC NCACN-IP-TCP srvsvc NetrPathCanonicalize overflow attempt",
+      "severity": "High",
+      "category": "Cyber",
+      "alert_id_number": "20",
+      "source_ip_2": "192.168.120.250",
+      "destination_ip": "192.168.120.234",
+      "port": "445",
+      "protocol_name": "SMB",
+      "source_ip_3": "192.168.120.250",
+      "destination_ip_2": "192.168.10.24",
+      "source_mac_address": "00:0C:19:FF:61:3F",
+      "destination_mac_address": "00:21:31:10:33:CD",
+      "source_vendor": "VMware, Inc.",
+      "destination_vendor": "Hewlett Packard",
+      "source_type": "Server",
+      "destination_type": "Server"
+    }
+  },
+  "3": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:40",
+      "log_level": "INFO",
+      "hostname": "spark.SecurityManager",
+      "component": "SecurityManager",
+      "message": "authentication disabled; ui acls disabled; users with view permissions: Set(yarn, curi); users with modify permissions: Set(yarn, curi)"
+    }
+  },
+  "4": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-10-18 18:01:53,869",
+      "log_level": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.mapreduce.v2.app.job.impl.TaskImpl",
+      "task_id": "task_1445144423722_0020_m_000001",
+      "message": "Task Transitioned from NEW to SCHEDULED"
+    }
+  },
+  "5": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.30 17:10:37]",
+      "application": "chrome.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "message": "open through proxy proxy.cse.cuhk.edu.hk:5070",
+      "protocol_type": "HTTPS"
+    }
+  },
+  "6": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "util.Utils",
+      "message": "Successfully started service 'sparkExecutorActorSystem' on port 55904."
+    }
+  },
+  "7": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "1117989508",
+      "date": "2005.06.05",
+      "hostname": "R36-M0-NA-C:J17-U01",
+      "logtime": "2005-06-05-09.38.28.957918",
+      "logtype": "RAS",
+      "subsystem": "KERNEL",
+      "severity": "INFO",
+      "message": "generating core.1172"
+    }
+  },
+  "8": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:07:38",
+      "hostname": "LabSZ",
+      "pid": "24206",
+      "message": "pam_unix(sshd:auth): check pass; user unknown"
+    }
+  },
+  "9": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "task": "0",
+      "opcode": "0",
+      "keywords": "0x8000000000000000",
+      "timestamp": "2025-03-12T07:17:35.258212200Z",
+      "event_record_id": "8361459",
+      "correlation_id": "3debc1ad-5b8d-48c4-ae2c-29e8968f650e",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "10": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "11",
+      "timestamp": "Feb  1 01:46:34",
+      "hostname": "PA-VM",
+      "event_time": "2025/02/01 01:46:34",
+      "serial": null,
+      "log_type": "SYSTEM",
+      "subtype": "syslog",
+      "generated_time": "2025/02/01 01:46:34",
+      "event_name": "syslog-conn-status",
+      "event_details": "",
+      "category": "general",
+      "severity": "high",
+      "message": "Syslog connection failed to server['AF_INET.192.168.20.224:2516.']",
+      "session_id": "7409859196046341764",
+      "flags": "0x0,0,0,0,0",
+      "device_name": "PA-VM",
+      "iso_timestamp": "2025-02-01T01:46:34.896",
+      "timezone": "+08:00"
+    }
+  },
+  "11": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Mar  7 02:18:39",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "Stopped target Sockets."
+    }
+  },
+  "12": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.687",
+      "timezone": "+08:00",
+      "message": "Citect (32 bit) (IOServer [Cluster1.IOServer]) (PID 5224) Startup 8.20"
+    }
+  },
+  "13": {
+    "compiled": true,
+    "extracted_fields": {
+      "ip": "2.142.156.198",
+      "timestamp": "Mar 13 2025, 23:10:16",
+      "method": "GET",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "status": "400",
+      "size": "8359",
+      "referrer": "https://www.bing.com",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+  },
+  "14": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "Remoting",
+      "message": "Remoting started; listening on addresses :[akka.tcp://sparkExecutorActorSystem@mesos-slave-07:55904]"
+    }
+  },
+  "15": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:07:38",
+      "hostname": "LabSZ",
+      "pid": "24206",
+      "message": "input_userauth_request: invalid user test9 [preauth]"
+    }
+  },
+  "16": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Jun 15 02:04:59",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "20893",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+    }
+  },
+  "17": {
+    "compiled": true,
+    "extracted_fields": {
+      "date": "20171223",
+      "time": "22:15:29:606",
+      "module": "Step_LSC",
+      "code": "30002312",
+      "message": "onStandStepChanged 3579"
+    }
+  },
+  "18": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Feb 19 07:18:39",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "Stopped target Default."
+    }
+  },
+  "19": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "12",
+      "timestamp": "Feb 28 00:06:30",
+      "hostname": "CYberlab-ENT-PA-440",
+      "event_time": "2025/02/28 00:06:30",
+      "serial": "021201155690",
+      "log_type": "SYSTEM",
+      "subtype": "general",
+      "generated_time": "2025/02/28 00:06:30",
+      "event_name": "general",
+      "event_details": "",
+      "category": "general",
+      "severity": "medium",
+      "message": "Failed to check IoT content upgrade info due to Unknown error",
+      "session_id": "7444467286603257823",
+      "flags": "0x0,0,0,0,0",
+      "device_name": "CYberlab-ENT-PA-440",
+      "iso_timestamp": "2025-02-28T00:06:30.194",
+      "timezone": "+08:00"
+    }
+  },
+  "20": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "task": "0",
+      "opcode": "0",
+      "keywords": "0x8000000000000000",
+      "timestamp": "2025-03-12T07:16:35.251125300Z",
+      "event_record_id": "8361393",
+      "correlation_id": "3debc1ad-5b8d-48c4-ae2c-29e8968f650e",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "21": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Mar 17 10:18:39",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "Closed D-Bus User Message Bus Socket."
+    }
+  },
+  "22": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:40",
+      "loglevel": "INFO",
+      "module": "executor.CoarseGrainedExecutorBackend",
+      "message": "Registered signal handlers for [TERM, HUP, INT]"
+    }
+  },
+  "23": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-02-28T07:41:19.880782800Z",
+      "event_record_id": "7191981",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "24": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "14",
+      "timestamp": "Feb  1 00:28:59",
+      "hostname": "PA-VM",
+      "event_time": "2025/02/01 00:28:59",
+      "serial": null,
+      "log_type": "SYSTEM",
+      "subtype": "general",
+      "generated_time": "2025/02/01 00:28:59",
+      "event_name": "general",
+      "event_details": "",
+      "category": "general",
+      "severity": "informational",
+      "message": "Connection to Update server: updates.paloaltonetworks.com completed successfully, initiated by 192.168.10.15",
+      "session_id": "7409859196046341743",
+      "flags": "0x0,0,0,0,0",
+      "device_name": "PA-VM",
+      "iso_timestamp": "2025-02-01T00:28:59.938",
+      "timezone": "+08:00"
+    }
+  },
+  "25": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Jun 16 07:03:22",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "20896",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+    }
+  },
+  "26": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:08:28",
+      "hostname": "LabSZ",
+      "pid": "24208",
+      "message": "reverse mapping checking getaddrinfo for ns.marryaldkfaczcz.com [173.234.31.186] failed - POSSIBLE BREAK-IN ATTEMPT!"
+    }
+  },
+  "27": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-01-31T16:00:00.013931800Z",
+      "event_record_id": "14067140",
+      "process_id": "2084",
+      "thread_id": "4240",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "CLV040VWKIWI001.stecyberlab.local",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[Config] Failed to read configuration from registry, result 5. Using default values</Data>"
+    }
+  },
+  "28": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.435",
+      "timezone": "+08:00",
+      "log_level": "TRACE",
+      "component": "CORE",
+      "thread_id": "0x1130",
+      "module": "IOServer",
+      "context": "GLOBAL",
+      "function": "InitChannel()",
+      "source_file": "plc_drv.cpp",
+      "line_no": "1272",
+      "message": "Channel PORT2_BOARD1 is Online"
+    }
+  },
+  "29": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-07-29 17:41:44,747",
+      "loglevel": "INFO",
+      "process": "QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:2181:FastLeaderElection@774",
+      "myid": "1",
+      "ipv6": "0:0:0:0:0:0:0:0:2181",
+      "class": "FastLeaderElection@774",
+      "message": "Notification time out: 3200"
+    }
+  },
+  "30": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.641",
+      "timezone": "+08:00",
+      "message": "Licensing::LicenseProtection:ProtInit, licRunMode: 0x23eb"
+    }
+  },
+  "31": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Feb  5 00:18:29",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "1",
+      "message": "session-13536.scope: Succeeded."
+    }
+  },
+  "32": {
+    "compiled": true,
+    "extracted_fields": {
+      "process": "SAU1",
+      "level": "ERRR",
+      "iso_timestamp": "2023-08-30T16:33:46.865334+08:00",
+      "hostname": "IL-LAB-RDF01",
+      "version": "6.5.11.14",
+      "vmid": "6",
+      "threatname": "Device became inactive",
+      "severity": "Medium",
+      "category": "Device",
+      "id": "21",
+      "dvc": "192.168.10.34",
+      "srcname": "192.168.10.34",
+      "srcmac": "00:24:81:20:54:CD",
+      "srcvendor": "Hewlett Packard",
+      "srctype": "Server"
+    }
+  },
+  "33": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.30 17:14:20]",
+      "application": "Dropbox.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "action": "open",
+      "proxy2": "proxy.cse.cuhk.edu.hk:5070",
+      "protocol": "HTTPS"
+    }
+  },
+  "34": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:07:45",
+      "hostname": "LabSZ",
+      "pid": "24206",
+      "message": "Failed password for invalid user test9 from 52.80.34.196 port 36060 ssh2"
+    }
+  },
+  "35": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "1131566461",
+      "date": "2005.11.09",
+      "hostname": "dn228",
+      "logtime": "Nov 9 12:01:01",
+      "source": "dn228/dn228",
+      "process": "crond(pam_unix)[2915]",
+      "message": "session closed for user root"
+    }
+  },
+  "36": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Jan 27 12:38:01",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "CROND",
+      "pid": "375934",
+      "message": "(cb) CMD (/usr/share/cb/virtualenv/bin/python -m cb.maintenance.job_runner --max-startup-delay 1 -s alliance_community_participation /etc/cb/cb.conf --ticevents >> /var/log/cb/job-runner/startup.out 2>&1)"
+    }
+  },
+  "37": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "slf4j.Slf4jLogger",
+      "message": "Slf4jLogger started"
+    }
+  },
+  "38": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.30 17:11:17]",
+      "application": "WeChat.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "action": "close",
+      "sent_bytes": "451",
+      "received_bytes": "353",
+      "lifetime": "<1 sec"
+    }
+  },
+  "39": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.435",
+      "timezone": "+08:00",
+      "log_level": "TRACE",
+      "component": "CORE",
+      "thread_id": "0x1130",
+      "module": "IOServer",
+      "context": "GLOBAL",
+      "function": "InitDrivers()",
+      "source_file": "drv_init.cpp",
+      "line_no": "2005",
+      "message": "MaxPending=255 Block=255 Retry=0 Delay=0 Timeout=3000 PollTime=1000 WatchTime=15000"
+    }
+  },
+  "40": {
+    "compiled": true,
+    "extracted_fields": {
+      "ip": "217.50.57.73",
+      "timestamp": "Mar 13 2025, 10:41:29",
+      "method": "DELETE",
+      "path": "/blog?sort=price_desc&page=2",
+      "protocol": "HTTP/1.1",
+      "status": "500",
+      "size": "1126",
+      "referrer": "-",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+  },
+  "41": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2025-03-07T20:22:19.897Z",
+      "hostname": "server52",
+      "service": "AuthController",
+      "level": "ERROR",
+      "message": "Operation failed for user 166"
+    }
+  },
+  "42": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "11",
+      "timestamp": "Feb 28 02:48:52",
+      "hostname": "CYberlab-ENT-PA-440",
+      "event_time": "2025/02/28 02:48:52",
+      "serial": "021201155690",
+      "log_type": "SYSTEM",
+      "subtype": "syslog",
+      "generated_time": "2025/02/28 02:48:52",
+      "event_name": "syslog-conn-status",
+      "event_details": "",
+      "category": "general",
+      "severity": "high",
+      "message": "Syslog connection failed to server['AF_INET.192.168.20.224:2516.']",
+      "session_id": "7444467286603257908",
+      "flags": "0x0,0,0,0,0",
+      "device_name": "CYberlab-ENT-PA-440",
+      "iso_timestamp": "2025-02-28T02:48:52.970",
+      "timezone": "+08:00"
+    }
+  },
+  "43": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.507",
+      "timezone": "+08:00",
+      "log_level": "TRACE",
+      "component": "CORE",
+      "thread_id": "0x1130",
+      "module": "IOServer",
+      "context": "GLOBAL",
+      "function": "InitUnit()",
+      "source_file": "plc_drv.cpp",
+      "line_no": "1063",
+      "message": "Unit 'Kepware.KEPServerEX.V6' Port PORT2_BOARD1 is Online"
+    }
+  },
+  "44": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-10-18 18:01:53,869",
+      "severity": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.mapreduce.v2.app.job.impl.TaskImpl",
+      "message": "task_1445144423722_0020_m_000002 Task Transitioned from NEW to SCHEDULED"
+    }
+  },
+  "45": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "spark.SecurityManager",
+      "message": "Changing modify acls to: yarn,curi"
+    }
+  },
+  "46": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-02-28T07:41:19.880782800Z",
+      "event_record_id": "7191981",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "47": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Jun 01 01:01:09",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "20892",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+    }
+  },
+  "48": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204324",
+      "pid": "34",
+      "log_level": "INFO",
+      "module": "dfs.FSNamesystem",
+      "message": "BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.203.80:50010 is added to blk_7888946331804732825 size 67108864"
+    }
+  },
+  "49": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Feb 27 00:18:01",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "pam_unix(systemd-user:session): session opened for user cb by (uid=0)"
+    }
+  },
+  "50": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Sep 05 14:26:18",
+      "hostname": "combo",
+      "process": "su",
+      "service": "pam_unix",
+      "pid": "21416",
+      "message": "session opened for user cyrus by (uid=0)"
+    }
+  },
+  "51": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.286",
+      "timezone": "+08:00",
+      "message": "Protection: Using provider DLL C:\\Program Files (x86)\\AVEVA\\Citect SCADA 2018 R2\\Bin\\SentinelProvider.dll"
+    }
+  },
+  "52": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Sep 10 13:23:39",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "20898",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+    }
+  },
+  "53": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-03 15:44:43.726",
+      "timezone": "+08:00",
+      "process": "TranWrite",
+      "pid": "3",
+      "thread_id": "140",
+      "message": "Name=Cluster1Alarm, State != TRAN_STATE_ONLINE, state=5"
+    }
+  },
+  "54": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "14",
+      "timestamp": "Feb 28 01:10:41",
+      "hostname": "CYberlab-ENT-PA-440",
+      "event_time": "2025/02/28 01:10:40",
+      "serial": "021201155690",
+      "log_type": "SYSTEM",
+      "subtype": "vpn",
+      "generated_time": "2025/02/28 01:10:40",
+      "event_name": "ike-send-p2-delete",
+      "event_details": "vyos-pa-tunnel",
+      "category": "general",
+      "severity": "informational",
+      "message": "IKE protocol IPSec SA delete message sent to peer. SPI:0x927678BB.",
+      "session_id": "7444467286603257863",
+      "flags": "0x0,0,0,0,0",
+      "device_name": "CYberlab-ENT-PA-440",
+      "iso_timestamp": "2025-02-28T01:10:41.001",
+      "timezone": "+08:00"
+    }
+  },
+  "55": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-02-28T07:41:19.880782800Z",
+      "event_record_id": "7191981",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "56": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-10-18 18:01:53,869",
+      "severity": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.yarn.util.RackResolver",
+      "message": "Resolved MSRA-SA-41.fareast.corp.microsoft.com to /default-rack"
+    }
+  },
+  "57": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.30 17:11:43]",
+      "application": "SogouCloud.exe",
+      "proxy": "get.sogou.com:80",
+      "action": "close",
+      "sent_bytes": "859",
+      "received_bytes": "316",
+      "lifetime": "<1 sec"
+    }
+  },
+  "58": {
+    "compiled": true,
+    "extracted_fields": {
+      "month": "Jul",
+      "day": "1",
+      "time": "09:00:56",
+      "hostname": "authorMacBook-Pro",
+      "process": "cdpd[11807]",
+      "message": "Saw change in network reachability (isReachable=0)"
+    }
+  },
+  "59": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "spark.SecurityManager",
+      "message": "Changing view acls to: yarn,curi"
+    }
+  },
+  "60": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-10-18 18:01:53,869",
+      "severity": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.yarn.util.RackResolver",
+      "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack"
+    }
+  },
+  "61": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Feb 12 11:18:39",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "1",
+      "message": "Stopping User Manager for UID 992"
+    }
+  },
+  "62": {
+    "compiled": true,
+    "extracted_fields": {
+      "date": "081109",
+      "time": "203615",
+      "pid": "148",
+      "log_level": "INFO",
+      "module": "dfs.DataNode$PacketResponder",
+      "message": "PacketResponder 1 for block blk_38865049064139660 terminating"
+    }
+  },
+  "63": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:07:45",
+      "hostname": "LabSZ",
+      "pid": "24206",
+      "message": "Received disconnect from 52.80.34.196: 11: Bye Bye [preauth]"
+    }
+  },
+  "64": {
+    "compiled": true,
+    "extracted_fields": {
+      "priority": "11",
+      "timestamp": "Feb 28 00:03:52",
+      "hostname": "CYberlab-ENT-PA-440",
+      "event_time": "2025/02/28 00:03:52",
+      "serial": "021201155690",
+      "log_type": "SYSTEM",
+      "subtype": "syslog",
+      "generated_time": "2025/02/28 00:03:52",
+      "event_name": "syslog-conn-status",
+      "event_details": "",
+      "category": "general",
+      "severity": "high",
+      "message": "Syslog connection failed to server['AF_INET.192.168.20.224:2516.']",
+      "session_id": "7444467286603257821",
+      "flags": "0",
+      "device_name": "CYberlab-ENT-PA-440",
+      "iso_timestamp": "2025-02-28T00:03:52.858",
+      "timezone": "+08:00"
+    }
+  },
+  "65": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-07-29 19:22:46,680",
+      "loglevel": "WARN",
+      "process": "SendWorker:188978561024:QuorumCnxManager$SendWorker@679",
+      "worker_no": "188978561024",
+      "manager_no": "679",
+      "message": "Interrupted while waiting for message on queue"
+    }
+  },
+  "66": {
+    "compiled": true,
+    "extracted_fields": {
+      "logfile": "nova-api.log.1.2017-05-16_13:53:08",
+      "timestamp": "2017-05-16 00:00:00.008",
+      "pid": "25746",
+      "loglevel": "INFO",
+      "module": "nova.osapi_compute.wsgi.server",
+      "request_id": "req-38101a0b-2096-447d-96ea-a692162415ae 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e - - -",
+      "message": "10.11.10.1 \"GET /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/detail HTTP/1.1\" status: 200 len: 1893 time: 0.2477829"
+    }
+  },
+  "67": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "Remoting",
+      "message": "Starting remoting"
+    }
+  },
+  "68": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-02-28T07:41:19.880782800Z",
+      "event_record_id": "7191981",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "69": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204525",
+      "pid": "512",
+      "log_level": "INFO",
+      "module": "dfs.DataNode$PacketResponder",
+      "message": "PacketResponder 2 for block blk_572492839287299681 terminating"
+    }
+  },
+  "70": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Sun Dec 04 04:51:14 2005",
+      "log_level": "notice",
+      "message": "workerEnv.init() ok /etc/httpd/conf/workers2.properties"
+    }
+  },
+  "71": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 07:07:38",
+      "hostname": "LabSZ",
+      "pid": "24206",
+      "message": "pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=ec2-52-80-34-196.cn-north-1.compute.amazonaws.com.cn "
+    }
+  },
+  "72": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Mar 28 12:18:39",
+      "hostname": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "Reached target Shutdown."
+    }
+  },
+  "73": {
+    "compiled": true,
+    "extracted_fields": {
+      "id": "134681",
+      "hostname": "node-246",
+      "subsystem": "unix.hw",
+      "event": "state_change.unavailable",
+      "timestamp": "1077804742",
+      "flag": "1",
+      "message": "Component State Change: Component \\042SCSI-WWID:01000010:6005-08b4-0001-00c6-0006-3000-003d-0000\\042 is in the unavailable state",
+      "hwid": "1973"
+    }
+  },
+  "74": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Feb 19 02:32:24",
+      "hostname": "myhost",
+      "level": "ERROR",
+      "message": "Event 6512: Process terminated"
+    }
+  },
+  "75": {
+    "compiled": true,
+    "extracted_fields": {
+      "ip": "192.168.68.98",
+      "timestamp": "Mar 17 2025, 10:24:22",
+      "method": "PUT",
+      "path": "/login",
+      "protocol": "HTTP/1.1",
+      "status": "200",
+      "size": "3214",
+      "referrer": "https://www.google.com",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "76": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-Sysmon",
+      "guid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+      "event_id": "10",
+      "level": "4",
+      "timestamp": "2020-10-08T12:52:10.274186300Z",
+      "event_record_id": "34",
+      "process_id": "4268",
+      "thread_id": "4756",
+      "channel": "Microsoft-Windows-Sysmon/Operational",
+      "computer": "win-dc-8537412.attackrange.local",
+      "user_id": "S-1-5-18",
+      "event": "<Data Name='RuleName'>-</Data><Data Name='UtcTime'>2020-10-08 12:52:10.259</Data><Data Name='SourceProcessGUID'>{F97E5129-0A10-5F7F-0C00-000000007E01}</Data><Data Name='SourceProcessId'>572</Data><Data Name='SourceThreadId'>1120</Data><Data Name='SourceImage'>C:\\Windows\\system32\\svchost.exe</Data><Data Name='TargetProcessGUID'>{F97E5129-0B7A-5F7F-F402-000000007E01}</Data><Data Name='TargetProcessId'>4268</Data><Data Name='TargetImage'>C:\\Windows\\sysmon64.exe</Data><Data Name='GrantedAccess'>0x1400</Data><Data Name='CallTrace'>C:\\Windows\\SYSTEM32\\ntdll.dll+a5ec4|C:\\Windows\\System32\\KERNELBASE.dll+5eab4|c:\\windows\\system32\\lsm.dll+e9d6|c:\\windows\\system32\\lsm.dll+d3ae|C:\\Windows\\System32\\RPCRT4.dll+78343|C:\\Windows\\System32\\RPCRT4.dll+dbc0d|C:\\Windows\\System32\\RPCRT4.dll+b3dc|C:\\Windows\\System32\\RPCRT4.dll+59dc4|C:\\Windows\\System32\\RPCRT4.dll+58cdd|C:\\Windows\\System32\\RPCRT4.dll+5958b|C:\\Windows\\System32\\RPCRT4.dll+3942c|C:\\Windows\\System32\\RPCRT4.dll+398ac|C:\\Windows\\System32\\RPCRT4.dll+53e9c|C:\\Windows\\System32\\RPCRT4.dll+556fb|C:\\Windows\\System32\\RPCRT4.dll+481da|C:\\Windows\\SYSTEM32\\ntdll.dll+286be|C:\\Windows\\SYSTEM32\\ntdll.dll+2a029|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+6e871</Data>"
+    }
+  },
+  "77": {
+    "compiled": true,
+    "extracted_fields": {}
+  },
+  "78": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2015-10-18 18:01:53,869",
+      "severity": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.yarn.util.RackResolver",
+      "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack"
+    }
+  },
+  "79": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "timestamp": "2025-02-28T07:41:19.880782800Z",
+      "event_record_id": "7191981",
+      "process_id": "4000",
+      "thread_id": "2692",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).</Data>"
+    }
+  },
+  "80": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Dec 10 06:55:46",
+      "hostname": "LabSZ",
+      "pid": "24200",
+      "message": "reverse mapping checking getaddrinfo for ns.marryaldkfaczcz.com [173.234.31.186] failed - POSSIBLE BREAK-IN ATTEMPT!"
+    }
+  },
+  "81": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "03/10/2025 01:25:27.876",
+      "source": "WatsonReport",
+      "message": "Registering setup log files with watson"
+    }
+  },
+  "82": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2024-05-09 16:24:24.569",
+      "timezone": "+08:00",
+      "message": "Alarm: Client loaded _Categor RDB; time 2024-05-03 15:41:01."
+    }
+  },
+  "83": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Jul 23 11:46:41",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "15385",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=85.44.47.166 user=root"
+    }
+  },
+  "84": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "17/06/09 20:10:41",
+      "loglevel": "INFO",
+      "module": "spark.SecurityManager",
+      "message": "SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(yarn, curi); users with modify permissions: Set(yarn, curi)"
+    }
+  },
+  "85": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.30 17:11:12]",
+      "application": "WeChat.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "action": "open",
+      "proxy2": "proxy.cse.cuhk.edu.hk:5070",
+      "protocol": "HTTPS"
+    }
+  },
+  "86": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204722",
+      "pid": "567",
+      "log_level": "INFO",
+      "module": "dfs.DataNode$PacketResponder",
+      "message": "Received block blk_5402003568334525940 of size 67108864 from /10.251.214.112"
+    }
+  },
+  "87": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204132",
+      "pid": "26",
+      "log_level": "INFO",
+      "module": "dfs.FSNamesystem",
+      "message": "BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.251.43.115:50010 is added to blk_3050920587428079149 size 67108864"
+    }
+  },
+  "88": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "2025-02-06T05:15:06.534Z",
+      "hostname": "server52",
+      "service": "UserService",
+      "level": "DEBUG",
+      "message": "Operation completed for user 258"
+    }
+  },
+  "89": {
+    "compiled": true,
+    "extracted_fields": {}
+  },
+  "90": {
+    "compiled": true,
+    "extracted_fields": {
+      "ip": "204.213.233.216",
+      "timestamp": "Mar 15 2025, 08:35:21",
+      "method": "GET",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "status": "400",
+      "size": "2717",
+      "referrer": "https://www.google.com",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "91": {
+    "compiled": true,
+    "extracted_fields": {}
+  },
+  "92": {
+    "compiled": true,
+    "extracted_fields": {
+      "ip": "37.161.15.125",
+      "timestamp": "Mar 18 2025, 11:08:58",
+      "method": "PUT",
+      "path": "/api/users",
+      "protocol": "HTTP/1.1",
+      "status": "200",
+      "size": "2005",
+      "referrer": "https://www.example.com",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "93": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "Aug 15 00:04:21",
+      "hostname": "combo",
+      "process": "sshd",
+      "service": "pam_unix",
+      "pid": "20897",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root"
+    }
+  },
+  "94": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204453",
+      "pid": "34",
+      "log_level": "INFO",
+      "module": "dfs.FSNamesystem",
+      "message": "BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.11.85:50010 is added to blk_2377150260128098806 size 67108864"
+    }
+  },
+  "95": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "081109 204815",
+      "pid": "653",
+      "log_level": "INFO",
+      "module": "dfs.DataNode$DataXceiver",
+      "message": "Receiving block blk_5792489080791696128 src: /10.251.30.6:33145 dest: /10.251.30.6:50010"
+    }
+  },
+  "96": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[09.30 17:12:14]",
+      "application": "chrome.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "action": "close",
+      "sent_bytes": "35850",
+      "received_bytes": "13903",
+      "lifetime": "04:12"
+    }
+  },
+  "97": {
+    "compiled": true,
+    "extracted_fields": {
+      "timestamp": "[10.20 17:11:08]",
+      "application": "chrome.exe",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "action": "close",
+      "sent_bytes": "1432",
+      "received_bytes": "44376",
+      "lifetime": "00:31"
+    }
+  },
+  "98": {
+    "compiled": true,
+    "extracted_fields": {
+      "provider": "Microsoft-Windows-SystemDataArchiver",
+      "guid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "event_id": "2050",
+      "level": "4",
+      "task": "0",
+      "opcode": "0",
+      "keywords": "0x8000000000000000",
+      "timestamp": "2025-02-26T05:59:00.054350300Z",
+      "event_record_id": "6989899",
+      "correlation_id": "3debc1ad-5b8d-48c4-ae2c-29e8968f650e",
+      "process_id": "4000",
+      "thread_id": "5148",
+      "channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "computer": "KELWIN2019TEST2",
+      "user_id": "S-1-5-19",
+      "event": "<Data Name='LogString'>[SDP Base]  SRUM calling FreeMemory for provider data type 3 into provider CPU Provider.</Data>"
+    }
+  },
+  "99": {
+    "compiled": true,
+    "extracted_fields": {
+      "date": "2015-10-18",
+      "time": "18:01:53,838",
+      "severity": "INFO",
+      "thread": "AsyncDispatcher event handler",
+      "class": "org.apache.hadoop.yarn.util.RackResolver",
+      "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack"
+    }
+  },
+  "100": {
+    "compiled": true,
+    "extracted_fields": {
+      "_from_ip": "10.20.80.208",
+      "_to_ip": "96.45.45.45",
+      "bpf_filter": "ip host 10.20.80.208 and ip host 96.45.45.45 and udp port 61952 and udp port 53",
+      "direction_is_known": "true",
+      "first_activity_time": "1753253399923",
+      "from": "10.20.80.208",
+      "from_port": "61952",
+      "from_zone": "10.20.80.0/24",
+      "id": "810.20.80.20896.45.45.45f20035198360bcd73",
+      "is_broadcast": "false",
+      "is_from_public": "false",
+      "is_to_public": "true",
+      "key": "96.45.45.45;53;10.20.80.208;61952;udp;8",
+      "last_activity_time": "1753253399966",
+      "protocol": "dns",
+      "status": "CLOSED",
+      "throughput_speed": "0",
+      "to": "96.45.45.45",
+      "to_port": "53",
+      "to_zone": "Internet",
+      "transferred_avg_packet_bytes": "234.5",
+      "transferred_biggest_packet_bytes": "386",
+      "transferred_bytes": "469",
+      "transferred_last_15m_bytes": "0",
+      "transferred_last_30m_bytes": "469",
+      "transferred_last_5m_bytes": "0",
+      "transferred_packets": "2",
+      "transferred_smallest_packet_bytes": "83",
+      "transport_protocol": "udp",
+      "vlan_id": ""
+    }
+  }
+}
