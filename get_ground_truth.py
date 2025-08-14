@@ -1,3 +1,13 @@
+import sys
+
+# Ensure a modern SQLite for Chroma by shimming pysqlite3 before any imports that may load sqlite3
+try:
+    import pysqlite3.dbapi2 as sqlite3  # type: ignore
+    sys.modules["sqlite3"] = sqlite3
+    sys.modules["sqlite3.dbapi2"] = sqlite3
+except Exception:
+    pass
+
 import json
 import csv
 from tqdm import tqdm
@@ -34,7 +44,7 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
     )
     
     ollama_llm = ChatOllama(
-        model="llama3.2",
+        model="qwen2.5-coder",
         temperature=0.7
     )
 
@@ -73,6 +83,18 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
 
     return result["result"], result["source_documents"]
 
+def clean_regex(regex):
+    # If starts with ```regex, remove it
+    if regex.startswith("```regex"):
+        regex = regex[len("```regex"):].strip()
+    # if ends with ```, remove it
+    if regex.endswith("```"):
+        regex = regex[:-len("```")].strip()
+    # Remove unnecessary whitespace and newlines
+    regex = regex.strip()
+    regex = regex.replace("\n", "")
+    return regex
+
 def get_ground_truth(siem):
     if siem == "elastic":
         collection = "elastic_fields"
@@ -89,17 +111,18 @@ def get_ground_truth(siem):
     # Loop with progress bar
     print(f"Generating ground truth regex patterns for {siem} logs...")
     for index, row in tqdm(df.iterrows(), desc="Processing logs", unit="log", total=len(df)):
-        # # If ground_truth_regex is already set, skip
-        # if pd.notna(row['ground_truth_regex']):
-        #     print(f"Skipping index {index} as ground_truth_regex is already set.")
-        #     continue
+        # If ground_truth_regex is already set, skip
+        if pd.notna(row['ground_truth_regex']):
+            print(f"Skipping index {index} as ground_truth_regex is already set.")
+            continue
         log = row['log_text']
         query = PROMPT + log
         regex, source = query_rag(collection, query)
-        df.at[index, 'ground_truth_regex'] = regex
+        df.at[index, 'ground_truth_regex'] = clean_regex(regex)
         df.to_csv(data, index=False, quoting=csv.QUOTE_ALL)
     
     # Save the updated dataframe
     print("Ground truth regex patterns generated successfully.")
-    
+
+
 get_ground_truth("elastic")
