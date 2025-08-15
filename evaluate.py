@@ -87,7 +87,7 @@ def string_similarity(a, b):
     return SequenceMatcher(None, a, b).ratio()
 
 def exact_match_accuracy(generated_regex, ground_truth_regex):
-    return 1.0 if generated_regex == ground_truth_regex else 0.0
+    return 1.0 if generated_regex == ground_truth_regex else string_similarity(generated_regex, ground_truth_regex)
 
 def functional_accuracy(generated_regex, log_text, ground_truth_fields):
     try:
@@ -146,49 +146,42 @@ def clean_regex(regex):
 def evaluate_model(scenario_name, ground_truth_regex, ground_truth_fields):
     results = []
     output_file = f"{scenario_name}_model.csv"
-
-    # Fix: Only read CSV if it exists and is not empty, else create new DataFrame
-    if os.path.exists(output_file) and os.path.getsize(output_file) > 0:
-        print("File exists. Reading it.")
-        df = pd.read_csv(output_file, sep='\t', engine='python', on_bad_lines='skip')
-    else:
-        df = pd.DataFrame(columns=['log_id', 'log_text', 'ground_truth_regex'])
+    df = pd.read_csv(output_file)
+    if 'generated_regex' not in df.columns:
+        df['generated_regex'] = None
     
-    # Debug: Show DataFrame loading status
-    if df is not None:
-        print(f"[DEBUG] DataFrame loaded for {scenario_name}.")
-        print(f"[DEBUG] Shape: {df.shape}")
-        print(f"[DEBUG] Columns: {list(df.columns)}")
-    else:
-        print(f"[DEBUG] DataFrame is None for {scenario_name}.")
-    
+    df['generated_regex'] = df['generated_regex'].astype("string")
+    for idx, row in tqdm(df.iterrows(), desc="Processing logs", unit="log", total=len(df)):
+        if pd.notna(row['generated_regex']):
+            print(f"Skipping index {idx} as generated_regex is already set.")
+            continue
+        log_id = str(row['log_id'])
+        log_text = str(row['log_text'])
+        regex, sources = query_rag("elastic_fields", PROMPT + log_text)
+        cleaned_regex = clean_regex(regex)
+        df.at[idx, 'generated_regex'] = cleaned_regex
+        print(f"[UPDATE] log_id={log_id} | generated_regex={cleaned_regex}")  # Real-time update
+        df.to_csv(output_file, index=False, quoting=csv.QUOTE_ALL)  # Write after each update
 
-    with open(output_file, "w", newline="", encoding="utf-8") as f:
-        for idx, row in df.iterrows():
-            log_id = str(row['log_id'])
-            log_text = str(row['log_text'])
-            regex, sources = query_rag("elastic_fields", PROMPT + log_text)
-            cleaned_regex = clean_regex(regex)
-            df.at[idx, 'regex'] = cleaned_regex
-            print(f"[UPDATE] log_id={log_id} | generated_regex={cleaned_regex}")  # Real-time update
-            df.to_csv(output_file, index=False, sep='\t', quoting=csv.QUOTE_ALL)  # Write after each update
+        gt_fields = ground_truth_fields[log_id]["extracted_fields"]
 
-            gt_fields = ground_truth_fields[log_id]["extracted_fields"]
+        em_acc = exact_match_accuracy(cleaned_regex, gt_regex)
+        func_acc = functional_accuracy(cleaned_regex, log_text, gt_fields)
+        precision, recall = field_level_precision_recall(cleaned_regex, log_text, gt_fields)
+        comp_rate = compilation_success(cleaned_regex)
 
-            em_acc = exact_match_accuracy(regex, gt_regex)
-            func_acc = functional_accuracy(regex, log_text, gt_fields)
-            precision, recall = field_level_precision_recall(regex, log_text, gt_fields)
-            comp_rate = compilation_success(regex)
-
-            results.append({
-                "log_id": log_id,
-                "Exact_Match_Accuracy": em_acc,
-                "Functional_Accuracy": func_acc,
-                "Field_Precision": precision,
-                "Field_Recall": recall,
-                "Compilation_Success": comp_rate
-            })
-
+        results.append({
+            "log_id": log_id,
+            "Exact_Match_Accuracy": em_acc,
+            "Functional_Accuracy": func_acc,
+            "Field_Precision": precision,
+            "Field_Recall": recall,
+            "Compilation_Success": comp_rate
+        })
+        # Save results to json
+        with open(f"{scenario_name}_results.json", "w") as json_file:
+            json.dump(results, json_file)
+        
     return results
 
 # ==== Main Execution ====
