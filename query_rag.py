@@ -2,6 +2,7 @@ import os
 from langchain.chains import RetrievalQA
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
@@ -35,6 +36,11 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
         api_key="EMPTY",
         model="qwen25-coder-32b-awq",
         temperature=0.2
+    )
+
+    ollama_llm = ChatOllama(
+        model="llama3.2",
+        temperature=0
     )
 
     qa_chain = RetrievalQA.from_chain_type(
