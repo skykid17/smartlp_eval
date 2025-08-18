@@ -7,6 +7,8 @@ from sentence_transformers import SentenceTransformer, util
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 def string_similarity(a, b):
+    if not isinstance(a, str) or not isinstance(b, str):
+        return 0.0
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
 def semantic_similarity(a, b):
@@ -19,7 +21,8 @@ SYNONYMS = {
     "app": "application",
     "src_ip": "source_ip",
     "dest_ip": "destination_ip",
-    "msg": "message"
+    "msg": "message",
+    "pri": "priority"
 }
 
 def normalize_value(value):
@@ -35,7 +38,6 @@ def functional_accuracy(generated_regex, log_text, ground_truth_fields):
         if not match:
             return 0.0
         extracted = match.groupdict()
-        print(extracted)
         correct = 0
         for gt_field, gt_value in ground_truth_fields.items():
             gt_norm_field = normalize_value(gt_field).lower()
@@ -77,41 +79,47 @@ def field_level_precision_recall(generated_regex, log_text, ground_truth_fields)
     except Exception:
         return 0, 0
 
-def compilation_success(generated_regex, log_text):
+def compilation_ratio(generated_regex, log_text):
     try:
         pattern = pcre2.compile(generated_regex)
         match = pattern.search(log_text)
-        print(match.group())
-        return len(match.group())/len(log_text)
+        return len(match.group())/len(log_text), match.groupdict()
     except Exception:
         print("Compilation failed")
-        return 0.0
+        return 0.0, {}
 
 with open("ground_truth_fields.json", encoding="utf-8") as f:
     ground_truth_fields = json.load(f)
 
 df = pd.read_csv("rag_model.csv")
-truth_df = pd.read_csv("ground_truth_regex.csv")
-for i in range(11):
-    print(10*"="+f"log {i}"+ 10*"=")
+truth_df = pd.read_csv("ground_truth_regex.csv", quoting=1)
+results = {}
+scenario_name = "rag"
+for i in range(100):
+    print(10*"="+f"log {i+1}"+ 10*"=")
     log_id = str(df['log_id'].iloc[i])
-    log_text = df['log_text'].iloc[i]
+    log_text = truth_df['log_text'].iloc[i]
     gt_regex = truth_df['ground_truth_regex'].iloc[i]
     gt_fields = ground_truth_fields[log_id]["extracted_fields"]
     regex = df['generated_regex'].iloc[i]
-    print(f"log is {log_text}\n")
-    print(f"regex is {regex}\n")
-    print(f"gt_regex is {gt_regex}\n")
-
-
-    # ==== Evaluation ====
-
     em_acc = exact_match_accuracy(regex, gt_regex)
     func_acc = functional_accuracy(regex, log_text, gt_fields)
     precision, recall = field_level_precision_recall(regex, log_text, gt_fields)
-    comp = compilation_success(regex, log_text)
+    comp_ratio, extracted_fields = compilation_ratio(regex, log_text)
     print(f"Exact Match Accuracy is {em_acc}")
     print(f"Functional Accuracy is {func_acc}")
     print(f"Field Precision is {precision}")
     print(f"Field Recall is {recall}")
-    print(f"Compilation Ratio is {comp}")
+    print(f"Compilation Ratio is {comp_ratio}")
+
+    results[log_id] = {
+            "exact_match_accuracy": em_acc,
+            "functional_accuracy": func_acc,
+            "field_precision": precision,
+            "field_recall": recall,
+            "compilation_ratio": comp_ratio,
+            "extracted_fields": extracted_fields
+        }
+    # Save results to json
+    with open(f"results_{scenario_name}.json", "w") as json_file:
+        json.dump(results, json_file, indent=2)

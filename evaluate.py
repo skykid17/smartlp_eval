@@ -170,14 +170,13 @@ def evaluate_model(scenario_name, ground_truth_regex, ground_truth_fields):
         precision, recall = field_level_precision_recall(cleaned_regex, log_text, gt_fields)
         comp_rate = compilation_success(cleaned_regex)
 
-        results.append({
-            "log_id": log_id,
+        results[log_id] = {
             "Exact_Match_Accuracy": em_acc,
             "Functional_Accuracy": func_acc,
             "Field_Precision": precision,
             "Field_Recall": recall,
             "Compilation_Success": comp_rate
-        })
+        }
         # Save results to json
         with open(f"{scenario_name}_results.json", "w") as json_file:
             json.dump(results, json_file)

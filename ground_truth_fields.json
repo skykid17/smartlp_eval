@@ -4,7 +4,7 @@
     "extracted_fields": {
       "timestamp": "2025-03-07T11:37:22.109Z",
       "host": "server52",
-      "app": "DatabaseConnector",
+      "application": "DatabaseConnector",
       "severity": "INFO",
       "message": "Operation started for user 520"
     }
@@ -968,7 +968,13 @@
   },
   "77": {
     "compiled": true,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "timestamp": "Feb 27 00:18:01",
+      "host": "CLV010VLCBEDR01",
+      "process": "systemd",
+      "pid": "375924",
+      "message": "Reached target Timers."
+    }
   },
   "78": {
     "compiled": true,
@@ -1085,7 +1091,43 @@
   },
   "89": {
     "compiled": true,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "pri": "8",
+      "timestamp": "2025-07-23T06:44:37.453210Z",
+      "host": "dragos",
+      "app": "dragos_syslog",
+      "procid": "-",
+      "msgid": "-",
+      "structured": "-",
+      "System": "Dragos Platform",
+      "CreatedAt": "2025-07-23T06:44:37Z",
+      "Summary": "Distributed Component Object Model (DCOM) used to execute commands on a remote Windows system",
+      "Severity": "5",
+      "Content": "Asset 28 (192.168.23.11) executed DCOMExec script to Asset 14 (172.18.1.42). The script carried out the following action SMB::FILE_OPEN as a result of the execution. The execution of DCOMExec script could indicate possible usage of the Impacket framework that provides the capability to use the script in order to execute commands on a remote Windows system via Distributed Component Object Model (DCOM). The output of the python script is the following file __1753252778.7019103",
+      "Asset_IP": "",
+      "Asset_Hostname": "",
+      "Dst_Asset_IP": "172.18.1.42",
+      "Dst_Asset_Hostname": "pdsrdstm",
+      "Dst_Asset_MAC": "00:50:56:27:2A:37",
+      "Dst_Asset_Domain": "",
+      "Src_Asset_IP": "192.168.23.11",
+      "Src_Asset_Hostname": "",
+      "Src_Asset_MAC": "",
+      "Src_Asset_Domain": "",
+      "ID": "6528",
+      "Asset_Domain": "",
+      "Asset_ID": "",
+      "Asset_MAC": "",
+      "Detection_Quad": "Indicator",
+      "DetectorId": "8cc94891-899e-4e1e-a24e-60e5c42019cf",
+      "Dst_Asset_ID": "14",
+      "MatchedRuleId": "4",
+      "OccurredAt": "2025-07-23T06:40:20Z",
+      "OriginalSeverity": "1",
+      "Reviewed": "False",
+      "Src_Asset_ID": "28",
+      "Type": "Communication"
+    }
   },
   "90": {
     "compiled": true,
@@ -1103,7 +1145,30 @@
   },
   "91": {
     "compiled": true,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "pri": "10",
+      "timestamp": "Jul 23 14:40:45",
+      "host": "10.10.1.10",
+      "cef_version": "0",
+      "device_vendor": "Tenable",
+      "device_product": "Tenable OT Security",
+      "device_version": "3.18.58",
+      "signature_id": "109",
+      "name": "Unauthorized Conversation",
+      "severity": "9",
+      "externalId": "10025",
+      "cs6Label": "policy_name",
+      "cs6": "SMB communication from  DMZ server Detected",
+      "cf1Label": "cluster_log_id",
+      "cf1": "10024",
+      "duser": "920-WINSRV01-A",
+      "dpt": "445",
+      "dst": "10.92.0.10",
+      "suser": "920-TERMSRV01",
+      "src": "10.20.100.20",
+      "proto": "TCP",
+      "cat": "NetworkEvents"
+    }
   },
   "92": {
     "compiled": true,
@@ -1212,33 +1277,33 @@
       "_from_ip": "10.20.80.208",
       "_to_ip": "96.45.45.45",
       "bpf_filter": "ip host 10.20.80.208 and ip host 96.45.45.45 and udp port 61952 and udp port 53",
-      "direction_is_known": "true",
-      "first_activity_time": "1753253399923",
+      "direction_known": "true",
+      "first_act_time": "1753253399923",
       "from": "10.20.80.208",
       "from_port": "61952",
       "from_zone": "10.20.80.0/24",
       "id": "810.20.80.20896.45.45.45f20035198360bcd73",
       "is_broadcast": "false",
-      "is_from_public": "false",
-      "is_to_public": "true",
+      "is_from_pub": "false",
+      "is_to_pub": "true",
       "key": "96.45.45.45;53;10.20.80.208;61952;udp;8",
-      "last_activity_time": "1753253399966",
+      "last_act_time": "1753253399966",
       "protocol": "dns",
       "status": "CLOSED",
-      "throughput_speed": "0",
+      "thru_speed": "0",
       "to": "96.45.45.45",
       "to_port": "53",
       "to_zone": "Internet",
-      "transferred_avg_packet_bytes": "234.5",
-      "transferred_biggest_packet_bytes": "386",
-      "transferred_bytes": "469",
-      "transferred_last_15m_bytes": "0",
-      "transferred_last_30m_bytes": "469",
-      "transferred_last_5m_bytes": "0",
-      "transferred_packets": "2",
-      "transferred_smallest_packet_bytes": "83",
-      "transport_protocol": "udp",
-      "vlan_id": ""
+      "trans_avg_bytes": "234.5",
+      "trans_big_bytes": "386",
+      "trans_bytes": "469",
+      "trans_15m_bytes": "0",
+      "trans_30m_bytes": "469",
+      "trans_5m_bytes": "0",
+      "trans_packets": "2",
+      "trans_small_bytes": "83",
+      "trans_proto": "udp",
+      "vlan_id": "null"
     }
   }
 }

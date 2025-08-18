@@ -4,7 +4,7 @@ import re
 import json
 
 
-data = 'elastic.csv'
+data = 'ground_truth_regex.csv'
 
 print(f"Loading data from {data}...")
 df = pd.read_csv(data)
