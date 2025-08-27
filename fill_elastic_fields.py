@@ -1,7 +1,6 @@
 import pcre2
 import pandas as pd
 import requests
-from vllm import LLM
 from langchain import ChatOpenAI
 
 LOG_PROMPT = '''You are a log generator. 

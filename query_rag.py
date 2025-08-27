@@ -13,7 +13,7 @@ TOP_K = 3
 endpoint = "https://models.github.ai/inference"
 model = "openai/gpt-4.1"
 
-def query_rag(collection: str, query: str, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2", persist_directory: str = "./chroma_db", verbose: bool = False):
+def query_rag(collection: str, query: str, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2", persist_directory: str = "./chroma", verbose: bool = False):
 
     embeddings = HuggingFaceEmbeddings(model=embedding_model)
 

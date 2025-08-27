@@ -66,7 +66,7 @@ class CustomYAMLLoader:
 class ElasticPackagesIndexer:
     """Main indexer class for processing Elastic packages documentation"""
     
-    def __init__(self, packages_dir: str, persist_dir: str = "./chroma_db"):
+    def __init__(self, packages_dir: str, persist_dir: str = "./chroma"):
         self.packages_dir = Path(packages_dir)
         self.persist_dir = persist_dir
         self.checkpoint_file = "elastic_processed_dirs.json"
@@ -322,7 +322,7 @@ def main():
     """Main function to run the indexer"""
     # Configuration
     PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\elastic_repo\packages"
-    PERSIST_DIR = "./chroma_db"
+    PERSIST_DIR = "./chroma"
     
     # Create indexer and run
     indexer = ElasticPackagesIndexer(PACKAGES_DIR, PERSIST_DIR)

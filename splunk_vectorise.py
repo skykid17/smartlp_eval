@@ -66,7 +66,7 @@ class CustomYAMLLoader:
 class SplunkAddonsIndexer:
     """Main indexer class for processing Splunk add-ons documentation"""
     
-    def __init__(self, packages_dir: str, persist_dir: str = "./chroma_db"):
+    def __init__(self, packages_dir: str, persist_dir: str = "./chroma"):
         self.packages_dir = Path(packages_dir)
         self.persist_dir = persist_dir
         self.checkpoint_file = "splunk_processed_dirs.json"
@@ -358,5 +358,5 @@ def main():
 if __name__ == "__main__":
     # Set global variable for use in CustomYAMLLoader
     PACKAGES_DIR = r"C:\Users\geola\Documents\GitHub\soc_rag\splunk_repo"
-    PERSIST_DIR = "./chroma_db"
+    PERSIST_DIR = "./chroma"
     main()

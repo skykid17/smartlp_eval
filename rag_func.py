@@ -23,7 +23,7 @@ def query_rag(collection: str,
               query: str, 
               llm_model: str = "qwen25-coder-32b-awq", 
               embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2", 
-              persist_directory: str = "./chroma_db"):
+              persist_directory: str = "./chroma"):
 
     logging.info(f"Querying RAG with collection: {collection}, query: {query}")
 
@@ -66,7 +66,7 @@ def create_embeddings_from_path(
     file_or_folder_path: str,
     collection_name: str,
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2",
-    persist_directory: str = "./rag/chroma_db",
+    persist_directory: str = "./rag/chroma",
     chunk_size: int = 1000,
     chunk_overlap: int = 200,
     max_batch_size: int = 5461,
