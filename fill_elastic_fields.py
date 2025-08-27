@@ -1,7 +1,7 @@
 import pcre2
 import pandas as pd
 import requests
-from langchain import ChatOpenAI
+from langchain_openai import ChatOpenAI
 
 LOG_PROMPT = '''You are a log generator. 
 Generate a realistic and random security, application, or system log line that includes the provided field example value. 
