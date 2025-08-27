@@ -30,9 +30,9 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
         temperature=0.7
     )
 
-    ## Qwen25 coder 32b instruct is hosted on vLLM on 192.168.125.32:8000
+    ## Qwen25 coder 32b instruct is hosted on vLLM on 192.168.125.31:8000
     lab_llm = ChatOpenAI(
-        base_url="http://192.168.125.32:8000/v1",
+        base_url="http://192.168.125.31:8000/v1",
         api_key="EMPTY",
         model="qwen25-coder-32b-awq",
         temperature=0.2
@@ -66,7 +66,7 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
 log = "2025-03-07T11:37:22.109Z server52 DatabaseConnector [INFO]: Operation started for user 520"
 
 query = r'''You are an expert in log parsing and regular expressions. Given a log entry and the siems' 
-default fields, generate a pcre2 compatible regex pattern with named capture groups. Capture as mmany fields 
+default fields, generate a pcre2 compatible regex pattern with named capture groups. Capture as many fields 
 as possible. Do not capture multiple fields within a capture group. Do not use a 'catchall' capture group. 
 Always use .*? within capture groups. Take into account field values with whitespaces. Replace all whitespaces 
 outside of capture groups with the \s+ token. Escape any literal special characters and forward slashes within the regex. Return only 

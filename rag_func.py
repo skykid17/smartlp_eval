@@ -35,9 +35,9 @@ def query_rag(collection: str,
         collection_name=collection
     )
 
-    ## Qwen25 coder 32b instruct is hosted on vLLM on 192.168.125.32:8000
+    ## Qwen25 coder 32b instruct is hosted on vLLM on 192.168.125.31:8000
     llm = ChatOpenAI(
-        base_url="http://192.168.125.32:8000/v1",
+        base_url="http://192.168.125.31:8000/v1",
         api_key="EMPTY",
         model=llm_model,
         temperature=0.2
