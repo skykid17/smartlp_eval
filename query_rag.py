@@ -12,9 +12,6 @@ load_dotenv()
 
 TOP_K = 3
 
-endpoint = "https://models.github.ai/inference"
-model = "openai/gpt-4.1"
-
 def query_rag(collection: str, query: str, embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2", persist_directory: str = "./chroma", verbose: bool = False):
 
     embeddings = HuggingFaceEmbeddings(model=embedding_model)
@@ -25,19 +22,12 @@ def query_rag(collection: str, query: str, embedding_model: str = "sentence-tran
         collection_name=collection
     )
     
-    local_llm = ChatOpenAI(
-        base_url=endpoint,
-        api_key=os.getenv("GITHUB_TOKEN"),
-        model=model,
-        temperature=0.7
-    )
-
     ## Qwen25 coder 32b instruct is hosted on vLLM on 192.168.125.31:8000
     lab_llm = ChatOpenAI(
         base_url="http://192.168.125.31:8000/v1",
         api_key="EMPTY",
         model="qwen25-coder-32b-awq",
-        temperature=0.2
+        temperature=0.5
     )
 
     ollama_llm = ChatOllama(
@@ -131,18 +121,18 @@ def query_rag_rerank(collection: str, query: str, embedding_model: str = "senten
     return result, top_docs
 
 
-log = "2025-03-07T11:37:22.109Z server52 DatabaseConnector [INFO]: Operation started for user 520"
+# log = "2025-03-07T11:37:22.109Z server52 DatabaseConnector [INFO]: Operation started for user 520"
 
-query = r'''You are an expert in log parsing and regular expressions. Given a log entry and the siems' 
-default fields, generate a pcre2 compatible regex pattern with named capture groups. Capture as many fields 
-as possible. Do not capture multiple fields within a capture group. Do not use a 'catchall' capture group. 
-Always use .*? within capture groups. Take into account field values with whitespaces. Replace all whitespaces 
-outside of capture groups with the \s+ token. Escape any literal special characters and forward slashes within the regex. Return only 
-the regex pattern. ''' + log
+# query = r'''You are an expert in log parsing and regular expressions. Given a log entry and the siems' 
+# default fields, generate a pcre2 compatible regex pattern with named capture groups. Capture as many fields 
+# as possible. Do not capture multiple fields within a capture group. Do not use a 'catchall' capture group. 
+# Always use .*? within capture groups. Take into account field values with whitespaces. Replace all whitespaces 
+# outside of capture groups with the \s+ token. Escape any literal special characters and forward slashes within the regex. Return only 
+# the regex pattern. ''' + log
 
-# regex, source = query_rag("elastic_fields", query, verbose=True)
+# # regex, source = query_rag("elastic_fields", query, verbose=True)
 
-start_time = time.time()
-regex, source = query_rag_rerank("elastic_fields", query, verbose=True)
-end_time = time.time()
-print(f"Time taken: {end_time - start_time:.2f} seconds")
+# start_time = time.time()
+# regex, source = query_rag_rerank("elastic_fields", query, verbose=True)
+# end_time = time.time()
+# print(f"Time taken: {end_time - start_time:.2f} seconds")
