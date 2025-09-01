@@ -91,10 +91,11 @@ def compilation_ratio(generated_regex, log_text):
 with open("ground_truth_fields.json", encoding="utf-8") as f:
     ground_truth_fields = json.load(f)
 
-df = pd.read_csv("rag_model.csv")
+
+scenario_name = "direct"
+df = pd.read_csv(f"regex_{scenario_name}.csv")
 truth_df = pd.read_csv("ground_truth_regex.csv", quoting=1)
 results = {}
-scenario_name = "rag"
 for i in range(100):
     print(10*"="+f"log {i+1}"+ 10*"=")
     log_id = str(df['log_id'].iloc[i])

@@ -1,0 +1,1609 @@
+{
+  "1": {
+    "exact_match_accuracy": 0.6299694189602446,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.2,
+    "field_recall": 0.2,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "component": "DatabaseConnector",
+      "level": "INFO",
+      "server": "server52",
+      "timestamp": "2025-03-07T11:37:22.109Z",
+      "user_id": "520"
+    }
+  },
+  "2": {
+    "exact_match_accuracy": 0.11092985318107668,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "3": {
+    "exact_match_accuracy": 0.4052863436123348,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.2,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class": "spark.SecurityManager",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "modify_users": "yarn, curi",
+      "time": "20:10:40",
+      "view_users": "yarn, curi"
+    }
+  },
+  "4": {
+    "exact_match_accuracy": 0.6284658040665434,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "5": {
+    "exact_match_accuracy": 0.3514644351464435,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {}
+  },
+  "6": {
+    "exact_match_accuracy": 0.6089965397923875,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.9904761904761905,
+    "extracted_fields": {
+      "class": "util.Utils",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "message": "Successfully started service",
+      "port": "55904",
+      "service_name": "sparkExecutorActorSystem",
+      "time": "20:10:41"
+    }
+  },
+  "7": {
+    "exact_match_accuracy": 0.11297071129707113,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "8": {
+    "exact_match_accuracy": 0.5219941348973607,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.5,
+    "compilation_ratio": 0.7,
+    "extracted_fields": {
+      "day": "10",
+      "hostname": "LabSZ",
+      "hour": "07",
+      "message": "",
+      "minute": "07",
+      "module": "pam_unix",
+      "month": "Dec",
+      "pid": "24206",
+      "second": "38",
+      "service": "sshd",
+      "subtype": "auth",
+      "type": "sshd"
+    }
+  },
+  "9": {
+    "exact_match_accuracy": 0.18518518518518517,
+    "functional_accuracy": 0.6875,
+    "field_precision": 0.6470588235294118,
+    "field_recall": 0.6875,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "8361459",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-03-12T07:17:35.258212200Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "10": {
+    "exact_match_accuracy": 0.10073710073710074,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "11": {
+    "exact_match_accuracy": 0.6236559139784946,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.4,
+    "compilation_ratio": 0.6944444444444444,
+    "extracted_fields": {
+      "day": "7",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "02",
+      "message": "S",
+      "minute": "18",
+      "month": "Mar",
+      "pid": "375924",
+      "process_name": "systemd",
+      "second": "39"
+    }
+  },
+  "12": {
+    "exact_match_accuracy": 0.2865671641791045,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "13": {
+    "exact_match_accuracy": 0.26199261992619927,
+    "functional_accuracy": 0.8888888888888888,
+    "field_precision": 0.5714285714285714,
+    "field_recall": 0.8888888888888888,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "13",
+      "hour": "23",
+      "ip": "2.142.156.198",
+      "method": "GET",
+      "minute": "10",
+      "month": "Mar",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "referrer": "https://www.bing.com",
+      "second": "16",
+      "size": "8359",
+      "status": "400",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      "year": "2025"
+    }
+  },
+  "14": {
+    "exact_match_accuracy": 0.4223918575063613,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "actor_system": "sparkExecutorActorSystem",
+      "component": "Remoting",
+      "date": "17/06/09",
+      "host": "mesos-slave-07",
+      "log_level": "INFO",
+      "message": "Remoting started; listening on addresses :[akka.tcp://sparkExecutorActorSystem@mesos-slave-07:55904]",
+      "port": "55904",
+      "protocol": "akka.tcp",
+      "time": "20:10:41"
+    }
+  },
+  "15": {
+    "exact_match_accuracy": 0.5301204819277109,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "hostname": "LabSZ",
+      "hour": "07",
+      "minute": "07",
+      "month": "Dec",
+      "pid": "24206",
+      "second": "38",
+      "status": "preauth",
+      "username": "test9"
+    }
+  },
+  "16": {
+    "exact_match_accuracy": 0.40160642570281124,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.125,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "15",
+      "euid": "0",
+      "hostname": "combo",
+      "hour": "02",
+      "logname": "",
+      "minute": "04",
+      "month": "Jun",
+      "pid": "20893",
+      "rhost": "220-135-151-1.hinet-ip.hinet.net",
+      "ruser": "",
+      "second": "59",
+      "service": "sshd",
+      "subservice": "pam_unix",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": "root"
+    }
+  },
+  "17": {
+    "exact_match_accuracy": 0.5650224215246636,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "18": {
+    "exact_match_accuracy": 0.7058823529411765,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.42857142857142855,
+    "field_recall": 0.6,
+    "compilation_ratio": 0.6805555555555556,
+    "extracted_fields": {
+      "day": "19",
+      "hostname": "CLV010VLCBEDR01",
+      "message": "",
+      "month": "Feb",
+      "pid": "375924",
+      "process": "systemd",
+      "time": "07:18:39"
+    }
+  },
+  "19": {
+    "exact_match_accuracy": 0.10526315789473684,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "20": {
+    "exact_match_accuracy": 0.18518518518518517,
+    "functional_accuracy": 0.6875,
+    "field_precision": 0.6470588235294118,
+    "field_recall": 0.6875,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "8361393",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-03-12T07:16:35.251125300Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "21": {
+    "exact_match_accuracy": 0.6353790613718412,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.4,
+    "compilation_ratio": 0.5697674418604651,
+    "extracted_fields": {
+      "day": "17",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "10",
+      "message": "",
+      "minute": "18",
+      "month": "Mar",
+      "pid": "375924",
+      "process_name": "systemd",
+      "second": "39"
+    }
+  },
+  "22": {
+    "exact_match_accuracy": 0.782608695652174,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.5779816513761468,
+    "extracted_fields": {
+      "class": "executor.CoarseGrainedExecutorBackend",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "message": "R",
+      "time": "20:10:40"
+    }
+  },
+  "23": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "24": {
+    "exact_match_accuracy": 0.13627254509018036,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "25": {
+    "exact_match_accuracy": 0.3982494529540481,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 0.975,
+    "extracted_fields": {
+      "day": "16",
+      "euid": "0",
+      "hostname": "combo",
+      "logname": "",
+      "module": "pam_unix",
+      "month": "Jun",
+      "pid": "20896",
+      "rhost": "220-135-151-1.hinet-ip.hinet.net",
+      "ruser": "",
+      "service": "sshd",
+      "time": "07:03:22",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": ""
+    }
+  },
+  "26": {
+    "exact_match_accuracy": 0.4582210242587601,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "domain": "ns.marryaldkfaczcz.com",
+      "hostname": "LabSZ",
+      "ip": "173.234.31.186",
+      "message": "POSSIBLE BREAK-IN ATTEMPT!",
+      "month": "Dec",
+      "pid": "24208",
+      "service": "sshd",
+      "time": "07:08:28"
+    }
+  },
+  "27": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3ddf0711-cf56-4c5c-a8f6-2e41b7cb644e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "CLV040VWKIWI001.stecyberlab.local",
+      "EventID": "2050",
+      "EventRecordID": "14067140",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[Config] Failed to read configuration from registry, result 5. Using default values",
+      "Opcode": "0",
+      "ProcessID": "2084",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-01-31T16:00:00.013931800Z",
+      "Task": "0",
+      "ThreadID": "4240",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "28": {
+    "exact_match_accuracy": 0.20512820512820512,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "29": {
+    "exact_match_accuracy": 0.6831460674157304,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "30": {
+    "exact_match_accuracy": 0.36015325670498083,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.4,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "function": "ProtInit",
+      "licRunMode": "0x23eb",
+      "module": "Licensing::LicenseProtection",
+      "timestamp": "2024-05-09 16:24:24.641",
+      "timezone": "+08:00"
+    }
+  },
+  "31": {
+    "exact_match_accuracy": 0.5874587458745875,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.3,
+    "field_recall": 0.6,
+    "compilation_ratio": 0.8666666666666667,
+    "extracted_fields": {
+      "day": "5",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "00",
+      "message": "",
+      "minute": "18",
+      "month": "Feb",
+      "pid": "1",
+      "process": "systemd",
+      "scope": "session-13536.scope",
+      "second": "29"
+    }
+  },
+  "32": {
+    "exact_match_accuracy": 0.15109343936381708,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "33": {
+    "exact_match_accuracy": 0.49333333333333335,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {}
+  },
+  "34": {
+    "exact_match_accuracy": 0.47696476964769646,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "hostname": "LabSZ",
+      "hour": "07",
+      "ip_address": "52.80.34.196",
+      "minute": "07",
+      "month": "Dec",
+      "pid": "24206",
+      "port": "36060",
+      "second": "45",
+      "username": "test9"
+    }
+  },
+  "35": {
+    "exact_match_accuracy": 0.40408163265306124,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.9907407407407407,
+    "extracted_fields": {
+      "date": "2005.11.09",
+      "day": "9",
+      "host_with_service": "dn228/dn228",
+      "hostname": "dn228",
+      "month": "Nov",
+      "pam_module": "pam_unix",
+      "pid": "2915",
+      "service": "crond",
+      "time": "12:01:01",
+      "timestamp": "1131566461",
+      "username": "root"
+    }
+  },
+  "36": {
+    "exact_match_accuracy": 0.395,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.375,
+    "field_recall": 0.6,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "command": "/usr/share/cb/virtualenv/bin/python -m cb.maintenance.job_runner --max-startup-delay 1 -s alliance_community_participation /etc/cb/cb.conf --ticevents >> /var/log/cb/job-runner/startup.out 2>&1",
+      "day": "27",
+      "hostname": "CLV010VLCBEDR01",
+      "month": "Jan",
+      "pid": "375934",
+      "process": "CROND",
+      "time": "12:38:01",
+      "user": "cb"
+    }
+  },
+  "37": {
+    "exact_match_accuracy": 0.6417910447761194,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.4,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "logger_name": "slf4j.Slf4jLogger",
+      "message": "Slf4jLogger started",
+      "time": "20:10:41"
+    }
+  },
+  "38": {
+    "exact_match_accuracy": 0.14746543778801843,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "39": {
+    "exact_match_accuracy": 0.10455764075067024,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "40": {
+    "exact_match_accuracy": 0.2375886524822695,
+    "functional_accuracy": 0.4444444444444444,
+    "field_precision": 0.2857142857142857,
+    "field_recall": 0.4444444444444444,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "13",
+      "hour": "10",
+      "http_version": "1.1",
+      "ip": "217.50.57.73",
+      "method": "DELETE",
+      "minute": "41",
+      "month": "Mar",
+      "referrer": "-",
+      "response_size": "1126",
+      "second": "29",
+      "status_code": "500",
+      "uri": "/blog?sort=price_desc&page=2",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      "year": "2025"
+    }
+  },
+  "41": {
+    "exact_match_accuracy": 0.5956112852664577,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.4,
+    "field_recall": 0.4,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "controller": "AuthController",
+      "level": "ERROR",
+      "server": "server52",
+      "timestamp": "2025-03-07T20:22:19.897Z",
+      "user_id": "166"
+    }
+  },
+  "42": {
+    "exact_match_accuracy": 0.06611570247933884,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "43": {
+    "exact_match_accuracy": 0.03338391502276176,
+    "functional_accuracy": 0.36363636363636365,
+    "field_precision": 0.3076923076923077,
+    "field_recall": 0.36363636363636365,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "component": "IOServer        ",
+      "context": "(GLOBAL)        ",
+      "file": "plc_drv.cpp                   ",
+      "function": "InitUnit()                                        ",
+      "line": "1063",
+      "log_level": "TRACE",
+      "port": "PORT2_BOARD1",
+      "source": "CORE       ",
+      "status": "Online",
+      "thread_id": "0x1130",
+      "timestamp": "2024-05-09 16:24:24.507",
+      "timezone": "+08:00",
+      "unit_name": "Kepware.KEPServerEX.V6"
+    }
+  },
+  "44": {
+    "exact_match_accuracy": 0.7763157894736842,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.7914438502673797,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.mapreduce.v2.app.job.impl.TaskImpl",
+      "log_level": "INFO",
+      "message": "",
+      "task_id": "task_1445144423722_0020_m_000002",
+      "thread_name": "AsyncDispatcher event handler",
+      "timestamp": "2015-10-18 18:01:53,869"
+    }
+  },
+  "45": {
+    "exact_match_accuracy": 0.6035087719298246,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.9,
+    "extracted_fields": {
+      "acls": "y",
+      "class_name": "spark.SecurityManager",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "time": "20:10:41"
+    }
+  },
+  "46": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "47": {
+    "exact_match_accuracy": 0.40725806451612906,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.125,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 0.975,
+    "extracted_fields": {
+      "day": "01",
+      "euid": "0",
+      "hostname": "combo",
+      "hour": "01",
+      "logname": "",
+      "minute": "01",
+      "month": "Jun",
+      "pid": "20892",
+      "rhost": "220-135-151-1.hinet-ip.hinet.net",
+      "ruser": "",
+      "second": "09",
+      "service": "sshd",
+      "subservice": "pam_unix",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": ""
+    }
+  },
+  "48": {
+    "exact_match_accuracy": 0.6079295154185022,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.2857142857142857,
+    "field_recall": 0.4,
+    "compilation_ratio": 0.4658385093167702,
+    "extracted_fields": {
+      "class": "dfs.FSNamesystem",
+      "date": "081109",
+      "log_level": "INFO",
+      "message": "b",
+      "method": "BLOCK* NameSystem.addStoredBlock",
+      "pid": "34",
+      "time": "204324"
+    }
+  },
+  "49": {
+    "exact_match_accuracy": 0.39803439803439805,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.15384615384615385,
+    "field_recall": 0.4,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "action": "opened",
+      "by_uid": "uid=0",
+      "day": "27",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "00",
+      "minute": "18",
+      "month": "Feb",
+      "pid": "375924",
+      "process_name": "systemd",
+      "second": "01",
+      "service": "systemd-user",
+      "type": "session",
+      "username": "cb"
+    }
+  },
+  "50": {
+    "exact_match_accuracy": 0.49746192893401014,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.18181818181818182,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "by_uid": "uid=0",
+      "day": "05",
+      "hostname": "combo",
+      "hour": "14",
+      "minute": "26",
+      "module": "pam_unix",
+      "month": "Sep",
+      "pid": "21416",
+      "second": "18",
+      "service": "su",
+      "username": "cyrus"
+    }
+  },
+  "51": {
+    "exact_match_accuracy": 0.4732142857142857,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "52": {
+    "exact_match_accuracy": 0.3938730853391685,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "euid": "0",
+      "hostname": "combo",
+      "logname": "",
+      "module": "pam_unix",
+      "month": "Sep",
+      "pid": "20898",
+      "rhost": "220-135-151-1.hinet-ip.hinet.net",
+      "ruser": "",
+      "service": "sshd",
+      "time": "13:23:39",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": "root"
+    }
+  },
+  "53": {
+    "exact_match_accuracy": 0.6307692307692307,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.25,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "function": "TranWrite",
+      "name": "Cluster1Alarm",
+      "param1": "3",
+      "param2": "140",
+      "state1": "TRAN_STATE_ONLINE",
+      "state2": "5",
+      "timestamp": "2024-05-03 15:44:43.726",
+      "timezone": "+08:00"
+    }
+  },
+  "54": {
+    "exact_match_accuracy": 0.0870488322717622,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "55": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "56": {
+    "exact_match_accuracy": 0.8280701754385965,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.2,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.6204819277108434,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.yarn.util.RackResolver",
+      "log_level": "INFO",
+      "message": "",
+      "thread_name": "AsyncDispatcher event handler",
+      "timestamp": "2015-10-18 18:01:53,869"
+    }
+  },
+  "57": {
+    "exact_match_accuracy": 0.037209302325581395,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "58": {
+    "exact_match_accuracy": 0.6628571428571428,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.5714285714285714,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "1",
+      "hostname": "authorMacBook-Pro",
+      "isReachable": "0",
+      "month": "Jul",
+      "pid": "11807",
+      "process": "cdpd",
+      "time": "09:00:56"
+    }
+  },
+  "59": {
+    "exact_match_accuracy": 0.7931034482758621,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.6025641025641025,
+    "extracted_fields": {
+      "class": "spark.SecurityManager",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "message": "C",
+      "time": "20:10:41"
+    }
+  },
+  "60": {
+    "exact_match_accuracy": 0.5024875621890548,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.2,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.yarn.util.RackResolver",
+      "event_handler": "AsyncDispatcher event handler",
+      "hostname": "MSRA-SA-39.fareast.corp.microsoft.com",
+      "log_level": "INFO",
+      "rack_path": "/default-rack",
+      "timestamp": "2015-10-18 18:01:53,869"
+    }
+  },
+  "61": {
+    "exact_match_accuracy": 0.6568265682656826,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.3333333333333333,
+    "field_recall": 0.6,
+    "compilation_ratio": 0.5714285714285714,
+    "extracted_fields": {
+      "day": "12",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "11",
+      "message": "",
+      "minute": "18",
+      "month": "Feb",
+      "pid": "1",
+      "process": "systemd",
+      "second": "39"
+    }
+  },
+  "62": {
+    "exact_match_accuracy": 0.8144796380090498,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.5,
+    "field_recall": 0.5,
+    "compilation_ratio": 0.47368421052631576,
+    "extracted_fields": {
+      "class": "dfs.DataNode$PacketResponder",
+      "log_level": "INFO",
+      "message": "P",
+      "pid": "148",
+      "time": "203615",
+      "timestamp": "081109"
+    }
+  },
+  "63": {
+    "exact_match_accuracy": 0.4932975871313673,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.18181818181818182,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "code": "11",
+      "day": "10",
+      "hostname": "LabSZ",
+      "hour": "07",
+      "ip_address": "52.80.34.196",
+      "message": "Bye Bye",
+      "minute": "07",
+      "month": "Dec",
+      "pid": "24206",
+      "second": "45",
+      "state": "preauth"
+    }
+  },
+  "64": {
+    "exact_match_accuracy": 0.14536340852130325,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "65": {
+    "exact_match_accuracy": 0.4321608040201005,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.3333333333333333,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class_name": "QuorumCnxManager$SendWorker@679",
+      "level": "WARN",
+      "message": "Interrupted while waiting for message on queue",
+      "thread_id": "188978561024",
+      "thread_name": "SendWorker",
+      "timestamp": "2015-07-29 19:22:46,680"
+    }
+  },
+  "66": {
+    "exact_match_accuracy": 0.05116796440489433,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "67": {
+    "exact_match_accuracy": 0.701195219123506,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.4,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "message": "Starting remoting",
+      "source": "Remoting:",
+      "time": "20:10:41"
+    }
+  },
+  "68": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "69": {
+    "exact_match_accuracy": 0.7019230769230769,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.46956521739130436,
+    "extracted_fields": {
+      "class": "dfs.DataNode$PacketResponder",
+      "level": "INFO",
+      "message": "P",
+      "pid": "512",
+      "time": "204525",
+      "timestamp": "081109"
+    }
+  },
+  "70": {
+    "exact_match_accuracy": 0.5,
+    "functional_accuracy": 0.0,
+    "field_precision": 0.0,
+    "field_recall": 0.0,
+    "compilation_ratio": 0.6153846153846154,
+    "extracted_fields": {
+      "file": "",
+      "function": "workerEnv.init()",
+      "level": "notice"
+    }
+  },
+  "71": {
+    "exact_match_accuracy": 0.3783783783783784,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.5,
+    "compilation_ratio": 0.6988636363636364,
+    "extracted_fields": {
+      "action": "auth",
+      "day": "10",
+      "euid": "0",
+      "hostname": "LabSZ",
+      "logname": "",
+      "month": "Dec",
+      "pid": "24206",
+      "rhost": "",
+      "ruser": "",
+      "service": "sshd",
+      "service_name": "sshd",
+      "time": "07:07:38",
+      "tty": "ssh",
+      "uid": "0"
+    }
+  },
+  "72": {
+    "exact_match_accuracy": 0.6353790613718412,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.4,
+    "compilation_ratio": 0.6712328767123288,
+    "extracted_fields": {
+      "day": "28",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "12",
+      "message": "",
+      "minute": "18",
+      "month": "Mar",
+      "pid": "375924",
+      "process_name": "systemd",
+      "second": "39"
+    }
+  },
+  "73": {
+    "exact_match_accuracy": 0.27672955974842767,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "74": {
+    "exact_match_accuracy": 0.6259541984732825,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.6949152542372882,
+    "extracted_fields": {
+      "day": "19",
+      "event_id": "6512",
+      "hostname": "myhost",
+      "log_level": "ERROR",
+      "message": "",
+      "month": "Feb",
+      "time": "02:32:24"
+    }
+  },
+  "75": {
+    "exact_match_accuracy": 0.42436974789915966,
+    "functional_accuracy": 0.7777777777777778,
+    "field_precision": 0.7777777777777778,
+    "field_recall": 0.7777777777777778,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 17 2025, 10:24:22",
+      "ip": "192.168.68.98",
+      "method": "PUT",
+      "protocol": "HTTP/1.1",
+      "referrer": "https://www.google.com",
+      "size": "3214",
+      "status": "200",
+      "uri": "/login",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "76": {
+    "exact_match_accuracy": 0.010893246187363835,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.3076923076923077,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a5ec4|C:\\Windows\\System32\\KERNELBASE.dll+5eab4|c:\\windows\\system32\\lsm.dll+e9d6|c:\\windows\\system32\\lsm.dll+d3ae|C:\\Windows\\System32\\RPCRT4.dll+78343|C:\\Windows\\System32\\RPCRT4.dll+dbc0d|C:\\Windows\\System32\\RPCRT4.dll+b3dc|C:\\Windows\\System32\\RPCRT4.dll+59dc4|C:\\Windows\\System32\\RPCRT4.dll+58cdd|C:\\Windows\\System32\\RPCRT4.dll+5958b|C:\\Windows\\System32\\RPCRT4.dll+3942c|C:\\Windows\\System32\\RPCRT4.dll+398ac|C:\\Windows\\System32\\RPCRT4.dll+53e9c|C:\\Windows\\System32\\RPCRT4.dll+556fb|C:\\Windows\\System32\\RPCRT4.dll+481da|C:\\Windows\\SYSTEM32\\ntdll.dll+286be|C:\\Windows\\SYSTEM32\\ntdll.dll+2a029|C:\\Windows\\System32\\KERNEL32.DLL+84d4|C:\\Windows\\SYSTEM32\\ntdll.dll+6e871",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "win-dc-8537412.attackrange.local",
+      "EventID": "10",
+      "EventRecordID": "34",
+      "GrantedAccess": "0x1400",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "Opcode": "0",
+      "ProcessID": "4268",
+      "ProviderGuid": "{5770385F-C22A-43E0-BF4C-06F5698FFBD9}",
+      "ProviderName": "Microsoft-Windows-Sysmon",
+      "RuleName": "-",
+      "SourceImage": "C:\\Windows\\system32\\svchost.exe",
+      "SourceProcessGUID": "{F97E5129-0A10-5F7F-0C00-000000007E01}",
+      "SourceProcessId": "572",
+      "SourceThreadId": "1120",
+      "SystemTime": "2020-10-08T12:52:10.274186300Z",
+      "TargetImage": "C:\\Windows\\sysmon64.exe",
+      "TargetProcessGUID": "{F97E5129-0B7A-5F7F-F402-000000007E01}",
+      "TargetProcessId": "4268",
+      "Task": "10",
+      "ThreadID": "4756",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-10-08 12:52:10.259",
+      "Version": "3"
+    }
+  },
+  "77": {
+    "exact_match_accuracy": 0.6920415224913494,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.4,
+    "compilation_ratio": 0.6901408450704225,
+    "extracted_fields": {
+      "day": "27",
+      "hostname": "CLV010VLCBEDR01",
+      "hour": "00",
+      "message": "",
+      "minute": "18",
+      "month": "Feb",
+      "pid": "375924",
+      "process": "systemd",
+      "second": "01"
+    }
+  },
+  "78": {
+    "exact_match_accuracy": 0.8251748251748252,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.2,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.6204819277108434,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.yarn.util.RackResolver",
+      "log_level": "INFO",
+      "message": "",
+      "thread_name": "AsyncDispatcher event handler",
+      "timestamp": "2015-10-18 18:01:53,869"
+    }
+  },
+  "79": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "80": {
+    "exact_match_accuracy": 0.4594594594594595,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "domain": "ns.marryaldkfaczcz.com",
+      "hostname": "LabSZ",
+      "ip": "173.234.31.186",
+      "message": "POSSIBLE BREAK-IN ATTEMPT!",
+      "month": "Dec",
+      "pid": "24200",
+      "service": "sshd",
+      "time": "06:55:46"
+    }
+  },
+  "81": {
+    "exact_match_accuracy": 0.39148936170212767,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.5,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "03/10/2025",
+      "message": "Registering setup log files with watson",
+      "source": "WatsonReport",
+      "time": "01:25:27.876"
+    }
+  },
+  "82": {
+    "exact_match_accuracy": 0.38095238095238093,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.5,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "load_time": "2024-05-03 15:41:01.",
+      "rdb_name": "_Categor RDB",
+      "timestamp": "2024-05-09 16:24:24.569",
+      "timezone": "+08:00"
+    }
+  },
+  "83": {
+    "exact_match_accuracy": 0.3983903420523139,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.125,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "23",
+      "euid": "0",
+      "hostname": "combo",
+      "hour": "11",
+      "logname": "",
+      "minute": "46",
+      "month": "Jul",
+      "pid": "15385",
+      "rhost": "85.44.47.166",
+      "ruser": "",
+      "second": "41",
+      "service": "sshd",
+      "subservice": "pam_unix",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": "root"
+    }
+  },
+  "84": {
+    "exact_match_accuracy": 0.3890160183066362,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.16666666666666666,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class": "spark.SecurityManager",
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "modify_users": "yarn, curi",
+      "time": "20:10:41",
+      "view_users": "yarn, curi"
+    }
+  },
+  "85": {
+    "exact_match_accuracy": 0.3971119133574007,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "86": {
+    "exact_match_accuracy": 0.4805194805194805,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.25,
+    "field_recall": 0.4,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "block_id": "blk_5402003568334525940",
+      "class": "dfs.DataNode$PacketResponder",
+      "ip_address": "10.251.214.112",
+      "log_level": "INFO",
+      "pid": "567",
+      "size": "67108864",
+      "time": "204722",
+      "timestamp": "081109"
+    }
+  },
+  "87": {
+    "exact_match_accuracy": 0.5829596412556054,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.4658385093167702,
+    "extracted_fields": {
+      "class": "dfs.FSNamesystem",
+      "date": "081109",
+      "level": "INFO",
+      "message": "b",
+      "method": "BLOCK* NameSystem.addStoredBlock",
+      "pid": "26",
+      "time": "204132"
+    }
+  },
+  "88": {
+    "exact_match_accuracy": 0.6075949367088608,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.6,
+    "field_recall": 0.6,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "level": "DEBUG",
+      "server": "server52",
+      "service": "UserService",
+      "timestamp": "2025-02-06T05:15:06.534Z",
+      "user_id": "258"
+    }
+  },
+  "89": {
+    "exact_match_accuracy": 0.019243530192435302,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "90": {
+    "exact_match_accuracy": 0.4624505928853755,
+    "functional_accuracy": 0.8888888888888888,
+    "field_precision": 0.6666666666666666,
+    "field_recall": 0.8888888888888888,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "15",
+      "ip": "204.213.233.216",
+      "method": "GET",
+      "month": "Mar",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "referrer": "https://www.google.com",
+      "size": "2717",
+      "status": "400",
+      "time": "08:35:21",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15",
+      "year": "2025"
+    }
+  },
+  "91": {
+    "exact_match_accuracy": 0.32432432432432434,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "92": {
+    "exact_match_accuracy": 0.4559386973180077,
+    "functional_accuracy": 0.7777777777777778,
+    "field_precision": 0.7777777777777778,
+    "field_recall": 0.7777777777777778,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 18 2025, 11:08:58",
+      "ip": "37.161.15.125",
+      "method": "PUT",
+      "protocol": "HTTP/1.1",
+      "referrer": "https://www.example.com",
+      "size": "2005",
+      "status": "200",
+      "uri": "/api/users",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "93": {
+    "exact_match_accuracy": 0.40160642570281124,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.125,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 0.975,
+    "extracted_fields": {
+      "day": "15",
+      "euid": "0",
+      "hostname": "combo",
+      "hour": "00",
+      "logname": "",
+      "minute": "04",
+      "month": "Aug",
+      "pid": "20897",
+      "rhost": "220-135-151-1.hinet-ip.hinet.net",
+      "ruser": "",
+      "second": "21",
+      "service": "sshd",
+      "subservice": "pam_unix",
+      "tty": "NODEVssh",
+      "uid": "0",
+      "user": ""
+    }
+  },
+  "94": {
+    "exact_match_accuracy": 0.38764044943820225,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "95": {
+    "exact_match_accuracy": 0.44970414201183434,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.2727272727272727,
+    "field_recall": 0.6,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "block_id": "blk_5792489080791696128",
+      "class": "dfs.DataNode$DataXceiver",
+      "dest_ip": "/10.251.30.6",
+      "dest_port": "50010",
+      "log_level": "INFO",
+      "message": "Receiving block blk_5792489080791696128 src: /10.251.30.6:33145 dest: /10.251.30.6:50010",
+      "pid": "653",
+      "src_ip": "/10.251.30.6",
+      "src_port": "33145",
+      "time": "204815",
+      "timestamp": "081109"
+    }
+  },
+  "96": {
+    "exact_match_accuracy": 0.08421052631578947,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {}
+  },
+  "97": {
+    "exact_match_accuracy": 0.11607142857142858,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {}
+  },
+  "98": {
+    "exact_match_accuracy": 0.18518518518518517,
+    "functional_accuracy": 0.6875,
+    "field_precision": 0.6470588235294118,
+    "field_recall": 0.6875,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "6989899",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[SDP Base]  SRUM calling FreeMemory for provider data type 3 into provider CPU Provider.",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-26T05:59:00.054350300Z",
+      "Task": "0",
+      "ThreadID": "5148",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "99": {
+    "exact_match_accuracy": 0.6879432624113475,
+    "functional_accuracy": 0.0,
+    "field_precision": 0.0,
+    "field_recall": 0.0,
+    "compilation_ratio": 0.6204819277108434,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.yarn.util.RackResolver",
+      "log_level": "INFO",
+      "message": "",
+      "thread_name": "AsyncDispatcher event handler",
+      "timestamp": "2015-10-18 18:01:53,838"
+    }
+  },
+  "100": {
+    "exact_match_accuracy": 0.4380714879467997,
+    "functional_accuracy": 0.7333333333333333,
+    "field_precision": 0.7333333333333333,
+    "field_recall": 0.7333333333333333,
+    "compilation_ratio": 0.9952324195470799,
+    "extracted_fields": {
+      "avg_packet_bytes": "234.5",
+      "biggest_packet_bytes": "386",
+      "bpf_filter": "ip host 10.20.80.208 and ip host 96.45.45.45 and udp port 61952 and udp port 53",
+      "bytes": "469",
+      "direction_is_known": "true",
+      "first_activity_time": "1753253399923",
+      "from": "10.20.80.208",
+      "from_ip": "10.20.80.208",
+      "from_port": "61952",
+      "from_zone": "10.20.80.0/24",
+      "id": "810.20.80.20896.45.45.45f20035198360bcd73",
+      "is_broadcast": "false",
+      "is_from_public": "false",
+      "is_to_public": "true",
+      "key": "96.45.45.45;53;10.20.80.208;61952;udp;8",
+      "last_15m_bytes": "0",
+      "last_30m_bytes": "469",
+      "last_5m_bytes": "0",
+      "last_activity_time": "1753253399966",
+      "packets": "2",
+      "protocol": "dns",
+      "smallest_packet_bytes": "83",
+      "status": "CLOSED",
+      "throughput_speed": "0",
+      "to": "96.45.45.45",
+      "to_ip": "96.45.45.45",
+      "to_port": "53",
+      "to_zone": "Internet",
+      "transport_protocol": "udp",
+      "vlan_id": ""
+    }
+  }
+}

@@ -149,7 +149,7 @@ and forward slashes within the regex. Return only the regex pattern.''',
 
 def regex_decomposed_rag():
     result_df = pd.read_csv("./evaluation/regex_decomposed_rag.csv")
-    max_attempts = 5
+    max_attempts = 10
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
         log_text = str(row['log_text'])
@@ -202,7 +202,11 @@ def regex_decomposed_rag():
             print(f"Remaining: {remaining_log}")
 
             # Append new regex piece
-            regex += (r"\s*" if (regex and attempt > 0) else "") + reduced_regex
+            gap = log_text[match.end():match.end()+1]
+            if regex and gap.isspace():
+                regex += r"\s*" + reduced_regex
+            else:
+                regex += reduced_regex
             print(f"Accumulated regex: {regex}")
 
             attempt += 1
@@ -211,11 +215,9 @@ def regex_decomposed_rag():
             print(f"Reached max attempts ({max_attempts}).")
         else:
             print(f"Regex fully matched after {attempt} rounds.")
-
-            regex = escape_quotes(resolve_duplicate_capture_groups(regex))
-
-            print(f"Log {log_id}'s regex: {regex}\n")
-            result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
+        regex = escape_quotes(resolve_duplicate_capture_groups(regex))
+        print(f"Log {log_id}'s regex: {regex}\n")
+        result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
     
     result_df.to_csv("./evaluation/regex_decomposed_rag.csv", index=False)
 
