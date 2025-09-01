@@ -1,0 +1,1027 @@
+{
+  "time_taken": 695.5248577594757,
+  "1": {
+    "exact_match_accuracy": 0.6299694189602446,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.2,
+    "field_recall": 0.2,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "component": "DatabaseConnector",
+      "level": "INFO",
+      "server": "server52",
+      "timestamp": "2025-03-07T11:37:22.109Z",
+      "user_id": "520"
+    }
+  },
+  "2": {
+    "exact_match_accuracy": 0.07356608478802992,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "3": {
+    "exact_match_accuracy": 0.7166666666666667,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.75,
+    "field_recall": 0.6,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "log_level": "INFO",
+      "logger": "spark.SecurityManager",
+      "message": "SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(yarn, curi); users with modify permissions: Set(yarn, curi)",
+      "timestamp": "17/06/09 20:10:40"
+    }
+  },
+  "4": {
+    "exact_match_accuracy": 0.45892351274787535,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "5": {
+    "exact_match_accuracy": 0.4521276595744681,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "6": {
+    "exact_match_accuracy": 0.4602510460251046,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "level": "INFO",
+      "logger": "util.Utils",
+      "message": "Successfully started service 'sparkExecutorActorSystem' on port 55904.",
+      "time": "20:10:41"
+    }
+  },
+  "7": {
+    "exact_match_accuracy": 0.43478260869565216,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.7244094488188977,
+    "extracted_fields": {
+      "core": "R36-M0-NA-C:J17-U01",
+      "date": "2005.06.05",
+      "hostname": "R36-M0-NA-C:J17-U01",
+      "message": "RAS",
+      "time": "2005-06-05-09.38.28.957918",
+      "timestamp": "1117989508"
+    }
+  },
+  "8": {
+    "exact_match_accuracy": 0.5487364620938628,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "9": {
+    "exact_match_accuracy": 0.02064516129032258,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10387984981226533,
+    "extracted_fields": {
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters)."
+    }
+  },
+  "10": {
+    "exact_match_accuracy": 0.036639623135304895,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "11": {
+    "exact_match_accuracy": 0.5951219512195122,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "12": {
+    "exact_match_accuracy": 0.2865671641791045,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "13": {
+    "exact_match_accuracy": 0.47702407002188185,
+    "functional_accuracy": 0.8888888888888888,
+    "field_precision": 0.8888888888888888,
+    "field_recall": 0.8888888888888888,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 13 2025, 23:10:16",
+      "ip": "2.142.156.198",
+      "method": "GET",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "referer": "https://www.bing.com",
+      "size": "8359",
+      "status": "400",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+  },
+  "14": {
+    "exact_match_accuracy": 0.4375,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "15": {
+    "exact_match_accuracy": 0.6095890410958904,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "16": {
+    "exact_match_accuracy": 0.32917705735660846,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "17": {
+    "exact_match_accuracy": 0.7227722772277227,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.5,
+    "field_recall": 0.4,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "id": "30002312",
+      "message": "onStandStepChanged 3579",
+      "module": "Step_LSC",
+      "timestamp": "20171223-22:15:29:606"
+    }
+  },
+  "18": {
+    "exact_match_accuracy": 0.6019417475728155,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "19": {
+    "exact_match_accuracy": 0.020212490282456596,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "20": {
+    "exact_match_accuracy": 0.02064516129032258,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10387984981226533,
+    "extracted_fields": {
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters)."
+    }
+  },
+  "21": {
+    "exact_match_accuracy": 0.6103286384976526,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "22": {
+    "exact_match_accuracy": 0.7488584474885844,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "level": "INFO",
+      "logger": "executor.CoarseGrainedExecutorBackend",
+      "message": "Registered signal handlers for [TERM, HUP, INT]",
+      "time": "20:10:40"
+    }
+  },
+  "23": {
+    "exact_match_accuracy": 0.037267080745341616,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10387984981226533,
+    "extracted_fields": {
+      "CounterCount": "1",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "RequestId": "0x100000000000002"
+    }
+  },
+  "24": {
+    "exact_match_accuracy": 0.033281331253250133,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "25": {
+    "exact_match_accuracy": 0.4134831460674157,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "26": {
+    "exact_match_accuracy": 0.40848806366047746,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "27": {
+    "exact_match_accuracy": 0.026272577996715927,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10146699266503667,
+    "extracted_fields": {
+      "LogString": "[Config] Failed to read configuration from registry, result 5. Using default values"
+    }
+  },
+  "28": {
+    "exact_match_accuracy": 0.20512820512820512,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "29": {
+    "exact_match_accuracy": 0.6831460674157304,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "30": {
+    "exact_match_accuracy": 0.36015325670498083,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.4,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "function": "ProtInit",
+      "licRunMode": "0x23eb",
+      "module": "Licensing::LicenseProtection",
+      "timestamp": "2024-05-09 16:24:24.641",
+      "timezone": "+08:00"
+    }
+  },
+  "31": {
+    "exact_match_accuracy": 0.4732142857142857,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "32": {
+    "exact_match_accuracy": 0.014294465999591586,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "33": {
+    "exact_match_accuracy": 0.594059405940594,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "34": {
+    "exact_match_accuracy": 0.49591280653950953,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "35": {
+    "exact_match_accuracy": 0.45054945054945056,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "36": {
+    "exact_match_accuracy": 0.2696629213483146,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.5714285714285714,
+    "field_recall": 0.8,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "command": "CMD",
+      "command_path": "/usr/share/cb/virtualenv/bin/python -m cb.maintenance.job_runner --max-startup-delay 1 -s alliance_community_participation /etc/cb/cb.conf --ticevents >> /var/log/cb/job-runner/startup.out 2>&1",
+      "hostname": "CLV010VLCBEDR01",
+      "pid": "375934",
+      "process": "CROND",
+      "timestamp": "Jan 27 12:38:01",
+      "user": "cb"
+    }
+  },
+  "37": {
+    "exact_match_accuracy": 0.7488584474885844,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "level": "INFO",
+      "logger": "slf4j.Slf4jLogger",
+      "message": "Slf4jLogger started",
+      "time": "20:10:41"
+    }
+  },
+  "38": {
+    "exact_match_accuracy": 0.2845691382765531,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "39": {
+    "exact_match_accuracy": 0.09183673469387756,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "40": {
+    "exact_match_accuracy": 0.38030560271646857,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.8571428571428571,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 13 2025, 10:41:29",
+      "ip": "217.50.57.73",
+      "method": "DELETE",
+      "path": "/blog?sort=price_desc&page=2",
+      "size": "1126",
+      "status": "500",
+      "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+  },
+  "41": {
+    "exact_match_accuracy": 0.1917808219178082,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "42": {
+    "exact_match_accuracy": 0.02054154995331466,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "43": {
+    "exact_match_accuracy": 0.020869565217391306,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "44": {
+    "exact_match_accuracy": 0.6808510638297872,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "45": {
+    "exact_match_accuracy": 0.5616438356164384,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "46": {
+    "exact_match_accuracy": 0.02618657937806874,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10387984981226533,
+    "extracted_fields": {
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters)."
+    }
+  },
+  "47": {
+    "exact_match_accuracy": 0.38388625592417064,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "48": {
+    "exact_match_accuracy": 0.6785714285714286,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "49": {
+    "exact_match_accuracy": 0.7627906976744186,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "50": {
+    "exact_match_accuracy": 0.5047318611987381,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "51": {
+    "exact_match_accuracy": 0.10784313725490197,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "52": {
+    "exact_match_accuracy": 0.29398663697104677,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "53": {
+    "exact_match_accuracy": 0.6568627450980392,
+    "functional_accuracy": 0.3333333333333333,
+    "field_precision": 0.25,
+    "field_recall": 0.3333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "function": "TranWrite",
+      "name": "Cluster1Alarm",
+      "param1": "3",
+      "param2": "140",
+      "state_name": "TRAN_STATE_ONLINE",
+      "state_number": "5",
+      "timestamp": "2024-05-03 15:44:43.726",
+      "timezone": "+08:00"
+    }
+  },
+  "54": {
+    "exact_match_accuracy": 0.14411247803163443,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "55": {
+    "exact_match_accuracy": 0.02618657937806874,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10387984981226533,
+    "extracted_fields": {
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters)."
+    }
+  },
+  "56": {
+    "exact_match_accuracy": 0.852233676975945,
+    "functional_accuracy": 0.2,
+    "field_precision": 0.2,
+    "field_recall": 0.2,
+    "compilation_ratio": 0.6204819277108434,
+    "extracted_fields": {
+      "class_name": "org.apache.hadoop.yarn.util.RackResolver",
+      "log_level": "INFO",
+      "message": "",
+      "thread_name": "AsyncDispatcher event handler",
+      "timestamp": "2015-10-18 18:01:53,869"
+    }
+  },
+  "57": {
+    "exact_match_accuracy": 0.17407407407407408,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "58": {
+    "exact_match_accuracy": 0.04172461752433936,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "59": {
+    "exact_match_accuracy": 0.5475285171102662,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class": "spark.SecurityManager",
+      "date": "17/06/09",
+      "level": "INFO",
+      "message": "Changing view acls to: yarn,curi",
+      "time": "20:10:41"
+    }
+  },
+  "60": {
+    "exact_match_accuracy": 0.490272373540856,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "61": {
+    "exact_match_accuracy": 0.6759259259259259,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "62": {
+    "exact_match_accuracy": 0.6147186147186147,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "63": {
+    "exact_match_accuracy": 0.6218487394957983,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "64": {
+    "exact_match_accuracy": 0.15258855585831063,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "65": {
+    "exact_match_accuracy": 0.44110275689223055,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "66": {
+    "exact_match_accuracy": 0.3025210084033613,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "67": {
+    "exact_match_accuracy": 0.8368200836820083,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.68,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "log_level": "INFO",
+      "message": "S",
+      "source": "Remoting:",
+      "time": "20:10:41"
+    }
+  },
+  "68": {
+    "exact_match_accuracy": 0.09800918836140889,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "69": {
+    "exact_match_accuracy": 0.7204301075268817,
+    "functional_accuracy": 0.6,
+    "field_precision": 0.6,
+    "field_recall": 0.6,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "level": "INFO",
+      "logger": "dfs.DataNode$PacketResponder",
+      "message": "PacketResponder 2 for block blk_572492839287299681 terminating",
+      "pid": "512",
+      "timestamp": "081109 204525"
+    }
+  },
+  "70": {
+    "exact_match_accuracy": 0.7700534759358288,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "71": {
+    "exact_match_accuracy": 0.6493506493506493,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "72": {
+    "exact_match_accuracy": 0.6330275229357798,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "73": {
+    "exact_match_accuracy": 0.2721518987341772,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "74": {
+    "exact_match_accuracy": 0.47368421052631576,
+    "functional_accuracy": 0.75,
+    "field_precision": 0.4,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "event_id": "Event 6512:",
+      "hostname": "myhost",
+      "message": "Process terminated",
+      "severity": "ERROR",
+      "timestamp": "Feb 19 02:32:24"
+    }
+  },
+  "75": {
+    "exact_match_accuracy": 0.47844827586206895,
+    "functional_accuracy": 0.8888888888888888,
+    "field_precision": 0.8888888888888888,
+    "field_recall": 0.8888888888888888,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 17 2025, 10:24:22",
+      "ip": "192.168.68.98",
+      "method": "PUT",
+      "path": "/login",
+      "protocol": "HTTP/1.1",
+      "referer": "https://www.google.com",
+      "size": "3214",
+      "status": "200",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "76": {
+    "exact_match_accuracy": 0.017055144968732235,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "77": {
+    "exact_match_accuracy": 0.7394957983193278,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "78": {
+    "exact_match_accuracy": 0.6423357664233577,
+    "functional_accuracy": 0.4,
+    "field_precision": 0.3333333333333333,
+    "field_recall": 0.4,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "2015-10-18",
+      "level": "INFO",
+      "logger": "org.apache.hadoop.yarn.util.RackResolver",
+      "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack",
+      "thread": "AsyncDispatcher event handler",
+      "time": "18:01:53,869"
+    }
+  },
+  "79": {
+    "exact_match_accuracy": 0.015455950540958269,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.47058823529411764,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "ActivityID": "{3debc1ad-5b8d-48c4-ae2c-29e8968f650e}",
+      "Channel": "Microsoft-Windows-SystemDataArchiver/Diagnostic",
+      "Computer": "KELWIN2019TEST2",
+      "EventID": "2050",
+      "EventRecordID": "7191981",
+      "Keywords": "0x8000000000000000",
+      "Level": "4",
+      "LogString": "[counter_request::Run] Delivered values for request 0x100000000000002 (1 counters).",
+      "Opcode": "0",
+      "ProcessID": "4000",
+      "ProviderGuid": "{4389f802-0c4f-56d0-63c6-d77db206d237}",
+      "ProviderName": "Microsoft-Windows-SystemDataArchiver",
+      "SystemTime": "2025-02-28T07:41:19.880782800Z",
+      "Task": "0",
+      "ThreadID": "2692",
+      "UserID": "S-1-5-19",
+      "Version": "0"
+    }
+  },
+  "80": {
+    "exact_match_accuracy": 0.4594594594594595,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.2222222222222222,
+    "field_recall": 0.5,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "day": "10",
+      "domain": "ns.marryaldkfaczcz.com",
+      "hostname": "LabSZ",
+      "ip": "173.234.31.186",
+      "message": "POSSIBLE BREAK-IN ATTEMPT!",
+      "month": "Dec",
+      "pid": "24200",
+      "service": "sshd",
+      "time": "06:55:46"
+    }
+  },
+  "81": {
+    "exact_match_accuracy": 0.39148936170212767,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.5,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "03/10/2025",
+      "message": "Registering setup log files with watson",
+      "source": "WatsonReport",
+      "time": "01:25:27.876"
+    }
+  },
+  "82": {
+    "exact_match_accuracy": 0.38095238095238093,
+    "functional_accuracy": 0.6666666666666666,
+    "field_precision": 0.5,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "load_time": "2024-05-03 15:41:01.",
+      "rdb_name": "_Categor RDB",
+      "timestamp": "2024-05-09 16:24:24.569",
+      "timezone": "+08:00"
+    }
+  },
+  "83": {
+    "exact_match_accuracy": 0.40336134453781514,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "84": {
+    "exact_match_accuracy": 0.6754385964912281,
+    "functional_accuracy": 0.25,
+    "field_precision": 0.2,
+    "field_recall": 0.25,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "17/06/09",
+      "level": "INFO",
+      "logger": "spark.SecurityManager",
+      "message": "SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(yarn, curi); users with modify permissions: Set(yarn, curi)",
+      "time": "20:10:41"
+    }
+  },
+  "85": {
+    "exact_match_accuracy": 0.7448680351906158,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "86": {
+    "exact_match_accuracy": 0.6696428571428571,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "87": {
+    "exact_match_accuracy": 0.33727810650887574,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "88": {
+    "exact_match_accuracy": 0.9111969111969112,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.8,
+    "field_recall": 0.8,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "level": "DEBUG",
+      "message": "Operation completed for user 258",
+      "server": "server52",
+      "service": "UserService",
+      "timestamp": "2025-02-06T05:15:06.534Z"
+    }
+  },
+  "89": {
+    "exact_match_accuracy": 0.09796367638965328,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "90": {
+    "exact_match_accuracy": 0.49224806201550386,
+    "functional_accuracy": 0.8888888888888888,
+    "field_precision": 0.8888888888888888,
+    "field_recall": 0.8888888888888888,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 15 2025, 08:35:21",
+      "ip": "204.213.233.216",
+      "method": "GET",
+      "path": "/search",
+      "protocol": "HTTP/1.1",
+      "referer": "https://www.google.com",
+      "size": "2717",
+      "status": "400",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "91": {
+    "exact_match_accuracy": 0.1672185430463576,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "92": {
+    "exact_match_accuracy": 0.4576271186440678,
+    "functional_accuracy": 0.7777777777777778,
+    "field_precision": 0.7777777777777778,
+    "field_recall": 0.7777777777777778,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "date": "Mar 18 2025, 11:08:58",
+      "ip": "37.161.15.125",
+      "method": "PUT",
+      "protocol": "HTTP/1.1",
+      "referer": "https://www.example.com",
+      "size": "2005",
+      "status": "200",
+      "url": "/api/users",
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
+    }
+  },
+  "93": {
+    "exact_match_accuracy": 0.37037037037037035,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "94": {
+    "exact_match_accuracy": 0.759825327510917,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "95": {
+    "exact_match_accuracy": 0.48427672955974843,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "96": {
+    "exact_match_accuracy": 0.15129151291512916,
+    "functional_accuracy": 0.7142857142857143,
+    "field_precision": 0.5,
+    "field_recall": 0.5714285714285714,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "browser": "chrome.exe",
+      "lifetime": "04:12",
+      "proxy": "proxy.cse.cuhk.edu.hk",
+      "received_bytes": "13903",
+      "received_kb": "13.5",
+      "sent_bytes": "35850",
+      "sent_kb": "35.0",
+      "timestamp": "[09.30 17:12:14]"
+    }
+  },
+  "97": {
+    "exact_match_accuracy": 0.22456140350877193,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "98": {
+    "exact_match_accuracy": 0.0149812734082397,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.10945273631840796,
+    "extracted_fields": {
+      "LogString": "[SDP Base]  SRUM calling FreeMemory for provider data type 3 into provider CPU Provider."
+    }
+  },
+  "99": {
+    "exact_match_accuracy": 0.1237785016286645,
+    "functional_accuracy": 0.0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  },
+  "100": {
+    "exact_match_accuracy": 0.2974973563623546,
+    "functional_accuracy": 0,
+    "field_precision": 0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
+    "extracted_fields": {}
+  }
+}

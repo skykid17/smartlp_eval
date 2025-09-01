@@ -92,10 +92,14 @@ with open("ground_truth_fields.json", encoding="utf-8") as f:
     ground_truth_fields = json.load(f)
 
 
-scenario_name = "direct"
-df = pd.read_csv(f"regex_{scenario_name}.csv")
+scenario = "finetuned"
+df = pd.read_csv(f"regex_{scenario}.csv")
 truth_df = pd.read_csv("ground_truth_regex.csv", quoting=1)
 results = {}
+
+with open(f"results_{scenario}.json", "r") as f:
+    data = json.load(f)
+
 for i in range(100):
     print(10*"="+f"log {i+1}"+ 10*"=")
     log_id = str(df['log_id'].iloc[i])
@@ -113,7 +117,7 @@ for i in range(100):
     print(f"Field Recall is {recall}")
     print(f"Compilation Ratio is {comp_ratio}")
 
-    results[log_id] = {
+    data[log_id] = {
             "exact_match_accuracy": em_acc,
             "functional_accuracy": func_acc,
             "field_precision": precision,
@@ -122,5 +126,6 @@ for i in range(100):
             "extracted_fields": extracted_fields
         }
     # Save results to json
-    with open(f"results_{scenario_name}.json", "w") as json_file:
-        json.dump(results, json_file, indent=2)
+
+with open(f"results_{scenario}.json", "w") as f:
+    json.dump(data, f, indent=2)

@@ -307,4 +307,4 @@ def calculate_time(scenario):
     with open(f"results_{scenario}.json", "w") as f:
         json.dump(data, f, indent=4)
 
-calculate_time("finetuned")
+calculate_time("direct")
