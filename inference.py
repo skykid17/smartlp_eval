@@ -8,13 +8,22 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
+from time import time
+import json
 
 TOP_K = 3
-truth_df = pd.read_csv("./evaluation/ground_truth_regex.csv")
+truth_df = pd.read_csv("ground_truth_regex.csv")
 lab_llm = ChatOpenAI(
         base_url="http://192.168.125.31:8000/v1",
         api_key="EMPTY",
         model="qwen25-coder-32b-awq",
+        temperature=0.2
+    )
+
+lab_llm_finetuned = ChatOpenAI(
+        base_url="http://192.168.125.31:8001/v1",
+        api_key="EMPTY",
+        model="/home/rdpuser3/Downloads/qwen-2.5-coder-finetuned",
         temperature=0.2
     )
 
@@ -61,6 +70,8 @@ def clean_msg(message):
         message = message[3:]
     if message.startswith("regex"):
         message = message[6:]
+    if message.startswith("\n"):
+        message = message[1:]
     if message.endswith("```"):
         message = message[:-3]
     return message.strip()
@@ -125,9 +136,9 @@ def escape_quotes(regex: str) -> str:
     return "".join(escaped)
 
 def regex_direct():                                               
-    result_df = pd.read_csv("./evaluation/regex_direct.csv")
+    result_df = pd.read_csv("regex_direct.csv")
 
-    for idx, row in truth_df.iterrows():
+    for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
         log = str(row['log_text'])
         messages = [
@@ -145,10 +156,65 @@ and forward slashes within the regex. Return only the regex pattern.''',
         print(f"log {log_id}: {response}")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
 
-    result_df.to_csv("./evaluation/regex_direct.csv", index=False)
+    # result_df.to_csv("regex_direct.csv", index=False)
+
+
+def regex_finetuned():                                               
+    result_df = pd.read_csv("regex_finetuned.csv")
+
+    for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
+        log_id = int(row['log_id'])
+
+        # Skip if regex already exists
+        # mask = result_df['log_id'] == log_id
+        # if mask.any():
+        #     existing_regex = result_df.loc[mask, 'generated_regex'].values[0]
+        #     if pd.notna(existing_regex) and existing_regex.strip() != "":
+        #         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = existing_regex
+        #         print(f"Skipping log {log_id} as it already has a generated regex.")
+        #         continue
+        log = str(row['log_text'])
+        messages = [
+            (
+                "system",
+                '''You are an expert in log parsing and regular expressions. Given a log entry, generate a pcre2 compatible 
+regex pattern with named capture groups. Capture as many fields as possible. Do not capture multiple fields within a capture 
+group. Do not use a 'catchall' capture group. Always use .*? within capture groups. Take into account field values with 
+whitespaces. Replace all whitespaces outside of capture groups with the \s+ token. Escape any literal special characters 
+and forward slashes within the regex. Return only the regex pattern.''',
+            ),
+            ("human", log),
+        ]
+        response = clean_msg(lab_llm_finetuned.invoke(messages).content)
+        print(f"log {log_id}: {response}")
+        result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
+
+    # result_df.to_csv("regex_finetuned.csv", index=False)
+
+def regex_rag():
+    result_df = pd.read_csv("regex_rag.csv")
+    for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
+        log_id = str(row['log_id'])
+        log = str(row['log_text'])
+        query_template = (
+    "You are an expert in log parsing and regular expressions. "
+    "Given a log entry and the SIEM's default fields, generate a PCRE2-compatible regex with meaningful named capture groups. "
+    "Capture as many meaningful fields as possible; do not hardcode values. "
+    "Do not use any special characters @.?*!, except underscore _, in capture group names. "
+    "Timestamps should remain as a single group. "
+    "Use .*? in capture groups, except use .* in the last group. "
+    "Replace whitespace outside groups with \\s+ and escape literal special characters. "
+    "Return only the regex.\n\nLog entry: "
+)
+        query = query_template + log
+        response = clean_msg(lab_llm.invoke(query).content)
+        print(f"log {log_id}: {response}")
+        result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
+
+    # result_df.to_csv("regex_rag.csv", index=False)
 
 def regex_decomposed_rag():
-    result_df = pd.read_csv("./evaluation/regex_decomposed_rag.csv")
+    result_df = pd.read_csv("regex_decomposed_rag.csv")
     max_attempts = 10
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
@@ -218,7 +284,27 @@ def regex_decomposed_rag():
         regex = escape_quotes(resolve_duplicate_capture_groups(regex))
         print(f"Log {log_id}'s regex: {regex}\n")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
-    
-    result_df.to_csv("./evaluation/regex_decomposed_rag.csv", index=False)
 
-regex_decomposed_rag()
+    # result_df.to_csv("regex_decomposed_rag.csv", index=False)
+
+def calculate_time(scenario):
+    start_time = time()
+    if scenario == "direct":
+        regex_direct()
+    if scenario == "finetuned":
+        regex_finetuned()
+    if scenario == "rag":
+        regex_rag()
+    if scenario == "decomposed_rag":
+        regex_decomposed_rag()
+    end_time = time()
+    time_taken = end_time - start_time
+    
+    with open(f"results_{scenario}.json", "r") as f:
+        data = json.load(f)
+    data["time_taken"] = time_taken
+
+    with open(f"results_{scenario}.json", "w") as f:
+        json.dump(data, f, indent=4)
+
+calculate_time("finetuned")
