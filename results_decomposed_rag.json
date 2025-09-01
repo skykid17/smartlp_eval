@@ -1,4 +1,6 @@
 {
+  "time_taken": 0,
+  "query_count": 0,
   "1": {
     "exact_match_accuracy": 0.8309859154929577,
     "functional_accuracy": 0.4,

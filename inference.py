@@ -216,6 +216,7 @@ def regex_rag():
 def regex_decomposed_rag():
     result_df = pd.read_csv("regex_decomposed_rag.csv")
     max_attempts = 10
+    query_count = 0
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
         log_text = str(row['log_text'])
@@ -226,7 +227,6 @@ def regex_decomposed_rag():
         regex = ""
         remaining_log = log_text
         attempt = 0
-
         query_template = (
     "You are an expert in log parsing and regular expressions. "
     "Given a log entry and the SIEM's default fields, generate a PCRE2-compatible regex with meaningful named capture groups. "
@@ -244,6 +244,7 @@ def regex_decomposed_rag():
             # Query LLM for regex suggestion
             query = query_template + remaining_log
             response = clean_msg(query_rag("elastic_fields", query, verbose=False)[0])
+            query_count += 1
             print(f"Generated regex: {response}")
             reduced_regex = reduce(remaining_log, response)
             print(f"Reduced regex: {reduced_regex}")
@@ -284,8 +285,10 @@ def regex_decomposed_rag():
         regex = escape_quotes(resolve_duplicate_capture_groups(regex))
         print(f"Log {log_id}'s regex: {regex}\n")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
-
+    
     # result_df.to_csv("regex_decomposed_rag.csv", index=False)
+
+    return query_count
 
 def calculate_time(scenario):
     start_time = time()
@@ -296,15 +299,16 @@ def calculate_time(scenario):
     if scenario == "rag":
         regex_rag()
     if scenario == "decomposed_rag":
-        regex_decomposed_rag()
+        query_count = regex_decomposed_rag()
     end_time = time()
     time_taken = end_time - start_time
     
     with open(f"results_{scenario}.json", "r") as f:
         data = json.load(f)
     data["time_taken"] = time_taken
+    data["query_count"] = query_count
 
     with open(f"results_{scenario}.json", "w") as f:
         json.dump(data, f, indent=4)
 
-calculate_time("direct")
+calculate_time("decomposed_rag")
