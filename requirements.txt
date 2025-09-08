@@ -1,4 +1,5 @@
 chromadb
+matplotlib
 langchain 
 langchain-chroma
 langchain-community
@@ -9,5 +10,6 @@ langchain-ollama
 hf_xet
 PyYAML
 pypdf
+seaborn
 sentence-transformers
 jq

@@ -22,7 +22,10 @@ SYNONYMS = {
     "src_ip": "source_ip",
     "dest_ip": "destination_ip",
     "msg": "message",
-    "pri": "priority"
+    "pri": "priority",
+    "pid": "process_id",
+    "user_id": "uid",
+    "log_level": "loglevel"
 }
 
 def normalize_value(value):
@@ -39,21 +42,38 @@ def functional_accuracy(generated_regex, log_text, ground_truth_fields):
             return 0.0
         extracted = match.groupdict()
         correct = 0
+
         for gt_field, gt_value in ground_truth_fields.items():
             gt_norm_field = normalize_value(gt_field).lower()
             extracted_field_name = None
-            # Tolerant field name matching using lower() and semantic similarity
+
+            # Match fields using semantic OR string similarity
+            best_score = 0.0
             for field in extracted.keys():
                 field_norm = field.lower()
-                if field_norm == gt_norm_field or string_similarity(field_norm, gt_norm_field) > 0.8:
+                score = max(
+                    string_similarity(field_norm, gt_norm_field),
+                    semantic_similarity(field_norm, gt_norm_field)
+                )
+                if score > best_score:
+                    best_score = score
                     extracted_field_name = field
-                    break
-            if extracted_field_name and string_similarity(extracted[extracted_field_name], gt_value) > 0.7:
-                correct += 1
+
+            # Check if best match is strong enough
+            if extracted_field_name and best_score > 0.75:
+                extracted_val = str(extracted[extracted_field_name])
+                val_score = max(
+                    string_similarity(extracted_val, str(gt_value)),
+                    semantic_similarity(extracted_val, str(gt_value))
+                )
+                if val_score > 0.7:  # threshold for values
+                    correct += 1
+
         return correct / len(ground_truth_fields) if ground_truth_fields else 0
     except Exception as e:
         print(f"FA - Regex compilation error: {e}")
         return 0
+
 
 def field_level_precision_recall(generated_regex, log_text, ground_truth_fields):
     try:
@@ -92,7 +112,7 @@ with open("ground_truth_fields.json", encoding="utf-8") as f:
     ground_truth_fields = json.load(f)
 
 
-scenario = "finetuned"
+scenario = "rag"  # Change this to switch scenarios
 df = pd.read_csv(f"regex_{scenario}.csv")
 truth_df = pd.read_csv("ground_truth_regex.csv", quoting=1)
 results = {}

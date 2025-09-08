@@ -219,6 +219,14 @@ def regex_decomposed_rag():
     query_count = 0
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
+        # Skip if regex already exists
+        mask = result_df['log_id'] == log_id
+        if mask.any():
+            existing_regex = result_df.loc[mask, 'generated_regex'].values[0]
+            if pd.notna(existing_regex) and existing_regex.strip() != "":
+                result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = existing_regex
+                print(f"Skipping log {log_id} as it already has a generated regex.")
+                continue
         log_text = str(row['log_text'])
         print(f"\n\nLOG {log_id}: {log_text}")
         """
@@ -286,7 +294,7 @@ def regex_decomposed_rag():
         print(f"Log {log_id}'s regex: {regex}\n")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
     
-    # result_df.to_csv("regex_decomposed_rag.csv", index=False)
+    result_df.to_csv("regex_decomposed_rag.csv", index=False)
 
     return query_count
 
