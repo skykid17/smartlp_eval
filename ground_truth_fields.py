@@ -2,9 +2,14 @@ import pcre2
 import pandas as pd
 import re
 import json
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+INPUT_DIR = BASE_DIR / "input"
+INPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-data = 'ground_truth_regex.csv'
+data = INPUT_DIR / 'ground_truth_regex.csv'
 
 print(f"Loading data from {data}...")
 df = pd.read_csv(data)
@@ -33,7 +38,7 @@ for idx, row in df.iterrows():
     results[log_id] = entry
 
 # Save results to JSON
-with open('ground_truth_fields.json', 'w', encoding='utf-8') as f:
+with open(INPUT_DIR / 'ground_truth_fields.json', 'w', encoding='utf-8') as f:
     json.dump(results, f, indent=2, ensure_ascii=False)
 
 # Show stats

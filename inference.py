@@ -10,9 +10,17 @@ from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from time import time
 import json
+from pathlib import Path
 
 TOP_K = 3
-truth_df = pd.read_csv("ground_truth_regex.csv")
+BASE_DIR = Path(__file__).resolve().parent
+# Shared directories for relocated datasets and generated artifacts
+INPUT_DIR = BASE_DIR / "input"
+OUTPUT_DIR = BASE_DIR / "output"
+INPUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+truth_df = pd.read_csv(INPUT_DIR / "ground_truth_regex.csv")
 lab_llm = ChatOpenAI(
         base_url="http://192.168.125.31:8000/v1",
         api_key="EMPTY",
@@ -136,7 +144,7 @@ def escape_quotes(regex: str) -> str:
     return "".join(escaped)
 
 def regex_direct():                                               
-    result_df = pd.read_csv("regex_direct.csv")
+    result_df = pd.read_csv(OUTPUT_DIR / "regex_direct.csv")
 
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
@@ -156,11 +164,11 @@ and forward slashes within the regex. Return only the regex pattern.''',
         print(f"log {log_id}: {response}")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
 
-    # result_df.to_csv("regex_direct.csv", index=False)
+    # result_df.to_csv(OUTPUT_DIR / "regex_direct.csv", index=False)
 
 
 def regex_finetuned():                                               
-    result_df = pd.read_csv("regex_finetuned.csv")
+    result_df = pd.read_csv(OUTPUT_DIR / "regex_finetuned.csv")
 
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = int(row['log_id'])
@@ -189,10 +197,10 @@ and forward slashes within the regex. Return only the regex pattern.''',
         print(f"log {log_id}: {response}")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
 
-    # result_df.to_csv("regex_finetuned.csv", index=False)
+    # result_df.to_csv(OUTPUT_DIR / "regex_finetuned.csv", index=False)
 
 def regex_rag():
-    result_df = pd.read_csv("regex_rag.csv")
+    result_df = pd.read_csv(OUTPUT_DIR / "regex_rag.csv")
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
         log_id = str(row['log_id'])
         log = str(row['log_text'])
@@ -211,10 +219,10 @@ def regex_rag():
         print(f"log {log_id}: {response}")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = response
 
-    # result_df.to_csv("regex_rag.csv", index=False)
+    # result_df.to_csv(OUTPUT_DIR / "regex_rag.csv", index=False)
 
 def regex_decomposed_rag():
-    result_df = pd.read_csv("regex_decomposed_rag.csv")
+    result_df = pd.read_csv(OUTPUT_DIR / "regex_decomposed_rag.csv")
     max_attempts = 10
     query_count = 0
     for idx, row in tqdm(truth_df.iterrows(), total=truth_df.shape[0], desc="Processing logs"):
@@ -294,7 +302,7 @@ def regex_decomposed_rag():
         print(f"Log {log_id}'s regex: {regex}\n")
         result_df.loc[result_df['log_id'] == int(log_id), 'generated_regex'] = regex
     
-    result_df.to_csv("regex_decomposed_rag.csv", index=False)
+    result_df.to_csv(OUTPUT_DIR / "regex_decomposed_rag.csv", index=False)
 
     return query_count
 
@@ -311,12 +319,12 @@ def calculate_time(scenario):
     end_time = time()
     time_taken = end_time - start_time
     
-    with open(f"results_{scenario}.json", "r") as f:
+    with open(OUTPUT_DIR / f"results_{scenario}.json", "r") as f:
         data = json.load(f)
     data["time_taken"] = time_taken
     data["query_count"] = query_count
 
-    with open(f"results_{scenario}.json", "w") as f:
+    with open(OUTPUT_DIR / f"results_{scenario}.json", "w") as f:
         json.dump(data, f, indent=4)
 
 calculate_time("decomposed_rag")

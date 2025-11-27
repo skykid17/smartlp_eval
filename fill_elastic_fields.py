@@ -2,6 +2,7 @@ import pcre2
 import pandas as pd
 import requests
 from langchain_openai import ChatOpenAI
+from pathlib import Path
 
 LOG_PROMPT = '''You are a log generator. 
 Generate a realistic and random security, application, or system log line that includes the provided field example value. 
@@ -48,7 +49,14 @@ def query_llm(system_prompt, user_prompt) -> str:
 
     return clean_response(response.content)
 
-df = pd.read_csv("elastic_fields.csv")
+BASE_DIR = Path(__file__).resolve().parent
+# Align file IO with the shared input/output directories
+INPUT_DIR = BASE_DIR / "input"
+OUTPUT_DIR = BASE_DIR / "output"
+INPUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+df = pd.read_csv(INPUT_DIR / "elastic_fields.csv")
 
 #for all rows in dataframe
 for index, row in df.iterrows():
@@ -78,4 +86,4 @@ Example Value: {field_example}
     row['Regex'] = regex
 
 # Save to csv
-df.to_csv("elastic_fields_with_logs.csv", index=False)
+df.to_csv(OUTPUT_DIR / "elastic_fields_with_logs.csv", index=False)

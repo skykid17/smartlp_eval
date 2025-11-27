@@ -2,9 +2,17 @@ import pcre2
 import pandas as pd
 from difflib import SequenceMatcher
 import json
+from pathlib import Path
 from sentence_transformers import SentenceTransformer, util
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
+
+BASE_DIR = Path(__file__).resolve().parent
+# Centralize file locations to match the new input/output layout
+INPUT_DIR = BASE_DIR / "input"
+OUTPUT_DIR = BASE_DIR / "output"
+INPUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def string_similarity(a, b):
     if not isinstance(a, str) or not isinstance(b, str):
@@ -108,16 +116,16 @@ def compilation_ratio(generated_regex, log_text):
         print("Compilation failed")
         return 0.0, {}
 
-with open("ground_truth_fields.json", encoding="utf-8") as f:
+with open(INPUT_DIR / "ground_truth_fields.json", encoding="utf-8") as f:
     ground_truth_fields = json.load(f)
 
 
 scenario = "rag"  # Change this to switch scenarios
-df = pd.read_csv(f"regex_{scenario}.csv")
-truth_df = pd.read_csv("ground_truth_regex.csv", quoting=1)
+df = pd.read_csv(OUTPUT_DIR / f"regex_{scenario}.csv")
+truth_df = pd.read_csv(INPUT_DIR / "ground_truth_regex.csv", quoting=1)
 results = {}
 
-with open(f"results_{scenario}.json", "r") as f:
+with open(OUTPUT_DIR / f"results_{scenario}.json", "r") as f:
     data = json.load(f)
 
 for i in range(100):
@@ -147,5 +155,5 @@ for i in range(100):
         }
     # Save results to json
 
-with open(f"results_{scenario}.json", "w") as f:
+with open(OUTPUT_DIR / f"results_{scenario}.json", "w") as f:
     json.dump(data, f, indent=2)

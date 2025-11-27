@@ -1,6 +1,11 @@
 import os
 import csv
 import re
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+INPUT_DIR = BASE_DIR / "input"
+INPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def extract_elastic_logtypes():
     # Return a list of sub-directories in the Elastic packages directory
@@ -9,7 +14,7 @@ def extract_elastic_logtypes():
         logtypes = [d for d in os.listdir(packages_dir) if os.path.isdir(os.path.join(packages_dir, d))]
         
         # Write logtypes to CSV file
-        csv_filename = "elastic_logtypes.csv"
+        csv_filename = INPUT_DIR / "elastic_logtypes.csv"
         with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             
@@ -32,7 +37,7 @@ def extract_elastic_logtypes():
 def extract_splunk_sourcetypes():
     """Extract sourcetypes from all Splunk packages and write to CSV."""
     packages_dir = "repos/splunk_repo"
-    csv_filename = "splunk_sourcetypes.csv"
+    csv_filename = INPUT_DIR / "splunk_sourcetypes.csv"
     
     try:
         # Get all subdirectories in splunk_repo
