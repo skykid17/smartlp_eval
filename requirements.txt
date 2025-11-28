@@ -14,4 +14,4 @@ PyYAML
 pymongo>=4.9
 pypdf
 seaborn
-sentence-transformers
+sentence_transformers

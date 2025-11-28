@@ -46,3 +46,37 @@ vllm serve /home/rdpuser3/Downloads/Qwen2.5-Coder-32B-Instruct-AWQ --served-mode
 ```
 curl http://192.168.125.31:8000/v1/completions -H "Content-Type: application/json" -d '{"model": "qwen25-coder-32b-awq","prompt": "Hello world!"}'
 ```
+
+---
+
+## RAG Backends: Chroma and MongoDB
+
+This repository includes two RAG backends that share similar goals but target different deployment scenarios:
+
+- `rag_chroma.py`: local, file-based experimentation using ChromaDB.
+- `rag_mongo.py`: MongoDB-backed RAG pipeline using Atlas Search / `mongot`.
+
+### `rag_chroma.py` (Chroma)
+
+- Builds sentence-transformer embeddings (e.g., `all-MiniLM-L6-v2`) from files and folders.
+- Uses a local Chroma collection (`persist_directory`) as the vector store.
+- Provides `create_embeddings_from_path()` for ingestion with checkpointing and batching for large directories.
+- Exposes `query_rag()` to run RetrievalQA over a chosen collection using a remote LLM.
+
+### `rag_mongo.py` (MongoDB)
+
+- CLI-driven workflow with modes:
+	- `init`: create text and vector search indexes.
+	- `ingest`: chunk and ingest a specific file or directory.
+	- `ingest_all`: convenience mode that ingests common SOC datasets:
+		- `splunk_fields` → `data/splunk/splunk_fields.csv`
+		- `elastic_fields` → `data/elastic/elastic_fields.csv`
+		- `splunk_packages` → `data/splunk/repo/`
+		- `elastic_packages` → `data/elastic/repo/`
+	- `query`: hybrid retrieval (vector + keyword) plus LLM answer generation.
+	- `test`: quick vector-search health check.
+- Uses the same `all-MiniLM-L6-v2` embeddings for consistency with the Chroma flow.
+- Performs recursive text splitting and stores chunks plus curated metadata in MongoDB.
+- Uses deterministic content-hash `_id`s and a pre-ingest delta check so re-running ingest only processes new/changed chunks.
+- Supports category tagging and optional category filters at query time.
+- Implements manual Reciprocal Rank Fusion (RRF) over vector and text search results for robust retrieval quality.

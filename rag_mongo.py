@@ -12,8 +12,6 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence
-from uuid import uuid4
-from urllib.parse import quote_plus
 
 from pymongo import MongoClient
 from pymongo.collection import Collection
@@ -24,6 +22,9 @@ from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
+from langchain_ollama import ChatOllama
+from sentence_transformers import SentenceTransformer
 
 SUPPORTED_EXTENSIONS = {".txt", ".md", ".json", ".yaml", ".yml", ".csv", ".pdf"}
 DEFAULT_ALLOWED_METADATA = ["source", "category", "tags", "file_type", "collection"]
@@ -32,8 +33,8 @@ DEFAULT_TEXT_PATHS = ["content", "metadata.source"]
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="MongoDB Community RAG toolkit")
-    parser.add_argument("mode", choices=["init", "ingest", "query", "test"], help="Workflow stage to run")
-    parser.add_argument("--mongo-uri", default=f"mongodb://admin:{quote_plus("P@55w0rd")}@localhost:27018", help="MongoDB connection URI")
+    parser.add_argument("mode", choices=["init", "ingest", "ingest_all", "query", "test"], help="Workflow stage to run")
+    parser.add_argument("--mongo-uri", default=f"mongodb://admin:password@localhost:27017", help="MongoDB connection URI")
     parser.add_argument("--database", default="rag", help="Database name")
     parser.add_argument("--collection", default="documents", help="Collection for chunks")
     parser.add_argument("--vector-index", default="rag_vector_index", help="Vector search index name")
@@ -51,10 +52,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--semantic-candidates", type=int, default=50, help="Candidate pool for vector search")
     parser.add_argument("--keyword-candidates", type=int, default=30, help="Candidate pool for keyword search")
     parser.add_argument("--rrf-k", type=int, default=60, help="Reciprocal Rank Fusion constant")
-    parser.add_argument("--disable-native-rankfusion", action="store_true", help="Force Python-based RRF even if $rankFusion exists")
+    # Removed native rank fusion support; manual RRF is always used
     parser.add_argument("--log-level", default="INFO")
     parser.add_argument("--dry-run", action="store_true", help="Skip writes during ingest for validation")
     parser.add_argument("--text-language", default="english", help="Language for the text index")
+    # New category controls
+    parser.add_argument("--category", help="Optional category tag to add to ingested chunks (e.g., 'splunk' or 'elastic')")
+    parser.add_argument("--filter-category", help="Optional category filter to apply during query retrieval")
     return parser.parse_args()
 
 
@@ -79,12 +83,17 @@ def ensure_vector_index(collection: Collection, index_name: str, embedding_dim: 
             "dynamic": True,
             "fields": {
                 "embedding": {
-                    "type": "vector",
+                    "type": "knnVector",
                     "similarity": "cosine",
                     "dimensions": embedding_dim,
                 },
                 "content": {"type": "string"},
-                "metadata": {"type": "document"},
+                "metadata": {
+                    "type": "document",
+                    "fields": {
+                        "category": {"type": "token"}
+                    },
+                },
             },
         }
     }
@@ -185,18 +194,10 @@ def filter_metadata(metadata: Dict, allowed_fields: Sequence[str]) -> Dict:
     return filtered
 
 
-def generate_embeddings(texts: Sequence[str], dim: int) -> List[List[float]]:
-    vectors: List[List[float]] = []
-    for text in texts:
-        digest = hashlib.sha256(text.encode("utf-8")).digest()
-        values = []
-        while len(values) < dim:
-            for byte in digest:
-                values.append((byte / 255.0) - 0.5)
-                if len(values) == dim:
-                    break
-        vectors.append(values)
-    return vectors
+def generate_embeddings(texts: Sequence[str], dim: int, show_progress: bool = False) -> List[List[float]]:
+    model = SentenceTransformer('all-MiniLM-L6-v2')
+    embeddings = model.encode(texts, show_progress_bar=show_progress)
+    return embeddings.tolist()
 
 
 def chunk_documents(docs: List[Document], chunk_size: int, chunk_overlap: int) -> List[Document]:
@@ -208,14 +209,16 @@ def chunk_to_record(chunk: Document, embedding: List[float], provider: str, allo
     metadata = filter_metadata(dict(chunk.metadata or {}), allowed_metadata)
     metadata.setdefault("source", chunk.metadata.get("source", "unknown"))
     metadata.setdefault("file_type", chunk.metadata.get("file_type", "text"))
+    content_hash = hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest()
     return {
-        "chunk_id": str(uuid4()),
+        "_id": content_hash,
+        "chunk_id": content_hash,
         "content": chunk.page_content,
         "metadata": metadata,
         "embedding": embedding,
         "embedding_provider": provider,
         "created_at": datetime.utcnow(),
-        "hash": hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest(),
+        "hash": content_hash,
     }
 
 
@@ -233,10 +236,36 @@ def ingest_documents(args: argparse.Namespace, collection: Collection) -> None:
         logging.warning("No chunks produced; check chunk parameters")
         return
     logging.info("Generated %d chunks", len(chunks))
-    embeddings = generate_embeddings([chunk.page_content for chunk in chunks], args.embedding_dim)
+
+    # Delta check: compute deterministic IDs and see which already exist.
+    # Use batched lookups to avoid oversized BSON documents when there are many chunks.
+    content_hashes = [hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest() for chunk in chunks]
+    existing_ids: set[str] = set()
+    batch_size = 5000
+    for i in range(0, len(content_hashes), batch_size):
+        batch = content_hashes[i : i + batch_size]
+        if not batch:
+            continue
+        for doc in collection.find({"_id": {"$in": batch}}, {"_id": 1}):
+            existing_ids.add(doc["_id"])
+    if existing_ids:
+        logging.info("%d existing chunks found; they will be skipped", len(existing_ids))
+
+    # Filter chunks to only those needing (re)ingestion
+    chunks_to_embed = [chunk for chunk, h in zip(chunks, content_hashes) if h not in existing_ids]
+    if not chunks_to_embed:
+        logging.info("All %d chunks already ingested; skipping embedding generation", len(chunks))
+        return
+
+    logging.info("%d new/updated chunks require embeddings", len(chunks_to_embed))
+    embeddings = generate_embeddings([chunk.page_content for chunk in chunks_to_embed], args.embedding_dim, show_progress=True)
     batch: List[Dict] = []
     inserted = 0
-    for chunk, embedding in zip(chunks, embeddings):
+    for chunk, embedding in zip(chunks_to_embed, embeddings):
+        # Inject category tag into chunk metadata when provided
+        if getattr(args, "category", None):
+            # Ensure category is stored in the chunk metadata so it can be pre-filtered
+            chunk.metadata["category"] = args.category
         batch.append(chunk_to_record(chunk, embedding, args.embedding_provider, args.allowed_metadata))
         if len(batch) >= args.batch_size:
             if not args.dry_run:
@@ -247,6 +276,22 @@ def ingest_documents(args: argparse.Namespace, collection: Collection) -> None:
         collection.insert_many(batch, ordered=False)
         inserted += len(batch)
     logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if args.dry_run else "inserted")
+
+
+def ingest_all(args: argparse.Namespace, collection: Collection) -> None:
+    targets = [
+        ("splunk_fields", Path("data/splunk/splunk_fields.csv")),
+        ("elastic_fields", Path("data/elastic/elastic_fields.csv")),
+        ("splunk_packages", Path("data/splunk/repo")),
+        ("elastic_packages", Path("data/elastic/repo")),
+    ]
+
+    for category, path in targets:
+        logging.info("Ingesting category '%s' from %s", category, path)
+        sub_args = argparse.Namespace(**vars(args))
+        sub_args.input_path = path
+        sub_args.category = category
+        ingest_documents(sub_args, collection)
 
 
 def reciprocal_rank_fusion(runs: Sequence[List[Dict]], k: int, limit: int) -> List[Dict]:
@@ -270,84 +315,29 @@ def format_docs(docs: Sequence[Document]) -> str:
 
 
 class MongoHybridRetriever(BaseRetriever):
-    def __init__(
-        self,
-        collection: Collection,
-        embedding_dim: int,
-        vector_index: str,
-        text_index: str,
-        top_k: int,
-        semantic_candidates: int,
-        keyword_candidates: int,
-        rrf_k: int,
-        allowed_text_paths: Sequence[str],
-        native_rankfusion: bool = True,
-    ) -> None:
-        super().__init__()
-        self.collection = collection
-        self.embedding_dim = embedding_dim
-        self.vector_index = vector_index
-        self.text_index = text_index
-        self.top_k = top_k
-        self.semantic_candidates = semantic_candidates
-        self.keyword_candidates = keyword_candidates
-        self.rrf_k = rrf_k
-        self.allowed_text_paths = allowed_text_paths
-        self.native_rankfusion = native_rankfusion
+    # Pydantic v2 model fields for LangChain's BaseRetriever
+    collection: Collection
+    embedding_dim: int
+    vector_index: str
+    text_index: str
+    top_k: int
+    semantic_candidates: int
+    keyword_candidates: int
+    rrf_k: int
+    allowed_text_paths: Sequence[str]
+    native_rankfusion: bool = False
+    filter_category: Optional[str] = None
 
-    def _get_relevant_documents(self, query: str, *, run_native: bool = True) -> List[Document]:
+    # Allow non-pydantic types like pymongo Collection
+    model_config = {
+        "arbitrary_types_allowed": True
+    }
+
+    def _get_relevant_documents(self, query: str, *, run_native: bool = False) -> List[Document]:
         query_vector = generate_embeddings([query], self.embedding_dim)[0]
-        if self.native_rankfusion and run_native:
-            try:
-                docs = self._native_rank_fusion(query, query_vector)
-                if docs:
-                    return docs
-            except OperationFailure as exc:
-                if "Unrecognized pipeline stage" in str(exc):
-                    logging.warning("$rankFusion not available; falling back to manual RRF")
-                else:
-                    logging.error("$rankFusion error: %s", exc)
-                self.native_rankfusion = False
-        manual_docs = self._manual_rrf(query, query_vector)
-        return manual_docs
+        return self._manual_rrf(query, query_vector)
 
-    def _native_rank_fusion(self, query: str, query_vector: List[float]) -> List[Document]:
-        pipeline = [
-            {
-                "$rankFusion": {
-                    "indexes": [
-                        {
-                            "type": "vectorSearch",
-                            "index": self.vector_index,
-                            "path": "embedding",
-                            "queryVector": query_vector,
-                            "numCandidates": self.semantic_candidates,
-                            "limit": self.top_k,
-                        },
-                        {
-                            "type": "search",
-                            "index": self.text_index,
-                            "text": {
-                                "path": list(self.allowed_text_paths),
-                                "query": query,
-                            },
-                            "limit": self.top_k,
-                        },
-                    ],
-                    "rrf": {"k": self.rrf_k},
-                    "limit": self.top_k,
-                }
-            },
-            {
-                "$project": {
-                    "content": 1,
-                    "metadata": 1,
-                    "score": {"$meta": "fusionScore"},
-                }
-            },
-        ]
-        docs = list(self.collection.aggregate(pipeline))
-        return [Document(page_content=doc.get("content", ""), metadata={**doc.get("metadata", {}), "score": doc.get("score")}) for doc in docs]
+    # No $rankFusion support for community edition; manual RRF is used instead
 
     def _manual_rrf(self, query: str, query_vector: List[float]) -> List[Document]:
         vector_pipeline = [
@@ -358,6 +348,7 @@ class MongoHybridRetriever(BaseRetriever):
                     "queryVector": query_vector,
                     "numCandidates": self.semantic_candidates,
                     "limit": self.top_k,
+                    "filter": {"metadata.category": {"$eq": self.filter_category}} if self.filter_category else None,
                 }
             },
             {
@@ -367,6 +358,7 @@ class MongoHybridRetriever(BaseRetriever):
                     "score": {"$meta": "vectorSearchScore"},
                 }
             },
+            {"$unset": "embedding"},
         ]
         text_pipeline = [
             {
@@ -386,9 +378,10 @@ class MongoHybridRetriever(BaseRetriever):
                     "score": {"$meta": "searchScore"},
                 }
             },
+            {"$unset": "embedding"},
         ]
-        vector_results = list(self.collection.aggregate(vector_pipeline))
-        text_results = list(self.collection.aggregate(text_pipeline))
+        vector_results = list(self.collection.aggregate(vector_pipeline, allowDiskUse=True))
+        text_results = list(self.collection.aggregate(text_pipeline, allowDiskUse=True))
         fused = reciprocal_rank_fusion([vector_results, text_results], self.rrf_k, self.top_k)
         return [Document(page_content=doc.get("content", ""), metadata={**doc.get("metadata", {}), "score": doc.get("score")}) for doc in fused]
 
@@ -400,6 +393,12 @@ class MongoHybridRetriever(BaseRetriever):
 
 
 def build_chain(retriever: MongoHybridRetriever) -> RunnableLambda:
+    # 1. Initialize the Ollama model
+    llm = ChatOllama(
+        model="qwen2.5-coder",
+        temperature=0
+    )
+
     prompt = PromptTemplate(
         template=(
             "You are a SOC assistant. Use the context to answer the question.\n"
@@ -408,18 +407,17 @@ def build_chain(retriever: MongoHybridRetriever) -> RunnableLambda:
         input_variables=["question", "context"],
     )
 
-    def mock_llm(text: str) -> Dict[str, str]:
-        return {"answer": f"[MOCK COMPLETION]\n{text}"}
-
     chain = (
         {
             "question": RunnablePassthrough(),
             "context": RunnableLambda(
-                lambda question: format_docs(retriever.get_relevant_documents(question))
+                # Note: .invoke() is the modern equivalent of .get_relevant_documents()
+                lambda question: format_docs(retriever.invoke(question))
             ),
         }
         | prompt
-        | RunnableLambda(mock_llm)
+        | llm
+        | StrOutputParser()
     )
     return chain
 
@@ -438,7 +436,7 @@ def run_query(args: argparse.Namespace, collection: Collection) -> None:
         keyword_candidates=args.keyword_candidates,
         rrf_k=args.rrf_k,
         allowed_text_paths=args.text_paths,
-        native_rankfusion=not args.disable_native_rankfusion,
+        filter_category=getattr(args, "filter_category", None),
     )
     chain = build_chain(retriever)
     result = chain.invoke(args.query_text)
@@ -484,6 +482,9 @@ def main() -> None:
     elif args.mode == "ingest":
         run_init(args, collection)
         ingest_documents(args, collection)
+    elif args.mode == "ingest_all":
+        run_init(args, collection)
+        ingest_all(args, collection)
     elif args.mode == "query":
         run_query(args, collection)
     elif args.mode == "test":
@@ -494,3 +495,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    # Quick ingestion of all four categories
+    ingest_documents(categories)
