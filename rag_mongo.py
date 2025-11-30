@@ -29,6 +29,7 @@ from sentence_transformers import SentenceTransformer
 SUPPORTED_EXTENSIONS = {".txt", ".md", ".json", ".yaml", ".yml", ".csv", ".pdf"}
 DEFAULT_ALLOWED_METADATA = ["source", "category", "tags", "file_type", "collection"]
 DEFAULT_TEXT_PATHS = ["content", "metadata.source"]
+_embedding_model: Optional[SentenceTransformer] = None
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,17 +47,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=128, help="Insert batch size")
     parser.add_argument("--embedding-dim", type=int, default=384)
     parser.add_argument("--embedding-provider", default="placeholder-provider", help="Label stored with vectors")
+    parser.add_argument("--embedding-batch-size", type=int, default=512,help="Number of chunks encoded per embedding pass")
     parser.add_argument("--allowed-metadata", nargs="*", default=DEFAULT_ALLOWED_METADATA, help="Metadata fields kept before insert")
     parser.add_argument("--query-text", help="User query for query mode")
     parser.add_argument("--top-k", type=int, default=5, help="Results returned to the chain")
     parser.add_argument("--semantic-candidates", type=int, default=50, help="Candidate pool for vector search")
     parser.add_argument("--keyword-candidates", type=int, default=30, help="Candidate pool for keyword search")
     parser.add_argument("--rrf-k", type=int, default=60, help="Reciprocal Rank Fusion constant")
-    # Removed native rank fusion support; manual RRF is always used
     parser.add_argument("--log-level", default="INFO")
     parser.add_argument("--dry-run", action="store_true", help="Skip writes during ingest for validation")
     parser.add_argument("--text-language", default="english", help="Language for the text index")
-    # New category controls
+    # Category controls
     parser.add_argument("--category", help="Optional category tag to add to ingested chunks (e.g., 'splunk' or 'elastic')")
     parser.add_argument("--filter-category", help="Optional category filter to apply during query retrieval")
     return parser.parse_args()
@@ -194,10 +195,27 @@ def filter_metadata(metadata: Dict, allowed_fields: Sequence[str]) -> Dict:
     return filtered
 
 
-def generate_embeddings(texts: Sequence[str], dim: int, show_progress: bool = False) -> List[List[float]]:
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    embeddings = model.encode(texts, show_progress_bar=show_progress)
+def get_embedding_model() -> SentenceTransformer:
+    global _embedding_model
+    if _embedding_model is None:
+        logging.info("Loading pretrained SentenceTransformer: all-MiniLM-L6-v2")
+        _embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+    return _embedding_model
+
+
+def generate_embeddings(
+    texts: Sequence[str], *, show_progress: bool = False, model: Optional[SentenceTransformer] = None
+) -> List[List[float]]:
+    embedder = model or get_embedding_model()
+    embeddings = embedder.encode(texts, show_progress_bar=show_progress)
     return embeddings.tolist()
+
+
+def batched(items: Sequence, batch_size: int) -> Iterable[Sequence]:
+    if batch_size <= 0:
+        raise ValueError("batch_size must be positive")
+    for start in range(0, len(items), batch_size):
+        yield items[start : start + batch_size]
 
 
 def chunk_documents(docs: List[Document], chunk_size: int, chunk_overlap: int) -> List[Document]:
@@ -257,24 +275,40 @@ def ingest_documents(args: argparse.Namespace, collection: Collection) -> None:
         logging.info("All %d chunks already ingested; skipping embedding generation", len(chunks))
         return
 
-    logging.info("%d new/updated chunks require embeddings", len(chunks_to_embed))
-    embeddings = generate_embeddings([chunk.page_content for chunk in chunks_to_embed], args.embedding_dim, show_progress=True)
-    batch: List[Dict] = []
+    if args.embedding_batch_size <= 0:
+        logging.error("--embedding-batch-size must be positive; received %d", args.embedding_batch_size)
+        sys.exit(1)
+
+    logging.info(
+        "%d new/updated chunks require embeddings; encoding in batches of %d",
+        len(chunks_to_embed),
+        args.embedding_batch_size,
+    )
+
+    embedding_model = get_embedding_model()
+    mongo_batch: List[Dict] = []
     inserted = 0
-    for chunk, embedding in zip(chunks_to_embed, embeddings):
-        # Inject category tag into chunk metadata when provided
-        if getattr(args, "category", None):
-            # Ensure category is stored in the chunk metadata so it can be pre-filtered
-            chunk.metadata["category"] = args.category
-        batch.append(chunk_to_record(chunk, embedding, args.embedding_provider, args.allowed_metadata))
-        if len(batch) >= args.batch_size:
-            if not args.dry_run:
-                collection.insert_many(batch, ordered=False)
-            inserted += len(batch)
-            batch.clear()
-    if batch and not args.dry_run:
-        collection.insert_many(batch, ordered=False)
-        inserted += len(batch)
+    expected_dim = args.embedding_dim
+    for batch_index, chunk_batch in enumerate(batched(chunks_to_embed, args.embedding_batch_size), start=1):
+        texts = [chunk.page_content for chunk in chunk_batch]
+        embeddings = generate_embeddings(texts, show_progress=False, model=embedding_model)
+        if embeddings and len(embeddings[0]) != expected_dim:
+            logging.warning(
+                "Embedding dimension mismatch: expected %d, got %d", expected_dim, len(embeddings[0])
+            )
+        for chunk, embedding in zip(chunk_batch, embeddings):
+            if getattr(args, "category", None):
+                chunk.metadata["category"] = args.category
+            mongo_batch.append(chunk_to_record(chunk, embedding, args.embedding_provider, args.allowed_metadata))
+            if len(mongo_batch) >= args.batch_size:
+                if not args.dry_run:
+                    collection.insert_many(mongo_batch, ordered=False)
+                inserted += len(mongo_batch)
+                mongo_batch.clear()
+        logging.debug("Processed embedding batch %d", batch_index)
+    if mongo_batch and not args.dry_run:
+        collection.insert_many(mongo_batch, ordered=False)
+        inserted += len(mongo_batch)
     logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if args.dry_run else "inserted")
 
 
@@ -334,7 +368,7 @@ class MongoHybridRetriever(BaseRetriever):
     }
 
     def _get_relevant_documents(self, query: str, *, run_native: bool = False) -> List[Document]:
-        query_vector = generate_embeddings([query], self.embedding_dim)[0]
+        query_vector = generate_embeddings([query])[0]
         return self._manual_rrf(query, query_vector)
 
     # No $rankFusion support for community edition; manual RRF is used instead
