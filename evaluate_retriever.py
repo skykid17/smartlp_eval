@@ -13,7 +13,7 @@ from deepeval.metrics import (
 )
 from deepeval.synthesizer import Synthesizer
 from deepeval.test_case import LLMTestCase
-from deepeval.models import OllamaModel
+from deepeval.models import LocalModel
 
 from pymongo import MongoClient
 from pymongo.collection import Collection
@@ -51,8 +51,8 @@ def build_corpus_for_synthesizer(docs: List[Dict[str, Any]], max_docs: int = 100
 def generate_golden_dataset(
     collection: Collection,
     output_path: Path,
-    ollama_model: str,
-    ollama_base_url: str,
+    vllm_model: str,
+    vllm_base_url: str,
     num_docs_sample: int = 1000,
     max_docs_for_corpus: int = 100,
     num_questions: int = 50,
@@ -63,9 +63,9 @@ def generate_golden_dataset(
     if not corpus:
         raise RuntimeError("No suitable documents found to build synthesizer corpus")
 
-    logging.info("Building synthesizer with Ollama model '%s'", ollama_model)
+    logging.info("Building synthesizer with vllm model '%s'", vllm_model)
     synthesizer = Synthesizer(
-        model=OllamaModel(model=ollama_model, base_url=ollama_base_url)
+        model=LocalModel(model=vllm_model, base_url=vllm_base_url, api_key="test")
     )
 
     contexts = [[text] for text in corpus]
@@ -236,8 +236,8 @@ def parse_cli() -> argparse.Namespace:
     parser.add_argument("--vector-index", default="rag_vector_index")
     parser.add_argument("--text-index", default="rag_text_index")
     parser.add_argument("--embedding-dim", type=int, default=384)
-    parser.add_argument("--ollama-model", default="qwen2.5-coder")
-    parser.add_argument("--ollama-base-url", default="http://localhost:11434")
+    parser.add_argument("--vllm-model", default="qwen25-coder-32b-awq")
+    parser.add_argument("--vllm-base-url", default="http://192.168.125.31:8000/v1")
     parser.add_argument("--golden-path", type=Path, default=Path("data/eval/golden_retrieval.json"))
     parser.add_argument("--generate-golden", action="store_true", help="Regenerate golden dataset with synthesizer")
     parser.add_argument("--num-golden-questions", type=int, default=50)
@@ -255,8 +255,8 @@ def main() -> None:
         golden_cases = generate_golden_dataset(
             collection=collection,
             output_path=args.golden_path,
-            ollama_model=args.ollama_model,
-            ollama_base_url=args.ollama_base_url,
+            vllm_model=args.vllm_model,
+            vllm_base_url=args.vllm_base_url,
             num_docs_sample=1000,
             max_docs_for_corpus=100,
             num_questions=args.num_golden_questions,

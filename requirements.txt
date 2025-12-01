@@ -15,3 +15,4 @@ pymongo>=4.9
 pypdf
 seaborn
 sentence_transformers
+deepeval

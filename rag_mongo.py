@@ -15,7 +15,7 @@ from typing import Dict, Iterable, List, Optional, Sequence
 
 from pymongo import MongoClient
 from pymongo.collection import Collection
-from pymongo.errors import OperationFailure, ServerSelectionTimeoutError
+from pymongo.errors import BulkWriteError, OperationFailure, ServerSelectionTimeoutError
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
@@ -49,7 +49,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--embedding-provider", default="placeholder-provider", help="Label stored with vectors")
     parser.add_argument("--embedding-batch-size", type=int, default=512,help="Number of chunks encoded per embedding pass")
     parser.add_argument("--allowed-metadata", nargs="*", default=DEFAULT_ALLOWED_METADATA, help="Metadata fields kept before insert")
-    parser.add_argument("--query-text", help="User query for query mode")
+    parser.add_argument("--query-text", default="Which package/add on do I install to parse windows_xml logs into elastic? Return only the name of the package/add on.", help="User query for query mode")
     parser.add_argument("--top-k", type=int, default=5, help="Results returned to the chain")
     parser.add_argument("--semantic-candidates", type=int, default=50, help="Candidate pool for vector search")
     parser.add_argument("--keyword-candidates", type=int, default=30, help="Candidate pool for keyword search")
@@ -302,13 +302,36 @@ def ingest_documents(args: argparse.Namespace, collection: Collection) -> None:
             mongo_batch.append(chunk_to_record(chunk, embedding, args.embedding_provider, args.allowed_metadata))
             if len(mongo_batch) >= args.batch_size:
                 if not args.dry_run:
-                    collection.insert_many(mongo_batch, ordered=False)
-                inserted += len(mongo_batch)
+                    try:
+                        result = collection.insert_many(mongo_batch, ordered=False)
+                        inserted += len(result.inserted_ids)
+                    except BulkWriteError as exc:
+                        dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
+                        non_dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
+                        inserted += exc.details.get("nInserted", 0)
+                        if dup_errors:
+                            logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
+                        if non_dup_errors:
+                            raise
+                else:
+                    inserted += len(mongo_batch)
                 mongo_batch.clear()
         logging.debug("Processed embedding batch %d", batch_index)
-    if mongo_batch and not args.dry_run:
-        collection.insert_many(mongo_batch, ordered=False)
-        inserted += len(mongo_batch)
+    if mongo_batch:
+        if not args.dry_run:
+            try:
+                result = collection.insert_many(mongo_batch, ordered=False)
+                inserted += len(result.inserted_ids)
+            except BulkWriteError as exc:
+                dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
+                non_dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
+                inserted += exc.details.get("nInserted", 0)
+                if dup_errors:
+                    logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
+                if non_dup_errors:
+                    raise
+        else:
+            inserted += len(mongo_batch)
     logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if args.dry_run else "inserted")
 
 
@@ -374,17 +397,18 @@ class MongoHybridRetriever(BaseRetriever):
     # No $rankFusion support for community edition; manual RRF is used instead
 
     def _manual_rrf(self, query: str, query_vector: List[float]) -> List[Document]:
+        vector_search_spec: Dict = {
+            "index": self.vector_index,
+            "path": "embedding",
+            "queryVector": query_vector,
+            "numCandidates": self.semantic_candidates,
+            "limit": self.top_k,
+        }
+        if self.filter_category:
+            vector_search_spec["filter"] = {"metadata.category": {"$eq": self.filter_category}}
+
         vector_pipeline = [
-            {
-                "$vectorSearch": {
-                    "index": self.vector_index,
-                    "path": "embedding",
-                    "queryVector": query_vector,
-                    "numCandidates": self.semantic_candidates,
-                    "limit": self.top_k,
-                    "filter": {"metadata.category": {"$eq": self.filter_category}} if self.filter_category else None,
-                }
-            },
+            {"$vectorSearch": vector_search_spec},
             {
                 "$project": {
                     "content": 1,
@@ -430,6 +454,7 @@ def build_chain(retriever: MongoHybridRetriever) -> RunnableLambda:
     # 1. Initialize the Ollama model
     llm = ChatOllama(
         model="qwen2.5-coder",
+        base_url="http://172.30.16.1:11434",
         temperature=0
     )
 
@@ -478,13 +503,25 @@ def run_query(args: argparse.Namespace, collection: Collection) -> None:
 
 
 def run_test(args: argparse.Namespace, collection: Collection) -> None:
-    zero_vector = [0.0] * args.embedding_dim
+    # Use a non-zero query vector generated from the embedding model so the
+    # server can compute cosine similarity. Zero vectors are invalid for
+    # cosine similarity and cause the server to error.
+    try:
+        query_vector = generate_embeddings(["Smoke test"], model=get_embedding_model())[0]
+    except Exception as exc:
+        logging.error("Failed to generate test embedding: %s", exc)
+        raise
+
+    if not any(x != 0.0 for x in query_vector):
+        logging.error("Generated test embedding is all zeros; aborting vector test")
+        raise RuntimeError("test embedding is zero vector")
+
     pipeline = [
         {
             "$vectorSearch": {
                 "index": args.vector_index,
                 "path": "embedding",
-                "queryVector": zero_vector,
+                "queryVector": query_vector,
                 "numCandidates": 5,
                 "limit": 1,
             }
@@ -497,7 +534,6 @@ def run_test(args: argparse.Namespace, collection: Collection) -> None:
     except OperationFailure as exc:
         logging.error("Vector search test failed: %s", exc)
         raise
-
 
 def run_init(args: argparse.Namespace, collection: Collection) -> None:
     ensure_text_index(collection, args.text_index, args.text_paths, args.text_language)
@@ -529,5 +565,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    # Quick ingestion of all four categories
-    ingest_documents(categories)
