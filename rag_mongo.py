@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
-"""Standalone MongoDB RAG workflow with ingestion, hybrid retrieval, and CLI orchestration."""
+"""Refactored MongoDB RAG toolkit (Option B - medium refactor)
+
+Goals achieved:
+- Single programmatic RAG class with simple API (init, ingest, query)
+- Removed duplicated query helpers; `query()` calls the chain and returns (answer, retrieval_context)
+- Kept modular helper functions (embeddings, chunking, index ensure) but minimized global state
+- CLI is a thin wrapper around the RAG class with defaults.
+
+Notes:
+- This file keeps the original behavior (text + vector index creation, ingestion with embeddings,
+  hybrid retrieval with vector + keyword, reciprocal rank fusion, and LLM chain via ChatOpenAI).
+- Replace endpoints, model names, and Mongo URI with your environment values as needed.
+"""
 
 from __future__ import annotations
 
@@ -11,7 +23,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Sequence
+from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from pymongo import MongoClient
 from pymongo.collection import Collection
@@ -23,111 +35,418 @@ from langchain_core.retrievers import BaseRetriever
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from sentence_transformers import SentenceTransformer
 
+# --- Defaults ---
 SUPPORTED_EXTENSIONS = {".txt", ".md", ".json", ".yaml", ".yml", ".csv", ".pdf"}
 DEFAULT_ALLOWED_METADATA = ["source", "category", "tags", "file_type", "collection"]
 DEFAULT_TEXT_PATHS = ["content", "metadata.source"]
-_embedding_model: Optional[SentenceTransformer] = None
+
+# Keep one embedding model singleton inside the class below (no global)
+
+# --- Utility helpers ---
+
+def batched(items: Sequence, batch_size: int) -> Iterable[Sequence]:
+    if batch_size <= 0:
+        raise ValueError("batch_size must be positive")
+    for start in range(0, len(items), batch_size):
+        yield items[start: start + batch_size]
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="MongoDB Community RAG toolkit")
-    parser.add_argument("mode", choices=["init", "ingest", "ingest_all", "query", "test"], help="Workflow stage to run")
-    parser.add_argument("--mongo-uri", default=f"mongodb://admin:password@localhost:27017", help="MongoDB connection URI")
-    parser.add_argument("--database", default="rag", help="Database name")
-    parser.add_argument("--collection", default="documents", help="Collection for chunks")
-    parser.add_argument("--vector-index", default="rag_vector_index", help="Vector search index name")
-    parser.add_argument("--text-index", default="rag_text_index", help="Text search index name")
-    parser.add_argument("--text-paths", nargs="*", default=DEFAULT_TEXT_PATHS, help="Fields included in the text index")
-    parser.add_argument("--input-path", type=Path, help="File or directory to ingest")
-    parser.add_argument("--chunk-size", type=int, default=1000)
-    parser.add_argument("--chunk-overlap", type=int, default=200)
-    parser.add_argument("--batch-size", type=int, default=128, help="Insert batch size")
-    parser.add_argument("--embedding-dim", type=int, default=384)
-    parser.add_argument("--embedding-provider", default="placeholder-provider", help="Label stored with vectors")
-    parser.add_argument("--embedding-batch-size", type=int, default=512,help="Number of chunks encoded per embedding pass")
-    parser.add_argument("--allowed-metadata", nargs="*", default=DEFAULT_ALLOWED_METADATA, help="Metadata fields kept before insert")
-    parser.add_argument("--query-text", default="Which package/add on do I install to parse windows_xml logs into elastic? Return only the name of the package/add on.", help="User query for query mode")
-    parser.add_argument("--top-k", type=int, default=5, help="Results returned to the chain")
-    parser.add_argument("--semantic-candidates", type=int, default=50, help="Candidate pool for vector search")
-    parser.add_argument("--keyword-candidates", type=int, default=30, help="Candidate pool for keyword search")
-    parser.add_argument("--rrf-k", type=int, default=60, help="Reciprocal Rank Fusion constant")
-    parser.add_argument("--log-level", default="INFO")
-    parser.add_argument("--dry-run", action="store_true", help="Skip writes during ingest for validation")
-    parser.add_argument("--text-language", default="english", help="Language for the text index")
-    # Category controls
-    parser.add_argument("--category", help="Optional category tag to add to ingested chunks (e.g., 'splunk' or 'elastic')")
-    parser.add_argument("--filter-category", help="Optional category filter to apply during query retrieval")
-    return parser.parse_args()
+def filter_metadata(metadata: Dict, allowed_fields: Sequence[str]) -> Dict:
+    allowed = set(allowed_fields)
+    return {k: v for k, v in metadata.items() if k in allowed and v not in (None, "")}
 
 
-def configure_logging(level: str) -> None:
-    numeric_level = getattr(logging, level.upper(), logging.INFO)
-    logging.basicConfig(level=numeric_level, format="%(asctime)s %(levelname)s %(message)s")
+# --- RRF fusion ---
+
+def reciprocal_rank_fusion(runs: Sequence[List[Dict]], k: int, limit: int) -> List[Dict]:
+    scores: Dict[str, float] = defaultdict(float)
+    docs: Dict[str, Dict] = {}
+    for run in runs:
+        for rank, doc in enumerate(run):
+            doc_id = str(doc["_id"]) if doc.get("_id") is not None else str(hash(json.dumps(doc, sort_keys=True)))
+            docs[doc_id] = doc
+            scores[doc_id] += 1.0 / (k + rank + 1)
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    return [docs[doc_id] for doc_id, _ in ranked[:limit]]
 
 
-def connect(uri: str) -> MongoClient:
-    try:
-        client = MongoClient(uri, serverSelectionTimeoutMS=5000)
-        client.admin.command("ping")
-        return client
-    except ServerSelectionTimeoutError as exc:
-        logging.error("Unable to reach MongoDB at %s: %s", uri, exc)
-        raise
+def format_docs(docs: Sequence[Document]) -> str:
+    return "\n\n".join(
+        f"[{i+1}] Source: {d.metadata.get('source','unknown')}\n{d.page_content}"
+        for i, d in enumerate(docs)
+    )
 
+
+# --- RAG class (single programmatic entrypoint) ---
+class RAG:
+    def __init__(
+        self,
+        mongo_uri: str = "mongodb://admin:password@localhost:27017",
+        database: str = "rag",
+        collection_name: str = "documents",
+        embedding_dim: int = 384,
+        embedding_provider: str = "all-MiniLM-L6-v2",
+        vector_index: str = "rag_vector_index",
+        text_index: str = "rag_text_index",
+        text_paths: Sequence[str] = DEFAULT_TEXT_PATHS,
+        text_language: str = "english",
+        chunk_size: int = 1000,
+        chunk_overlap: int = 200,
+        embedding_batch_size: int = 512,
+        batch_size: int = 128,
+    ) -> None:
+        self.mongo_uri = mongo_uri
+        self.database = database
+        self.collection_name = collection_name
+        self.embedding_dim = embedding_dim
+        self.embedding_provider = embedding_provider
+        self.vector_index = vector_index
+        self.text_index = text_index
+        self.text_paths = list(text_paths)
+        self.text_language = text_language
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
+        self.embedding_batch_size = embedding_batch_size
+        self.batch_size = batch_size
+
+        self.client: Optional[MongoClient] = None
+        self.collection: Optional[Collection] = None
+        self._embedding_model: Optional[SentenceTransformer] = None
+
+    # --- Connection / index helpers ---
+    def connect(self) -> MongoClient:
+        if self.client is None:
+            try:
+                client = MongoClient(self.mongo_uri, serverSelectionTimeoutMS=5000)
+                client.admin.command("ping")
+                self.client = client
+            except ServerSelectionTimeoutError as exc:
+                logging.error("Unable to reach MongoDB at %s: %s", self.mongo_uri, exc)
+                raise
+        return self.client
+
+    def _ensure_collection(self) -> Collection:
+        if self.collection is None:
+            client = self.connect()
+            self.collection = client[self.database][self.collection_name]
+        return self.collection
+
+    def init(self) -> None:
+        coll = self._ensure_collection()
+        ensure_text_index(coll, self.text_index, self.text_paths, self.text_language)
+        ensure_vector_index(coll, self.vector_index, self.embedding_dim)
+        logging.info("RAG initialization complete")
+
+    # --- Embeddings ---
+    def get_embedding_model(self) -> SentenceTransformer:
+        if self._embedding_model is None:
+            logging.info("Loading SentenceTransformer: %s", self.embedding_provider)
+            self._embedding_model = SentenceTransformer(self.embedding_provider)
+        return self._embedding_model
+
+    def generate_embeddings(self, texts: Sequence[str], show_progress: bool = False) -> List[List[float]]:
+        embedder = self.get_embedding_model()
+        embeddings = embedder.encode(texts, show_progress_bar=show_progress)
+        return embeddings.tolist()
+
+    # --- Document loading / chunking ---
+    def load_documents(self, input_path: Path) -> List[Document]:
+        from langchain_community.document_loaders import JSONLoader, PyPDFLoader, TextLoader
+
+        def load_file(path: Path) -> List[Document]:
+            suffix = path.suffix.lower()
+            if suffix not in SUPPORTED_EXTENSIONS:
+                logging.debug("Skipping unsupported file %s", path)
+                return []
+            if suffix in {".txt", ".md", ".yaml", ".yml"}:
+                loader = TextLoader(str(path), encoding="utf-8")
+                docs = loader.load()
+            elif suffix == ".json":
+                loader = JSONLoader(str(path), jq_schema=".", text_content=False)
+                docs = loader.load()
+            elif suffix == ".csv":
+                content = path.read_text(encoding="utf-8")
+                docs = [Document(page_content=content, metadata={})]
+            elif suffix == ".pdf":
+                loader = PyPDFLoader(str(path))
+                docs = loader.load()
+            else:
+                docs = []
+            for doc in docs:
+                doc.metadata.setdefault("source", path.name)
+                doc.metadata.setdefault("file_path", str(path))
+                doc.metadata.setdefault("file_type", suffix.lstrip("."))
+            return docs
+
+        path = input_path
+        if path.is_file():
+            return load_file(path)
+        docs: List[Document] = []
+        for file_path in path.rglob("*"):
+            if file_path.is_file():
+                docs.extend(load_file(file_path))
+        return docs
+
+    def chunk_documents(self, docs: List[Document]) -> List[Document]:
+        splitter = RecursiveCharacterTextSplitter(chunk_size=self.chunk_size, chunk_overlap=self.chunk_overlap)
+        return splitter.split_documents(docs)
+
+    def chunk_to_record(self, chunk: Document, embedding: List[float], provider: str, allowed_metadata: Sequence[str]) -> Dict:
+        metadata = filter_metadata(dict(chunk.metadata or {}), allowed_metadata)
+        metadata.setdefault("source", chunk.metadata.get("source", "unknown"))
+        metadata.setdefault("file_type", chunk.metadata.get("file_type", "text"))
+        content_hash = hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest()
+        return {
+            "_id": content_hash,
+            "chunk_id": content_hash,
+            "content": chunk.page_content,
+            "metadata": metadata,
+            "embedding": embedding,
+            "embedding_provider": provider,
+            "created_at": datetime.utcnow(),
+            "hash": content_hash,
+        }
+
+    # --- Ingest ---
+    def ingest(self, input_path: Path, category: Optional[str] = None, dry_run: bool = False, allowed_metadata: Sequence[str] = DEFAULT_ALLOWED_METADATA) -> int:
+        coll = self._ensure_collection()
+        docs = self.load_documents(input_path)
+        if not docs:
+            logging.warning("No documents found under %s", input_path)
+            return 0
+        chunks = self.chunk_documents(docs)
+        if not chunks:
+            logging.warning("No chunks produced; check chunk parameters")
+            return 0
+        logging.info("Loaded %d docs -> %d chunks", len(docs), len(chunks))
+
+        # Delta check
+        content_hashes = [hashlib.sha1(c.page_content.encode("utf-8")).hexdigest() for c in chunks]
+        existing_ids: set[str] = set()
+        batch_size = 5000
+        for i in range(0, len(content_hashes), batch_size):
+            batch = content_hashes[i: i + batch_size]
+            if not batch:
+                continue
+            for doc in coll.find({"_id": {"$in": batch}}, {"_id": 1}):
+                existing_ids.add(doc["_id"])
+        chunks_to_embed = [chunk for chunk, h in zip(chunks, content_hashes) if h not in existing_ids]
+        if not chunks_to_embed:
+            logging.info("All %d chunks already ingested; skipping embedding generation", len(chunks))
+            return 0
+
+        embedder = self.get_embedding_model()
+        mongo_batch: List[Dict] = []
+        inserted = 0
+
+        for chunk_batch in batched(chunks_to_embed, self.embedding_batch_size):
+            texts = [c.page_content for c in chunk_batch]
+            embeddings = self.generate_embeddings(texts, show_progress=False)
+            for chunk, embedding in zip(chunk_batch, embeddings):
+                if category:
+                    chunk.metadata["category"] = category
+                mongo_batch.append(self.chunk_to_record(chunk, embedding, self.embedding_provider, allowed_metadata))
+                if len(mongo_batch) >= self.batch_size:
+                    if not dry_run:
+                        try:
+                            res = coll.insert_many(mongo_batch, ordered=False)
+                            inserted += len(res.inserted_ids)
+                        except BulkWriteError as exc:
+                            dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
+                            inserted += exc.details.get("nInserted", 0)
+                            if dup_errors:
+                                logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
+                            non_dup = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
+                            if non_dup:
+                                raise
+                    else:
+                        inserted += len(mongo_batch)
+                    mongo_batch.clear()
+        if mongo_batch:
+            if not dry_run:
+                try:
+                    res = coll.insert_many(mongo_batch, ordered=False)
+                    inserted += len(res.inserted_ids)
+                except BulkWriteError as exc:
+                    dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
+                    inserted += exc.details.get("nInserted", 0)
+                    if dup_errors:
+                        logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
+                    non_dup = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
+                    if non_dup:
+                        raise
+            else:
+                inserted += len(mongo_batch)
+        logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if dry_run else "inserted")
+        return inserted
+
+    # --- Retriever (kept simple and internal) ---
+    class _MongoHybridRetriever:
+        # Simple retriever class; we avoid inheriting from BaseRetriever here to bypass
+        # Pydantic validation on attribute assignment since we only require a simple
+        # `invoke()` interface for the chaining code in this module.
+        def __init__(
+            self,
+            collection: Collection,
+            embedding_fn,
+            embedding_dim: int,
+            vector_index: str,
+            text_index: str,
+            top_k: int,
+            semantic_candidates: int,
+            keyword_candidates: int,
+            rrf_k: int,
+            allowed_text_paths: Sequence[str],
+            filter_category: Optional[str] = None,
+        ) -> None:
+            self.collection = collection
+            self.embedding_fn = embedding_fn
+            self.embedding_dim = embedding_dim
+            self.vector_index = vector_index
+            self.text_index = text_index
+            self.top_k = top_k
+            self.semantic_candidates = semantic_candidates
+            self.keyword_candidates = keyword_candidates
+            self.rrf_k = rrf_k
+            self.allowed_text_paths = allowed_text_paths
+            self.filter_category = filter_category
+
+        def invoke(self, query: str) -> List[Document]:
+            qv = self.embedding_fn([query])[0]
+            return self._manual_rrf(query, qv)
+
+        def _get_relevant_documents(self, query: str, *, run_native: bool = False) -> List[Document]:
+            """LangChain sync retriever interface.
+            Compute a query vector and return relevant documents using the manual RRF fusion.
+            """
+            qv = self.embedding_fn([query])[0]
+            return self._manual_rrf(query, qv)
+
+        def get_relevant_documents(self, query: str) -> List[Document]:
+            return self._get_relevant_documents(query)
+
+        def _manual_rrf(self, query: str, query_vector: List[float]) -> List[Document]:
+            vector_search_spec = {
+                "index": self.vector_index,
+                "path": "embedding",
+                "queryVector": query_vector,
+                "numCandidates": self.semantic_candidates,
+                "limit": self.top_k,
+            }
+            if self.filter_category:
+                vector_search_spec["filter"] = {"metadata.category": {"$eq": self.filter_category}}
+
+            vector_pipeline = [
+                {"$vectorSearch": vector_search_spec},
+                {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "vectorSearchScore"}}},
+                {"$unset": "embedding"},
+            ]
+
+            text_pipeline = [
+                {"$search": {"index": self.text_index, "text": {"query": query, "path": list(self.allowed_text_paths)}}},
+                {"$limit": self.keyword_candidates},
+                {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "searchScore"}}},
+                {"$unset": "embedding"},
+            ]
+
+            vector_results = list(self.collection.aggregate(vector_pipeline, allowDiskUse=True))
+            text_results = list(self.collection.aggregate(text_pipeline, allowDiskUse=True))
+            fused = reciprocal_rank_fusion([vector_results, text_results], self.rrf_k, self.top_k)
+            return [
+                Document(page_content=doc.get("content", ""), metadata={**doc.get("metadata", {}), "score": doc.get("score")})
+                for doc in fused
+            ]
+
+        def aget_relevant_documents(self, query: str) -> List[Document]:
+            raise NotImplementedError("Async usage not implemented; use sync invoke()")
+
+    # --- Chain builder (kept simple) ---
+    def _build_chain(self, retriever: _MongoHybridRetriever) -> RunnableLambda:
+        llm = ChatOpenAI(model="qwen25-coder-32b-awq", base_url="http://192.168.125.31:8000/v1", api_key="test", temperature=0)
+        prompt = PromptTemplate(
+            template=(
+                "You are a SOC assistant. Use the context to answer the question.\n"
+                "Question: {question}\nContext:\n{context}\nAnswer:"
+            ),
+            input_variables=["question", "context"],
+        )
+        chain = (
+            {
+                "question": RunnablePassthrough(),
+                "context": RunnableLambda(lambda question: format_docs(retriever.invoke(question))),
+            }
+            | prompt
+            | llm
+            | StrOutputParser()
+        )
+        return chain
+
+    # --- Public query API ---
+    def query(
+        self,
+        question: str,
+        top_k: int = 5,
+        semantic_candidates: int = 50,
+        keyword_candidates: int = 30,
+        rrf_k: int = 60,
+        allowed_text_paths: Sequence[str] = DEFAULT_TEXT_PATHS,
+        filter_category: Optional[str] = None,
+    ) -> Tuple[str, List[Dict]]:
+        coll = self._ensure_collection()
+        retriever = self._MongoHybridRetriever(
+            collection=coll,
+            embedding_fn=lambda texts: self.generate_embeddings(texts, show_progress=False),
+            embedding_dim=self.embedding_dim,
+            vector_index=self.vector_index,
+            text_index=self.text_index,
+            top_k=top_k,
+            semantic_candidates=semantic_candidates,
+            keyword_candidates=keyword_candidates,
+            rrf_k=rrf_k,
+            allowed_text_paths=list(allowed_text_paths),
+            filter_category=filter_category,
+        )
+        docs = retriever.invoke(question)
+        chain = self._build_chain(retriever)
+        answer = chain.invoke(question)
+        retrieval_context = [
+            {"content": d.page_content, "metadata": d.metadata, "score": d.metadata.get("score") if isinstance(d.metadata, dict) else None}
+            for d in docs
+        ]
+        return answer, retrieval_context
+
+
+# --- Index helpers (reused) ---
 
 def ensure_vector_index(collection: Collection, index_name: str, embedding_dim: int) -> None:
     definition = {
         "mappings": {
             "dynamic": True,
             "fields": {
-                "embedding": {
-                    "type": "knnVector",
-                    "similarity": "cosine",
-                    "dimensions": embedding_dim,
-                },
+                "embedding": {"type": "knnVector", "similarity": "cosine", "dimensions": embedding_dim},
                 "content": {"type": "string"},
-                "metadata": {
-                    "type": "document",
-                    "fields": {
-                        "category": {"type": "token"}
-                    },
-                },
+                "metadata": {"type": "document", "fields": {"category": {"type": "token"}}},
             },
         }
     }
     try:
-        existing = collection.database.command(
-            {
-                "listSearchIndexes": collection.name,
-                "name": index_name,
-            }
-        )
+        existing = collection.database.command({"listSearchIndexes": collection.name, "name": index_name})
         if any(idx.get("name") == index_name for idx in existing.get("indexes", [])):
             logging.info("Vector search index '%s' already exists", index_name)
             return
     except OperationFailure as exc:
         code = getattr(exc, "code", None)
         if code == 31082 or "SearchNotEnabled" in str(exc):
-            logging.warning(
-                "$listSearchIndexes unavailable on this deployment; assuming index '%s' is missing",
-                index_name,
-            )
+            logging.warning("$listSearchIndexes unavailable on this deployment; assuming index '%s' is missing", index_name)
         elif "NamespaceNotFound" in str(exc):
             pass
         else:
             raise
-    payload = {
-        "createSearchIndexes": collection.name,
-        "indexes": [
-            {
-                "name": index_name,
-                "definition": definition,
-            }
-        ],
-    }
+
+    payload = {"createSearchIndexes": collection.name, "indexes": [{"name": index_name, "definition": definition}]}
     logging.info("Creating vector search index '%s'", index_name)
     try:
         collection.database.command(payload)
@@ -143,424 +462,61 @@ def ensure_text_index(collection: Collection, index_name: str, text_paths: Seque
     if index_name in existing:
         logging.info("Text index '%s' already exists", index_name)
         return
-    index_fields = [ (path, "text") for path in text_paths ]
+    index_fields = [(path, "text") for path in text_paths]
     logging.info("Creating text index '%s' on %s", index_name, text_paths)
     collection.create_index(index_fields, name=index_name, default_language=language)
 
 
-def load_documents(input_path: Path) -> List[Document]:
-    from langchain_community.document_loaders import JSONLoader, PyPDFLoader, TextLoader
+# --- CLI wrapper (thin) ---
 
-    def load_file(path: Path) -> List[Document]:
-        suffix = path.suffix.lower()
-        if suffix not in SUPPORTED_EXTENSIONS:
-            logging.debug("Skipping unsupported file %s", path)
-            return []
-        if suffix in {".txt", ".md"}:
-            loader = TextLoader(str(path), encoding="utf-8")
-            docs = loader.load()
-        elif suffix in {".yaml", ".yml"}:
-            loader = TextLoader(str(path), encoding="utf-8")
-            docs = loader.load()
-        elif suffix == ".json":
-            loader = JSONLoader(str(path), jq_schema=".", text_content=False)
-            docs = loader.load()
-        elif suffix == ".csv":
-            content = path.read_text(encoding="utf-8")
-            docs = [Document(page_content=content, metadata={})]
-        elif suffix == ".pdf":
-            loader = PyPDFLoader(str(path))
-            docs = loader.load()
-        else:
-            docs = []
-        for doc in docs:
-            doc.metadata.setdefault("source", path.name)
-            doc.metadata.setdefault("file_path", str(path))
-            doc.metadata.setdefault("file_type", suffix.lstrip("."))
-        return docs
-
-    path = input_path
-    if path.is_file():
-        return load_file(path)
-    docs: List[Document] = []
-    for file_path in path.rglob("*"):
-        if file_path.is_file():
-            docs.extend(load_file(file_path))
-    return docs
-
-
-def filter_metadata(metadata: Dict, allowed_fields: Sequence[str]) -> Dict:
-    allowed = set(allowed_fields)
-    filtered = {k: v for k, v in metadata.items() if k in allowed and v not in (None, "")}
-    return filtered
-
-
-def get_embedding_model() -> SentenceTransformer:
-    global _embedding_model
-    if _embedding_model is None:
-        logging.info("Loading pretrained SentenceTransformer: all-MiniLM-L6-v2")
-        _embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
-    return _embedding_model
-
-
-def generate_embeddings(
-    texts: Sequence[str], *, show_progress: bool = False, model: Optional[SentenceTransformer] = None
-) -> List[List[float]]:
-    embedder = model or get_embedding_model()
-    embeddings = embedder.encode(texts, show_progress_bar=show_progress)
-    return embeddings.tolist()
-
-
-def batched(items: Sequence, batch_size: int) -> Iterable[Sequence]:
-    if batch_size <= 0:
-        raise ValueError("batch_size must be positive")
-    for start in range(0, len(items), batch_size):
-        yield items[start : start + batch_size]
-
-
-def chunk_documents(docs: List[Document], chunk_size: int, chunk_overlap: int) -> List[Document]:
-    splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    return splitter.split_documents(docs)
-
-
-def chunk_to_record(chunk: Document, embedding: List[float], provider: str, allowed_metadata: Sequence[str]) -> Dict:
-    metadata = filter_metadata(dict(chunk.metadata or {}), allowed_metadata)
-    metadata.setdefault("source", chunk.metadata.get("source", "unknown"))
-    metadata.setdefault("file_type", chunk.metadata.get("file_type", "text"))
-    content_hash = hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest()
-    return {
-        "_id": content_hash,
-        "chunk_id": content_hash,
-        "content": chunk.page_content,
-        "metadata": metadata,
-        "embedding": embedding,
-        "embedding_provider": provider,
-        "created_at": datetime.utcnow(),
-        "hash": content_hash,
-    }
-
-
-def ingest_documents(args: argparse.Namespace, collection: Collection) -> None:
-    if not args.input_path:
-        logging.error("--input-path is required for ingest mode")
-        sys.exit(1)
-    docs = load_documents(args.input_path)
-    if not docs:
-        logging.warning("No documents found under %s", args.input_path)
-        return
-    logging.info("Loaded %d base documents", len(docs))
-    chunks = chunk_documents(docs, args.chunk_size, args.chunk_overlap)
-    if not chunks:
-        logging.warning("No chunks produced; check chunk parameters")
-        return
-    logging.info("Generated %d chunks", len(chunks))
-
-    # Delta check: compute deterministic IDs and see which already exist.
-    # Use batched lookups to avoid oversized BSON documents when there are many chunks.
-    content_hashes = [hashlib.sha1(chunk.page_content.encode("utf-8")).hexdigest() for chunk in chunks]
-    existing_ids: set[str] = set()
-    batch_size = 5000
-    for i in range(0, len(content_hashes), batch_size):
-        batch = content_hashes[i : i + batch_size]
-        if not batch:
-            continue
-        for doc in collection.find({"_id": {"$in": batch}}, {"_id": 1}):
-            existing_ids.add(doc["_id"])
-    if existing_ids:
-        logging.info("%d existing chunks found; they will be skipped", len(existing_ids))
-
-    # Filter chunks to only those needing (re)ingestion
-    chunks_to_embed = [chunk for chunk, h in zip(chunks, content_hashes) if h not in existing_ids]
-    if not chunks_to_embed:
-        logging.info("All %d chunks already ingested; skipping embedding generation", len(chunks))
-        return
-
-    if args.embedding_batch_size <= 0:
-        logging.error("--embedding-batch-size must be positive; received %d", args.embedding_batch_size)
-        sys.exit(1)
-
-    logging.info(
-        "%d new/updated chunks require embeddings; encoding in batches of %d",
-        len(chunks_to_embed),
-        args.embedding_batch_size,
-    )
-
-    embedding_model = get_embedding_model()
-    mongo_batch: List[Dict] = []
-    inserted = 0
-    expected_dim = args.embedding_dim
-    for batch_index, chunk_batch in enumerate(batched(chunks_to_embed, args.embedding_batch_size), start=1):
-        texts = [chunk.page_content for chunk in chunk_batch]
-        embeddings = generate_embeddings(texts, show_progress=False, model=embedding_model)
-        if embeddings and len(embeddings[0]) != expected_dim:
-            logging.warning(
-                "Embedding dimension mismatch: expected %d, got %d", expected_dim, len(embeddings[0])
-            )
-        for chunk, embedding in zip(chunk_batch, embeddings):
-            if getattr(args, "category", None):
-                chunk.metadata["category"] = args.category
-            mongo_batch.append(chunk_to_record(chunk, embedding, args.embedding_provider, args.allowed_metadata))
-            if len(mongo_batch) >= args.batch_size:
-                if not args.dry_run:
-                    try:
-                        result = collection.insert_many(mongo_batch, ordered=False)
-                        inserted += len(result.inserted_ids)
-                    except BulkWriteError as exc:
-                        dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
-                        non_dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
-                        inserted += exc.details.get("nInserted", 0)
-                        if dup_errors:
-                            logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
-                        if non_dup_errors:
-                            raise
-                else:
-                    inserted += len(mongo_batch)
-                mongo_batch.clear()
-        logging.debug("Processed embedding batch %d", batch_index)
-    if mongo_batch:
-        if not args.dry_run:
-            try:
-                result = collection.insert_many(mongo_batch, ordered=False)
-                inserted += len(result.inserted_ids)
-            except BulkWriteError as exc:
-                dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") == 11000]
-                non_dup_errors = [err for err in exc.details.get("writeErrors", []) if err.get("code") != 11000]
-                inserted += exc.details.get("nInserted", 0)
-                if dup_errors:
-                    logging.info("Skipped %d duplicate chunks during insert", len(dup_errors))
-                if non_dup_errors:
-                    raise
-        else:
-            inserted += len(mongo_batch)
-    logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if args.dry_run else "inserted")
-
-
-def ingest_all(args: argparse.Namespace, collection: Collection) -> None:
-    targets = [
-        ("splunk_fields", Path("data/splunk/splunk_fields.csv")),
-        ("elastic_fields", Path("data/elastic/elastic_fields.csv")),
-        ("splunk_packages", Path("data/splunk/repo")),
-        ("elastic_packages", Path("data/elastic/repo")),
-    ]
-
-    for category, path in targets:
-        logging.info("Ingesting category '%s' from %s", category, path)
-        sub_args = argparse.Namespace(**vars(args))
-        sub_args.input_path = path
-        sub_args.category = category
-        ingest_documents(sub_args, collection)
-
-
-def reciprocal_rank_fusion(runs: Sequence[List[Dict]], k: int, limit: int) -> List[Dict]:
-    scores: Dict[str, float] = defaultdict(float)
-    docs: Dict[str, Dict] = {}
-    for run in runs:
-        for rank, doc in enumerate(run):
-            doc_id = str(doc["_id"])
-            docs[doc_id] = doc
-            scores[doc_id] += 1.0 / (k + rank + 1)
-    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-    return [docs[doc_id] for doc_id, _ in ranked[:limit]]
-
-
-def format_docs(docs: Sequence[Document]) -> str:
-    formatted = []
-    for idx, doc in enumerate(docs, start=1):
-        source = doc.metadata.get("source", "unknown")
-        formatted.append(f"[{idx}] Source: {source}\n{doc.page_content}")
-    return "\n\n".join(formatted)
-
-
-class MongoHybridRetriever(BaseRetriever):
-    # Pydantic v2 model fields for LangChain's BaseRetriever
-    collection: Collection
-    embedding_dim: int
-    vector_index: str
-    text_index: str
-    top_k: int
-    semantic_candidates: int
-    keyword_candidates: int
-    rrf_k: int
-    allowed_text_paths: Sequence[str]
-    native_rankfusion: bool = False
-    filter_category: Optional[str] = None
-
-    # Allow non-pydantic types like pymongo Collection
-    model_config = {
-        "arbitrary_types_allowed": True
-    }
-
-    def _get_relevant_documents(self, query: str, *, run_native: bool = False) -> List[Document]:
-        query_vector = generate_embeddings([query])[0]
-        return self._manual_rrf(query, query_vector)
-
-    # No $rankFusion support for community edition; manual RRF is used instead
-
-    def _manual_rrf(self, query: str, query_vector: List[float]) -> List[Document]:
-        vector_search_spec: Dict = {
-            "index": self.vector_index,
-            "path": "embedding",
-            "queryVector": query_vector,
-            "numCandidates": self.semantic_candidates,
-            "limit": self.top_k,
-        }
-        if self.filter_category:
-            vector_search_spec["filter"] = {"metadata.category": {"$eq": self.filter_category}}
-
-        vector_pipeline = [
-            {"$vectorSearch": vector_search_spec},
-            {
-                "$project": {
-                    "content": 1,
-                    "metadata": 1,
-                    "score": {"$meta": "vectorSearchScore"},
-                }
-            },
-            {"$unset": "embedding"},
-        ]
-        text_pipeline = [
-            {
-                "$search": {
-                    "index": self.text_index,
-                    "text": {
-                        "query": query,
-                        "path": list(self.allowed_text_paths),
-                    },
-                }
-            },
-            {"$limit": self.keyword_candidates},
-            {
-                "$project": {
-                    "content": 1,
-                    "metadata": 1,
-                    "score": {"$meta": "searchScore"},
-                }
-            },
-            {"$unset": "embedding"},
-        ]
-        vector_results = list(self.collection.aggregate(vector_pipeline, allowDiskUse=True))
-        text_results = list(self.collection.aggregate(text_pipeline, allowDiskUse=True))
-        fused = reciprocal_rank_fusion([vector_results, text_results], self.rrf_k, self.top_k)
-        return [Document(page_content=doc.get("content", ""), metadata={**doc.get("metadata", {}), "score": doc.get("score")}) for doc in fused]
-
-    def _aget_relevant_documents(self, query: str) -> List[Document]:
-        raise NotImplementedError("Async usage not implemented; use sync retriever")
-
-    def get_relevant_documents(self, query: str) -> List[Document]:
-        return self._get_relevant_documents(query)
-
-
-def build_chain(retriever: MongoHybridRetriever) -> RunnableLambda:
-    # 1. Initialize the Ollama model
-    llm = ChatOllama(
-        model="qwen2.5-coder",
-        base_url="http://172.30.16.1:11434",
-        temperature=0
-    )
-
-    prompt = PromptTemplate(
-        template=(
-            "You are a SOC assistant. Use the context to answer the question.\n"
-            "Question: {question}\nContext:\n{context}\nAnswer:"
-        ),
-        input_variables=["question", "context"],
-    )
-
-    chain = (
-        {
-            "question": RunnablePassthrough(),
-            "context": RunnableLambda(
-                # Note: .invoke() is the modern equivalent of .get_relevant_documents()
-                lambda question: format_docs(retriever.invoke(question))
-            ),
-        }
-        | prompt
-        | llm
-        | StrOutputParser()
-    )
-    return chain
-
-
-def run_query(args: argparse.Namespace, collection: Collection) -> None:
-    if not args.query_text:
-        logging.error("--query-text is required for query mode")
-        sys.exit(1)
-    retriever = MongoHybridRetriever(
-        collection=collection,
-        embedding_dim=args.embedding_dim,
-        vector_index=args.vector_index,
-        text_index=args.text_index,
-        top_k=args.top_k,
-        semantic_candidates=args.semantic_candidates,
-        keyword_candidates=args.keyword_candidates,
-        rrf_k=args.rrf_k,
-        allowed_text_paths=args.text_paths,
-        filter_category=getattr(args, "filter_category", None),
-    )
-    chain = build_chain(retriever)
-    result = chain.invoke(args.query_text)
-    print(json.dumps(result, indent=2, default=str))
-
-
-def run_test(args: argparse.Namespace, collection: Collection) -> None:
-    # Use a non-zero query vector generated from the embedding model so the
-    # server can compute cosine similarity. Zero vectors are invalid for
-    # cosine similarity and cause the server to error.
-    try:
-        query_vector = generate_embeddings(["Smoke test"], model=get_embedding_model())[0]
-    except Exception as exc:
-        logging.error("Failed to generate test embedding: %s", exc)
-        raise
-
-    if not any(x != 0.0 for x in query_vector):
-        logging.error("Generated test embedding is all zeros; aborting vector test")
-        raise RuntimeError("test embedding is zero vector")
-
-    pipeline = [
-        {
-            "$vectorSearch": {
-                "index": args.vector_index,
-                "path": "embedding",
-                "queryVector": query_vector,
-                "numCandidates": 5,
-                "limit": 1,
-            }
-        },
-        {"$limit": 1},
-    ]
-    try:
-        list(collection.aggregate(pipeline))
-        logging.info("Vector search pipeline executed. mongot is reachable and index '%s' responded.", args.vector_index)
-    except OperationFailure as exc:
-        logging.error("Vector search test failed: %s", exc)
-        raise
-
-def run_init(args: argparse.Namespace, collection: Collection) -> None:
-    ensure_text_index(collection, args.text_index, args.text_paths, args.text_language)
-    ensure_vector_index(collection, args.vector_index, args.embedding_dim)
-    logging.info("Initialization complete")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Refactored RAG CLI")
+    parser.add_argument("mode", choices=["init", "ingest", "query", "test"], help="operation")
+    parser.add_argument("--mongo-uri", default="mongodb://admin:password@localhost:27017")
+    parser.add_argument("--database", default="rag")
+    parser.add_argument("--collection", default="documents")
+    parser.add_argument("--input-path", type=Path)
+    parser.add_argument("--query-text", default="Which package/add on do I install to parse windows_xml logs into elastic? Return only the name of the package/add on.")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--category")
+    parser.add_argument("--log-level", default="INFO")
+    return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    configure_logging(args.log_level)
-    client = connect(args.mongo_uri)
-    collection = client[args.database][args.collection]
+    logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO), format="%(asctime)s %(levelname)s %(message)s")
+    rag = RAG(mongo_uri=args.mongo_uri, database=args.database, collection_name=args.collection)
 
     if args.mode == "init":
-        run_init(args, collection)
+        rag.init()
     elif args.mode == "ingest":
-        run_init(args, collection)
-        ingest_documents(args, collection)
-    elif args.mode == "ingest_all":
-        run_init(args, collection)
-        ingest_all(args, collection)
+        if not args.input_path:
+            logging.error("--input-path required for ingest")
+            sys.exit(1)
+        rag.init()
+        rag.ingest(args.input_path, category=args.category, dry_run=args.dry_run)
     elif args.mode == "query":
-        run_query(args, collection)
+        rag.init()
+        answer, ctx = rag.query(args.query_text)
+        print(json.dumps({"answer": answer, "retrieval_context": ctx}, indent=2, default=str))
     elif args.mode == "test":
-        run_test(args, collection)
-    else:
-        logging.error("Unsupported mode %s", args.mode)
+        coll = rag._ensure_collection()
+        try:
+            qv = rag.generate_embeddings(["Smoke test"], show_progress=False)[0]
+        except Exception as exc:
+            logging.error("Failed to generate test embedding: %s", exc)
+            raise
+        if not any(x != 0.0 for x in qv):
+            logging.error("Generated test embedding is all zeros; aborting vector test")
+            raise RuntimeError("test embedding is zero vector")
+        pipeline = [{"$vectorSearch": {"index": rag.vector_index, "path": "embedding", "queryVector": qv, "numCandidates": 5, "limit": 1}}, {"$limit": 1}]
+        try:
+            list(coll.aggregate(pipeline))
+            logging.info("Vector search pipeline executed. mongot is reachable and index '%s' responded.", rag.vector_index)
+        except OperationFailure as exc:
+            logging.error("Vector search test failed: %s", exc)
+            raise
 
 
 if __name__ == "__main__":

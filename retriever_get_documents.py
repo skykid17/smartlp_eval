@@ -18,9 +18,16 @@ import json
 import random
 import sys
 import os
+import logging
+from typing import Any, List
 
-
+MIN_DOC_LENGTH = 50
 EXTENSIONS = {'.txt', '.docx', '.pdf', '.md', '.markdown', '.mdx'}
+
+def write_json(path: str, obj: Any):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2, ensure_ascii=False)
 
 def gather_paths(root: Path) -> list:
 	results = []
@@ -44,14 +51,32 @@ def gather_paths(root: Path) -> list:
 	return results
 
 
-def filter_license(paths: list) -> list:
-	filtered = [p for p in paths if 'license' not in p.lower()]
-	return filtered
+def safe_load_json_lines(path: str) -> List[str]:
+    with open(path, "r", encoding="utf-8") as f:
+        try:
+            return json.load(f)
+        except Exception:
+            f.seek(0)
+            return [line.strip() for line in f.readlines() if line.strip()]
 
-
-def save_json(path: Path, data):
-	
-
+def filter_documents(paths_file: str) -> List[str]:
+    paths = safe_load_json_lines(paths_file)
+    valid_paths, skipped = [], 0
+    for p in paths:
+        if not os.path.exists(p) or any(x in p.lower() for x in ("cacert", "license")):
+            skipped += 1
+            continue
+        try:
+            with open(p, "r", encoding="utf-8", errors="ignore") as f:
+                if len(f.read().strip()) >= MIN_DOC_LENGTH:
+                    valid_paths.append(p)
+                else:
+                    skipped += 1
+        except:
+            skipped += 1
+    write_json(paths_file, valid_paths)
+    logging.info(f"Filtered documents: kept {len(valid_paths)}, skipped {skipped}")
+    return valid_paths
 
 def main():
 	root = Path('data/')
@@ -59,12 +84,11 @@ def main():
 	all_matches = gather_paths(root)
 	print(f'Found {len(all_matches)} candidate files with target extensions.')
 
-	filtered = filter_license(all_matches)
+	filtered = filter_documents(all_matches)
 	print(f'{len(filtered)} files remain after filtering out "license".')
-
+	
 	# Save checkpoint (pre-sampling)
 	checkpoint_file = Path('data/eval/input/all_document_paths.json')
-	save_json(checkpoint_file, filtered)
 	data = [f'data/{p}' for p in filtered]
 	with checkpoint_file.open('w', encoding='utf-8') as f:
 		json.dump(data, f, indent=2, ensure_ascii=False)
