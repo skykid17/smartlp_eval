@@ -5,4 +5,4 @@ chroma/
 repo/
 test*.py
 chroma_db/
-.deepeval
+.deepeval/*
