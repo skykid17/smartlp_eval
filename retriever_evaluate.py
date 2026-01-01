@@ -162,36 +162,40 @@ Respond in JSON:
 # ----------------------------------------------------------
 
 def main() -> None:
-    with open("data/eval/output/golden_dataset_with_results.json", "r", encoding="utf-8") as f:
-        dataset = json.load(f)
+    # modes = ["hybrid", "text", "vector"]
+    modes = ["text", "vector"]
+    for mode in modes:
+        print(f"Evaluating mode: {mode}")
+        with open(f"data/eval/output/retriever_output_{mode}.json", "r", encoding="utf-8") as f:
+            dataset = json.load(f)
 
-    results = []
-    for case in tqdm(dataset):
-        retrieved_docs = case.get("retrieval_context", [])
+        results = []
+        for case in tqdm(dataset):
+            retrieved_docs = case.get("retrieval_context", [])
 
-        precision, prec_reason = contextual_precision(case, retrieved_docs)
-        recall, rec_reason = contextual_recall(case, retrieved_docs)
-        relevancy, rel_reason = contextual_relevancy(case, retrieved_docs)
+            precision, prec_reason = contextual_precision(case, retrieved_docs)
+            recall, rec_reason = contextual_recall(case, retrieved_docs)
+            relevancy, rel_reason = contextual_relevancy(case, retrieved_docs)
 
-        results.append({
-            "input": case["input"],
-            "contextual_precision": {
-                "score": precision,
-                "reason": prec_reason
-            },
-            "contextual_recall": {
-                "score": recall,
-                "reason": rec_reason
-            },
-            "contextual_relevancy": {
-                "score": relevancy,
-                "reason": rel_reason
-            },
-        })
+            results.append({
+                "input": case["input"],
+                "contextual_precision": {
+                    "score": precision,
+                    "reason": prec_reason
+                },
+                "contextual_recall": {
+                    "score": recall,
+                    "reason": rec_reason
+                },
+                "contextual_relevancy": {
+                    "score": relevancy,
+                    "reason": rel_reason
+                },
+            })
 
-    out_path = "data/eval/output/results_hybrid.json"
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
+        out_path = f"data/eval/output/retriever_results_{mode}.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
     main()

@@ -1,16 +1,10 @@
 #!/usr/bin/env python3
-"""Refactored MongoDB RAG toolkit (Option B - medium refactor)
+"""Refactored MongoDB RAG toolkit with Python-only fallback retriever.
 
-Goals achieved:
-- Single programmatic RAG class with simple API (init, ingest, query)
-- Removed duplicated query helpers; `query()` calls the chain and returns (answer, retrieval_context)
-- Kept modular helper functions (embeddings, chunking, index ensure) but minimized global state
-- CLI is a thin wrapper around the RAG class with defaults.
-
-Notes:
-- This file keeps the original behavior (text + vector index creation, ingestion with embeddings,
-  hybrid retrieval with vector + keyword, reciprocal rank fusion, and LLM chain via ChatOpenAI).
-- Replace endpoints, model names, and Mongo URI with your environment values as needed.
+This is the patched module that:
+- Preserves your original behavior (attempt Atlas/mongot searches)
+- Adds a robust Python fallback retriever using SentenceTransformers + cosine sim + keyword scoring
+- Ensures retrieval returns documents even on MongoDB Community / no mongot
 """
 
 from __future__ import annotations
@@ -20,11 +14,13 @@ import hashlib
 import json
 import logging
 import sys
+import re
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
+import numpy as np
 from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.errors import BulkWriteError, OperationFailure, ServerSelectionTimeoutError
@@ -43,9 +39,8 @@ SUPPORTED_EXTENSIONS = {".txt", ".md", ".json", ".yaml", ".yml", ".csv", ".pdf"}
 DEFAULT_ALLOWED_METADATA = ["source", "category", "tags", "file_type", "collection"]
 DEFAULT_TEXT_PATHS = ["content", "metadata.source"]
 
-# Keep one embedding model singleton inside the class below (no global)
-
 # --- Utility helpers ---
+
 
 def batched(items: Sequence, batch_size: int) -> Iterable[Sequence]:
     if batch_size <= 0:
@@ -61,12 +56,13 @@ def filter_metadata(metadata: Dict, allowed_fields: Sequence[str]) -> Dict:
 
 # --- RRF fusion ---
 
+
 def reciprocal_rank_fusion(runs: Sequence[List[Dict]], k: int, limit: int) -> List[Dict]:
     scores: Dict[str, float] = defaultdict(float)
     docs: Dict[str, Dict] = {}
     for run in runs:
         for rank, doc in enumerate(run):
-            doc_id = str(doc["_id"]) if doc.get("_id") is not None else str(hash(json.dumps(doc, sort_keys=True)))
+            doc_id = str(doc.get("_id")) if doc.get("_id") is not None else str(hash(json.dumps(doc, sort_keys=True)))
             docs[doc_id] = doc
             scores[doc_id] += 1.0 / (k + rank + 1)
     ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
@@ -81,12 +77,14 @@ def format_docs(docs: Sequence[Document]) -> str:
 
 
 # --- RAG class (single programmatic entrypoint) ---
+
+
 class RAG:
     def __init__(
         self,
         mongo_uri: str = "mongodb://admin:password@localhost:27017",
-        database: str = "rag",
-        collection_name: str = "documents",
+        database: str = "soc_rag_db",
+        collection_name: str = "knowledge_base",
         embedding_dim: int = 384,
         embedding_provider: str = "all-MiniLM-L6-v2",
         vector_index: str = "rag_vector_index",
@@ -150,7 +148,8 @@ class RAG:
     def generate_embeddings(self, texts: Sequence[str], show_progress: bool = False) -> List[List[float]]:
         embedder = self.get_embedding_model()
         embeddings = embedder.encode(texts, show_progress_bar=show_progress)
-        return embeddings.tolist()
+        # embeddings may be numpy array — convert to list of lists
+        return np.asarray(embeddings).tolist()
 
     # --- Document loading / chunking ---
     def load_documents(self, input_path: Path) -> List[Document]:
@@ -238,7 +237,6 @@ class RAG:
             logging.info("All %d chunks already ingested; skipping embedding generation", len(chunks))
             return 0
 
-        embedder = self.get_embedding_model()
         mongo_batch: List[Dict] = []
         inserted = 0
 
@@ -283,11 +281,74 @@ class RAG:
         logging.info("Ingest complete. %d chunks %s", inserted, "simulated" if dry_run else "inserted")
         return inserted
 
-    # --- Retriever (kept simple and internal) ---
+    # --- Python-only fallback: semantic + keyword + RRF ---
+    def _py_fallback_retrieve(
+        self,
+        query: str,
+        limit: int = 5,
+        semantic_k: int = 50,
+        keyword_k: int = 50,
+        rrf_k: int = 60,
+    ) -> List[Document]:
+        """Python-only hybrid retriever (no mongot, no vector search).
+        Uses local embeddings + cosine similarity + keyword scoring, fused by RRF.
+        """
+        coll = self._ensure_collection()
+
+        # Load docs (project minimal fields)
+        all_docs = list(coll.find({}, {"content": 1, "metadata": 1, "embedding": 1, "_id": 1}).limit(10000))
+        if not all_docs:
+            return []
+
+        # Compute query embedding
+        q_emb = self.generate_embeddings([query], show_progress=False)[0]
+
+        # Cosine similarity
+        def cosine(a, b):
+            a = np.asarray(a, dtype=float)
+            b = np.asarray(b, dtype=float)
+            denom = (np.linalg.norm(a) * np.linalg.norm(b))
+            return float(a.dot(b) / denom) if denom > 0 else 0.0
+
+        for doc in all_docs:
+            emb = doc.get("embedding")
+            if emb:
+                try:
+                    doc["_sim_score"] = cosine(q_emb, emb)
+                except Exception:
+                    doc["_sim_score"] = 0.0
+            else:
+                doc["_sim_score"] = 0.0
+
+        semantic_sorted = sorted(all_docs, key=lambda x: x.get("_sim_score", 0.0), reverse=True)
+        semantic_top = semantic_sorted[:semantic_k]
+
+        # Keyword scoring — token overlap
+        tokens = set(re.findall(r"\w+", query.lower()))
+        for doc in all_docs:
+            text = (doc.get("content") or "").lower()
+            # simple presence count
+            count = sum(1 for t in tokens if t in text)
+            doc["_kw_score"] = count
+
+        keyword_sorted = sorted(all_docs, key=lambda x: x.get("_kw_score", 0), reverse=True)
+        keyword_top = keyword_sorted[:keyword_k]
+
+        # Convert to the same dict shape expected by RRF: with possibly _id, content, metadata, score
+        sem_run = [
+            {"_id": d.get("_id"), "content": d.get("content", ""), "metadata": d.get("metadata", {}), "score": d.get("_sim_score")}
+            for d in semantic_top
+        ]
+        kw_run = [
+            {"_id": d.get("_id"), "content": d.get("content", ""), "metadata": d.get("metadata", {}), "score": d.get("_kw_score")}
+            for d in keyword_top
+        ]
+
+        fused = reciprocal_rank_fusion([sem_run, kw_run], rrf_k, limit)
+        return [Document(page_content=d.get("content", ""), metadata=d.get("metadata", {})) for d in fused]
+
+    # --- Retriever ---
     class _MongoHybridRetriever:
-        # Simple retriever class; we avoid inheriting from BaseRetriever here to bypass
-        # Pydantic validation on attribute assignment since we only require a simple
-        # `invoke()` interface for the chaining code in this module.
         def __init__(
             self,
             collection: Collection,
@@ -313,15 +374,14 @@ class RAG:
             self.rrf_k = rrf_k
             self.allowed_text_paths = allowed_text_paths
             self.filter_category = filter_category
+            # parent will be set by RAG.query so fallback can call back
+            self.parent: Optional["RAG"] = None
 
         def invoke(self, query: str) -> List[Document]:
             qv = self.embedding_fn([query])[0]
             return self._manual_rrf(query, qv)
 
         def _get_relevant_documents(self, query: str, *, run_native: bool = False) -> List[Document]:
-            """LangChain sync retriever interface.
-            Compute a query vector and return relevant documents using the manual RRF fusion.
-            """
             qv = self.embedding_fn([query])[0]
             return self._manual_rrf(query, qv)
 
@@ -329,31 +389,80 @@ class RAG:
             return self._get_relevant_documents(query)
 
         def _manual_rrf(self, query: str, query_vector: List[float]) -> List[Document]:
-            vector_search_spec = {
-                "index": self.vector_index,
-                "path": "embedding",
-                "queryVector": query_vector,
-                "numCandidates": self.semantic_candidates,
-                "limit": self.top_k,
-            }
-            if self.filter_category:
-                vector_search_spec["filter"] = {"metadata.category": {"$eq": self.filter_category}}
+            vector_results: List[Dict] = []
+            text_results: List[Dict] = []
 
-            vector_pipeline = [
-                {"$vectorSearch": vector_search_spec},
-                {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "vectorSearchScore"}}},
-                {"$unset": "embedding"},
-            ]
+            # Vector search (Atlas vector search / $vectorSearch) - only run if semantic candidates configured
+            if getattr(self, "semantic_candidates", 0) and self.semantic_candidates > 0:
+                vector_search_spec = {
+                    "index": self.vector_index,
+                    "path": "embedding",
+                    "queryVector": query_vector,
+                    "numCandidates": self.semantic_candidates,
+                    "limit": self.top_k,
+                }
+                if self.filter_category:
+                    vector_search_spec["filter"] = {"metadata.category": {"$eq": self.filter_category}}
 
-            text_pipeline = [
-                {"$search": {"index": self.text_index, "text": {"query": query, "path": list(self.allowed_text_paths)}}},
-                {"$limit": self.keyword_candidates},
-                {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "searchScore"}}},
-                {"$unset": "embedding"},
-            ]
+                vector_pipeline = [
+                    {"$vectorSearch": vector_search_spec},
+                    {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "vectorSearchScore"}}},
+                    {"$unset": "embedding"},
+                ]
+                try:
+                    vector_results = list(self.collection.aggregate(vector_pipeline, allowDiskUse=True))
+                except OperationFailure as exc:
+                    logging.warning("Vector search unavailable or failed; continuing without vector results: %s", exc)
+                    vector_results = []
+                except Exception as exc:
+                    logging.warning("Vector search raised error; continuing: %s", exc)
+                    vector_results = []
 
-            vector_results = list(self.collection.aggregate(vector_pipeline, allowDiskUse=True))
-            text_results = list(self.collection.aggregate(text_pipeline, allowDiskUse=True))
+            # Text search ($search) with fallback to $text for non-Atlas deployments
+            if getattr(self, "keyword_candidates", 0) and self.keyword_candidates > 0:
+                text_pipeline = [
+                    {"$search": {"index": self.text_index, "text": {"query": query, "path": list(self.allowed_text_paths)}}},
+                    {"$limit": self.keyword_candidates},
+                    {"$project": {"content": 1, "metadata": 1, "score": {"$meta": "searchScore"}}},
+                    {"$unset": "embedding"},
+                ]
+                try:
+                    text_results = list(self.collection.aggregate(text_pipeline, allowDiskUse=True))
+                except OperationFailure as exc:
+                    logging.warning("$search not available; falling back to $text: %s", exc)
+                    text_results = []
+                    try:
+                        text_filter: Dict = {"$text": {"$search": query}}
+                        if self.filter_category:
+                            text_filter["metadata.category"] = {"$eq": self.filter_category}
+                        fallback_cursor = (
+                            self.collection.find(text_filter, {"content": 1, "metadata": 1, "score": {"$meta": "textScore"}})
+                            .limit(self.keyword_candidates)
+                        )
+                        text_results = list(fallback_cursor)
+                    except Exception:
+                        logging.warning("Fallback $text query failed; continuing without text results")
+                        text_results = []
+                except Exception as exc:
+                    logging.warning("Text search raised error; continuing: %s", exc)
+                    text_results = []
+
+            # If both vector and text searches returned nothing, fallback to Python-only retriever
+            if not vector_results and not text_results:
+                if self.parent is not None:
+                    logging.info("No MongoDB search results — using Python fallback retriever")
+                    return self.parent._py_fallback_retrieve(
+                        query=query,
+                        limit=self.top_k,
+                        semantic_k=self.semantic_candidates,
+                        keyword_k=self.keyword_candidates,
+                        rrf_k=self.rrf_k,
+                    )
+                else:
+                    logging.warning("No parent configured for fallback retriever; returning empty list")
+                    return []
+
+            # Otherwise fuse results using RRF
             fused = reciprocal_rank_fusion([vector_results, text_results], self.rrf_k, self.top_k)
             return [
                 Document(page_content=doc.get("content", ""), metadata={**doc.get("metadata", {}), "score": doc.get("score")})
@@ -365,6 +474,7 @@ class RAG:
 
     # --- Chain builder (kept simple) ---
     def _build_chain(self, retriever: _MongoHybridRetriever) -> RunnableLambda:
+        # Example: using local LLM endpoint; replace as needed
         llm = ChatOpenAI(model="qwen25-coder-32b-awq", base_url="http://192.168.125.31:8000/v1", api_key="test", temperature=0)
         prompt = PromptTemplate(
             template=(
@@ -409,17 +519,20 @@ class RAG:
             allowed_text_paths=list(allowed_text_paths),
             filter_category=filter_category,
         )
+        # attach parent so the retriever can call the python fallback
+        retriever.parent = self
+
         docs = retriever.invoke(question)
         chain = self._build_chain(retriever)
         answer = chain.invoke(question)
         retrieval_context = [
-            {"content": d.page_content, "metadata": d.metadata, "score": d.metadata.get("score") if isinstance(d.metadata, dict) else None}
-            for d in docs
+            {"content": d.page_content, "metadata": d.metadata} for d in docs
         ]
         return answer, retrieval_context
 
 
 # --- Index helpers (reused) ---
+
 
 def ensure_vector_index(collection: Collection, index_name: str, embedding_dim: int) -> None:
     definition = {
@@ -468,6 +581,7 @@ def ensure_text_index(collection: Collection, index_name: str, text_paths: Seque
 
 
 # --- CLI wrapper (thin) ---
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Refactored RAG CLI")
