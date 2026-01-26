@@ -1,66 +1,134 @@
-from rag_mongo import RAG
+
+# from rag_mongo import extract_keywords, LocalRetriever, rag_service
+# from langchain_core.documents import Document
+# from sentence_transformers import SentenceTransformer
 import json
-from typing import List, Dict
-from pathlib import Path
+import re
+from langchain_openai import ChatOpenAI
 from tqdm import tqdm
-import copy
 
-# Create RAG instance (uses defaults unless overridden)
-rag = RAG()
-rag.init()   # ensure indexes exist
 
-with open("data/eval/input/retriever_golden_dataset.json", "r", encoding="utf-8") as f:
-    golden_dataset = json.load(f)
+# def build_local_retriever() -> LocalRetriever:
+#     return LocalRetriever(
+#         collection=rag_service._ensure_collection(),
+#         embedding_fn=lambda texts, show_progress=False: rag_service.generate_embeddings(
+#             texts, show_progress
+#         ),
+#         text_index=rag_service.text_index,
+#         vector_index=rag_service.vector_index,
+#     )
 
-# Support both top-level formats
-if isinstance(golden_dataset, dict) and "test_cases" in golden_dataset:
-    test_cases: List[dict] = golden_dataset["test_cases"]
-elif isinstance(golden_dataset, list):
-    test_cases = golden_dataset
-else:
-    raise RuntimeError("Unsupported golden_dataset format")
 
-modes = [
-    # ("hybrid", {"semantic_candidates": 50, "keyword_candidates": 30}),
-    ("text", {"semantic_candidates": 0, "keyword_candidates": 30}),
-    ("vector", {"semantic_candidates": 50, "keyword_candidates": 0}),
-]
+# def retrieve_vector_only(query: str, k: int = 5) -> list[Document]:
+#     retriever = build_local_retriever()
+#     sem_run = retriever.run_vector_search(
+#         query=query,
+#         semantic_k=k,
+#         vector_index="vector_index"
+#     )
 
-for mode_name, mode_params in modes:
-    # Work on a copy so each mode writes its own file and we don't overwrite results
-    print(f"Processing mode: {mode_name}")
-    ds = copy.deepcopy(golden_dataset)
-    test_cases: List[dict] = ds["test_cases"] if isinstance(ds, dict) and "test_cases" in ds else ds
+#     return [
+#         Document(
+#             page_content=d["content"],
+#             metadata={
+#                 **d["metadata"],
+#                 "doc_id": d["_id"],
+#                 "score": d["score"],
+#                 "retriever": "vector"
+#             }
+#         )
+#         for d in sem_run
+#     ]
 
-    for case in tqdm(test_cases):
-        question = case["input"]
-        # Skip if the mode-specific actual_output is already present
-        if case.get(f"actual_output_{mode_name}"):
-            continue
-        # Use RAG.query which executes the retriever and the chain (LLM)
-        # This returns (answer, retrieval_context) where retrieval_context is
-        # a list of dicts like {content, metadata, score}
-        try:
-            answer, retrieved_docs = rag.query(
-                question,
-                top_k=5,
-                semantic_candidates=mode_params["semantic_candidates"],
-                keyword_candidates=mode_params["keyword_candidates"],
-                rrf_k=60,
-            )
-        except Exception as exc:
-            # Log and continue so we capture partial results
-            print(f"Failed to query for question: {question[:60]}...: {exc}")
-            answer = None
-            retrieved_docs = []
-        
-        case["actual_output"] = answer
-        
-        case["retrieval_context"] = [doc["content"] for doc in retrieved_docs]
+# def retrieve_bm25_only(query: str, k: int = 5) -> list[Document]:
+#     kw = extract_keywords(query, max_keywords=15)
+#     retriever = build_local_retriever()
+#     kw_run = retriever.run_text_search(
+#         keyword_query=kw,
+#         keyword_k=k,
+#         base_filter={}
+#     )
 
-        # Save augmented dataset for this mode
-        out_file = f"data/eval/output/retriever_output_{mode_name}.json"
-        out_path = Path(out_file)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        with out_path.open("w", encoding="utf-8") as f:
-            json.dump(ds, f, indent=2, ensure_ascii=False)
+#     return [
+#         Document(
+#             page_content=d["content"],
+#             metadata={
+#                 **d["metadata"],
+#                 "doc_id": d["_id"],
+#                 "score": d["score"],
+#                 "retriever": "bm25"
+#             }
+#         )
+#         for d in kw_run
+#     ]
+
+# def retrieve_hybrid(query: str, k: int = 5) -> list[Document]:
+#     retriever = build_local_retriever()
+
+#     docs = retriever.run_hybrid_search(
+#         query=query,
+#         limit=k,
+#     )
+
+#     for d in docs:
+#         d.metadata["retriever"] = "hybrid"
+
+#     return docs
+
+
+# with open("data/eval/input/retriever_golden_dataset.json", "r", encoding="utf-8") as f:
+#         golden_dataset = json.load(f)
+
+# print("Text Retrieval Evaluation")
+# for items in golden_dataset:
+#     items["retrieval_context"] = []
+#     retreived_docs = retrieve_bm25_only(items["input"],k=5)
+#     for doc in retreived_docs:
+#         items["retrieval_context"].append(doc.page_content)
+
+# with open(f"data/eval/output/processed_text.json", "w", encoding="utf-8") as f:
+#     json.dump(golden_dataset, f, indent=2, ensure_ascii=False)
+    
+# print("Vector Retrieval Evaluation")
+# for items in golden_dataset:
+#     items["retrieval_context"] = []
+
+#     retreived_docs = retrieve_vector_only(items["input"],k=5)
+#     for doc in retreived_docs:
+#         items["retrieval_context"].append(doc.page_content)
+
+# with open(f"data/eval/output/processed_vector.json", "w", encoding="utf-8") as f:
+#     json.dump(golden_dataset, f, indent=2, ensure_ascii=False)
+
+# print("Hybrid Retrieval Evaluation")
+# for items in golden_dataset:
+#     items["retrieval_context"] = []
+#     retreived_docs = retrieve_hybrid(items["input"],k=5)
+#     for doc in retreived_docs:
+#         items["retrieval_context"].append(doc.page_content)
+# with open(f"data/eval/output/processed_hybrid.json", "w", encoding="utf-8") as f:
+#     json.dump(golden_dataset, f, indent=2, ensure_ascii=False)
+
+modes = ["hybrid", "text", "vector"]
+llm = ChatOpenAI(
+    model="Qwen3-8B",
+    base_url="http://192.168.125.31:8000/v1",
+    api_key="test",
+    temperature=0,
+)
+
+for mode in modes:
+    with open(f"data/eval/output/processed_{mode}.json", "r", encoding="utf-8") as f:
+        retrieved_output = json.load(f)
+    
+    for item in tqdm(retrieved_output, desc=f"Generating answers for mode: {mode}"):
+        context = item["retrieval_context"]
+        prompt = f"""You are an AI assistant that helps people find information. Keep your responses concise and short. Use the following pieces of context to answer the question at the end. 
+{''.join([f'Context {i+1}: {c}\n' for i, c in enumerate(context)])}
+Question: {item['input']}"""
+        response = llm.invoke(prompt)
+        raw_content = response.content
+        clean_content = re.sub(r"<think>.*?</think>", "", raw_content.strip(), flags=re.DOTALL).strip()
+        item["actual_output"] = clean_content
+        with open(f"data/eval/output/output_{mode}.json", "w", encoding="utf-8") as f:
+            json.dump(retrieved_output, f, indent=2, ensure_ascii=False)
