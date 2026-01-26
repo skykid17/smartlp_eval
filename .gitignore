@@ -1,6 +1,9 @@
 .env
+.env.local
 .venv/
 __pycache__/
 chroma/
-repos/
+repo/
 test*.py
+chroma_db/
+.deepeval/*

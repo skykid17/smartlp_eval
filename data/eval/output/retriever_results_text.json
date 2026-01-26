@@ -1,0 +1,2732 @@
+[
+  {
+    "input": "What are the specific steps outlined in the manual to normalize data to the Common Information Model (CIM) using the reference tables and step-by-step guide provided?",
+    "contextual_precision": {
+      "score": 0.4,
+      "reason": "The retriever surfaced documents containing keywords like 'CIM', 'reference tables', and 'guide', showing moderate lexical overlap. However, the top results failed to prioritize the specific 'normalization steps', resulting in significant noise in the ranking."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "BM25 captured the general topic of CIM normalization due to strong keyword matching. However, it missed the specific, sequential 'step-by-step' instructions required for a complete answer, identifying the topic but not the procedure."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The provided context was highly specific to CIM normalization data tables and guides, with very little irrelevant information regarding other Splunk features."
+    }
+  },
+  {
+    "input": "List the location of the JSON implementations of the data models included in the Splunk Common Information Model Add-on.",
+    "contextual_precision": {
+      "score": 0.2,
+      "reason": "The search likely latched onto 'JSON', 'data models', and 'Add-on', retrieving configuration files or general descriptions rather than the specific file path location. The precise answer was buried or missing from the top results."
+    },
+    "contextual_recall": {
+      "score": 0.1,
+      "reason": "While the retriever found documents related to the Add-on, the strict keyword search failed to isolate the specific filepath ('$SPLUNK_HOME...'), leading to poor coverage of the factual answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.2,
+      "reason": "The retrieved context is lexically related to the Splunk CIM Add-on but lacks the specific directory information requested, rendering the chunks mostly irrelevant for answering the specific 'location' query."
+    }
+  },
+  {
+    "input": "In version 2.0.7 of the library, what new features were added? Please list them in bullet points.",
+    "contextual_precision": {
+      "score": 0.3,
+      "reason": "The exact version string '2.0.7' is a specific keyword, but BM25 likely retrieved logs or other version numbers (e.g., 9.1.0-dev) that shared context, diluting the precision of the result set."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "The retriever failed to find the specific changelog for '2.0.7', likely because the exact string didn't appear frequently enough or was overshadowed by more common version numbers in the corpus."
+    },
+    "contextual_relevancy": {
+      "score": 0.2,
+      "reason": "The chunks discuss the library and versions generally, providing some lexical relevance, but completely missed the target version, making the content practically useless for the specific query."
+    }
+  },
+  {
+    "input": "Based on the provided context, how does charset_normalizer utilize the concepts of 'noise' and 'coherence' to determine the most likely encoding of a text file? Explain the process step-by-step, including how it interprets human-written text with incorrect encodings and how it compares letter frequency patterns to identify the correct language and encoding.",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The unique terms 'noise' and 'coherence' in the context of 'charset_normalizer' allowed BM25 to rank relevant documents relatively well, though some general library descriptions likely intruded."
+    },
+    "contextual_recall": {
+      "score": 0.4,
+      "reason": "The retriever successfully pulled chunks discussing the core concepts due to distinct terminology. However, it may have missed the specific 'step-by-step' logic if those procedural words weren't explicitly adjacent to the key terms."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieved context is highly relevant at a lexical level, containing the definitions of noise and coherence. It provides a good foundation for an answer, even if the semantic flow is slightly fragmented."
+    }
+  },
+  {
+    "input": "What is the latest version of the software mentioned in the context based on the upload dates provided?",
+    "contextual_precision": {
+      "score": 0.4,
+      "reason": "BM25 retrieved chunks containing 'version' and dates, but without semantic understanding of 'latest' (chronological ordering), it retrieved a mix of old and new versions, lowering precision."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever found lists of versions and dates, providing enough raw data to potentially derive the answer. However, it didn't specifically target the *most recent* entry, relying on the user to sift through the list."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The content is relevant as it contains version history, but the lack of temporal sorting means the 'latest' version wasn't prioritized, leaving the context somewhat cluttered."
+    }
+  },
+  {
+    "input": "What components can be included in an 'argument' according to the provided grammar rules?",
+    "contextual_precision": {
+      "score": 0.3,
+      "reason": "The term 'argument' is highly polysemous (common in code, logic, and text). BM25 likely retrieved generic uses of the word rather than the specific grammar rule definition, reducing precision."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "Due to the ambiguity of the term 'argument', the retriever missed the specific grammar specification needed to answer the question, failing to recall the structural components."
+    },
+    "contextual_relevancy": {
+      "score": 0.3,
+      "reason": "While the chunks mention 'arguments', they likely refer to function inputs or general logic rather than the specific grammar syntax requested, resulting in low relevancy."
+    }
+  },
+  {
+    "input": "What components are included in the 'argument' rule of the provided grammar specification, which defines how arguments can be structured in a class definition's argument list?",
+    "contextual_precision": {
+      "score": 0.4,
+      "reason": "Adding 'grammar specification' and 'class definition' improved precision slightly over the previous query by narrowing the lexical scope, but results still likely included unrelated code snippets."
+    },
+    "contextual_recall": {
+      "score": 0.3,
+      "reason": "The retriever still struggled to locate the exact BNF or syntax rule for 'argument', possibly finding usage examples instead of the definition, leading to low recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The context is technically related to code structure, but lacks the specific definitional content required, making the chunks only marginally useful."
+    }
+  },
+  {
+    "input": "Given the Splunk Visualization App Template, what detailed steps must one follow to successfully build a custom visualization, including the necessary prerequisites and commands, and how does this process ensure compatibility with Splunk's visualization framework?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords like 'Splunk Visualization App Template', 'build', and 'prerequisites' helped surface relevant docs. However, general 'build' commands for other apps likely polluted the top results."
+    },
+    "contextual_recall": {
+      "score": 0.4,
+      "reason": "BM25 retrieved chunks with build commands (e.g., npm install), providing decent coverage of the steps. It missed the semantic nuance of 'ensuring compatibility', focusing purely on the mechanical steps."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieved context is largely on-topic, discussing build processes and dependencies. It provides a good base for the answer, though it includes some unrelated package details."
+    }
+  },
+  {
+    "input": "What are three specific issues related to the agenda view in the software that were resolved?",
+    "contextual_precision": {
+      "score": 0.2,
+      "reason": "The term 'agenda view' is specific, but if the resolved issues didn't explicitly use that phrase (e.g., used 'calendar' or 'schedule'), BM25 failed to rank them, retrieving unrelated 'agenda' mentions."
+    },
+    "contextual_recall": {
+      "score": 0.1,
+      "reason": "The retriever likely missed the specific bug fix descriptions because they didn't share exact keywords with the query, leading to poor coverage of the 'three specific issues'."
+    },
+    "contextual_relevancy": {
+      "score": 0.2,
+      "reason": "The chunks discuss the software and perhaps 'issues' generally, but failed to retrieve the specific changelog entries relevant to the agenda view."
+    }
+  },
+  {
+    "input": "What are the new methods for specifying Google Calendar feeds in the updated configuration, including the use of a simple URL string or an object with a URL property and additional event-source options?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The query contains specific technical terms ('Google Calendar feeds', 'simple URL string', 'event-source'). BM25 effectively prioritized documents containing these distinct phrases."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "High keyword overlap ensured that the configuration examples for Google Calendar feeds were retrieved. The context covers both the string and object methods mentioned in the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are highly relevant, directly addressing the configuration syntax required. The lexical match was strong enough to bypass the need for deep semantic understanding."
+    }
+  },
+  {
+    "input": "Given the context provided, including the commands for generating distributable files, cleaning up, and checking style, what sequence of commands would you execute to ensure that the distributable files are written into the `./dist/` directory while adhering to the specified style guide and ensuring that all development dependencies are installed?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords like 'distributable files', 'clean', and 'check style' helped surface relevant build scripts. However, the ordering of results likely did not reflect the necessary execution sequence."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever found the individual commands (yarn install, grunt) because they were explicitly named in the corpus. It covered the necessary components well."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The context is relevant, containing the build instructions. While it included some unrelated file path matching info, the core commands were present and usable."
+    }
+  },
+  {
+    "input": "What is the value at index 50 in the numeric array associated with the object labeled '5 0 obj'? The array consists of 200 elements, all of which are integers.",
+    "contextual_precision": {
+      "score": 0.2,
+      "reason": "BM25 likely indexed '5 0 obj' but struggled with the concept of 'index 50' in a raw numeric array, retrieving the object definition but failing to pinpoint the specific data point."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "The retriever found the object '5 0 obj', but without semantic understanding of array indexing, it didn't necessarily retrieve the chunk containing the 50th element if the array spanned multiple chunks."
+    },
+    "contextual_relevancy": {
+      "score": 0.3,
+      "reason": "The retrieved chunk contains the start of the object, which is relevant, but it likely failed to provide the specific data needed to answer the question about index 50."
+    }
+  },
+  {
+    "input": "What is the value at index 30 in the array associated with '14 0 obj' in the given context?",
+    "contextual_precision": {
+      "score": 0.2,
+      "reason": "Similar to the previous entry, '14 0 obj' was found, but the positional query 'index 30' is not handled well by keyword search, leading to top results that define the object but may miss the specific value."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "The retriever likely pulled the definition of the object but failed to guarantee the inclusion of the specific array segment containing the 30th index."
+    },
+    "contextual_relevancy": {
+      "score": 0.3,
+      "reason": "The context is technically relevant (it's the right object), but practically insufficient because the keyword search cannot navigate array structures."
+    }
+  },
+  {
+    "input": "What is the purpose and function of the annotation object with ID 109 in the provided PDF content?",
+    "contextual_precision": {
+      "score": 0.3,
+      "reason": "The ID '109' is a specific token, which helps. However, 'annotation object' is generic. Precision is moderate as it likely found the object but maybe not the descriptive text explaining its function."
+    },
+    "contextual_recall": {
+      "score": 0.3,
+      "reason": "The retriever found the object ID, but without semantic understanding, it may have missed the related dictionary entries that define its 'purpose' or 'function' if they weren't explicitly labeled as such."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The retrieved context is relevant to the specific object ID, but lacks the semantic depth to fully explain its function, providing raw data rather than descriptive content."
+    }
+  },
+  {
+    "input": "What is the title of the dashboard used to customize Splunk Security Essentials, as mentioned in the provided context?",
+    "contextual_precision": {
+      "score": 0.4,
+      "reason": "Keywords like 'dashboard', 'customize', and 'Splunk Security Essentials' provided decent signals. However, noise from other dashboards or general customization guides likely lowered precision."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever likely missed the exact title if the document used synonyms (e.g., 'view', 'configuration panel') instead of 'dashboard', resulting in moderate recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The retrieved chunks discuss Splunk Security Essentials and customization, making them generally relevant, even if the specific dashboard title was not prominent."
+    }
+  },
+  {
+    "input": "What is the first entry in the provided list of numbers?",
+    "contextual_precision": {
+      "score": 0.2,
+      "reason": "The query 'first entry' and 'list of numbers' are generic. BM25 likely retrieved various lists or numeric data without identifying the *specific* list intended, resulting in low precision."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "Without a specific identifier for the list, the retriever failed to locate the correct sequence of numbers, leading to poor recall of the target data."
+    },
+    "contextual_relevancy": {
+      "score": 0.2,
+      "reason": "The retrieved chunks likely contain numbers, making them superficially relevant, but they fail to address the specific list context required."
+    }
+  },
+  {
+    "input": "What is the destination and XYZ coordinates for the link defined in 59 0 obj, which has a rectangle bounding box of [90.9 466.0 330.5 478.0] and points to an XYZ location with coordinates [0 222 0]?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The query contains highly specific tokens ('59 0 obj', '90.9', '466.0'). BM25 excels at this kind of exact matching, resulting in high precision for the top results."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "Due to the unique numerical values in the query, the retriever successfully found the exact object definition containing the coordinates and destination, ensuring high recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved context is extremely relevant, containing the exact object data requested. The lexical overlap was sufficient to filter out almost all noise."
+    }
+  },
+  {
+    "input": "How do I install the development dependencies using Yarn for hacking the Splunk Visualization App Template library?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords 'install', 'development dependencies', 'Yarn', and the app name provided good search signals. Precision is moderate, though it might have retrieved npm instructions as well."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever likely found the 'yarn install' command or relevant sections in the documentation. It missed some nuance about 'hacking' the library but captured the installation steps."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The context is relevant to the installation process. It may include some unrelated package management info, but generally addresses the query."
+    }
+  },
+  {
+    "input": "Given the context provided about Popper's testing suite, which includes both unit and functional tests, identify the specific tools and environments utilized for each type of test, and explain how these tools interact to ensure comprehensive testing of Popper's functionality.",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords 'Popper', 'testing suite', 'unit', and 'functional tests' helped BM25 locate the relevant testing documentation. Precision is decent, though it may have mixed in general Popper usage docs."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever found mentions of the tools (likely Jest/Puppeteer) due to their presence in the text. It provided a good overview of the testing stack."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieved chunks are relevant to the testing infrastructure of the project, providing a solid basis for answering the question."
+    }
+  },
+  {
+    "input": "What specific actions can be described by the field zscaler_zia.firewall.action? List three possible values.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The field name 'zscaler_zia.firewall.action' is a unique string. BM25 effectively used this to find the specific field definition, resulting in high precision."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever successfully located the document listing the allowed values for the field, providing sufficient recall to list three examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The context is highly relevant, focusing specifically on the requested field and its attributes."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the operating system type of a device using the zscaler_zia.dns.device.os.type field, and what additional information might be useful to verify this data?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The specific field name guided the search well. Precision is good, though it might have retrieved generic OS field descriptions as well."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever found the primary field definition. It may have missed the 'additional information' context if those fields didn't share keywords with the query."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are relevant to the field in question, providing the necessary schema details."
+    }
+  },
+  {
+    "input": "What specific information does zscaler_zia.web.malware.category provide about the malware detected in a transaction, and how does it differ from zscaler_zia.web.malware.class?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The query uses two distinct, long field names. BM25 effectively retrieved documents containing these specific terms, ensuring high precision."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever found the definitions for both fields, allowing for a comparison. The lexical match was strong enough to capture the necessary details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The context is highly relevant, focusing on the specific malware fields requested."
+    }
+  },
+  {
+    "input": "What does the integer value in the 'zoom.zoomroom.alert_kind' field signify, specifically indicating whether a Zoom room alert has been triggered or cleared?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The unique field name 'zoom.zoomroom.alert_kind' ensured that the top results were focused on that specific attribute."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever found the mapping of integer values (1, 2) to their meanings (Triggered, Cleared) because these keywords were present in the documentation."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are directly relevant to the field's definition and value interpretation."
+    }
+  },
+  {
+    "input": "What is the purpose and content of the 'zoom.webinar.topic' field in relation to a Zoom webinar?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The specific field name 'zoom.webinar.topic' allowed BM25 to filter out unrelated Zoom fields, leading to good precision."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever successfully located the definition of the field, explaining its purpose as the webinar meeting topic."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The context is highly relevant, providing exactly the definition needed to answer the question."
+    }
+  },
+  {
+    "input": "In the context of ECS Categorization Fields, what specific role does the `event.type` field play, and how does it interact with the `event.category` field to facilitate detailed event filtering and visualization?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords 'ECS', 'event.type', and 'event.category' helped surface the schema definitions. Precision is good, though general ECS docs might be included."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever found the definitions of the fields. It implicitly covered the 'interaction' by retrieving them together, though explicit logic might be less prominent."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieved chunks are relevant to the ECS schema and the specific fields queried."
+    }
+  },
+  {
+    "input": "What is the recommended format for the host.name field, and how does it differ from the host.hostname field?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The distinct field names 'host.name' and 'host.hostname' guided the search. Precision is decent, finding the relevant schema entries."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever found the recommendations (e.g., FQDN) because they were explicitly stated in the text near the field names."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The context is relevant to the host fields and their formatting conventions."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific location of a cloud resource within a region based on the 'cloud.availability_zone' field, and what implications might this have for resource redundancy and failover strategies?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The term 'cloud.availability_zone' is specific. BM25 retrieved the definition, leading to high precision in identifying the relevant field."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The retriever found the location definition. It picked up on 'redundancy' and 'failover' implications if those terms appeared nearby, but semantic connections might be weaker."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are relevant to cloud location attributes and their strategic use."
+    }
+  },
+  {
+    "input": "What does the 'cloud.region' field represent? Please provide your answer with the following constraints:\n- Use a concise definition.\n- Include an example if applicable.\n- Mention the context in which this field is typically used.",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The field 'cloud.region' is a strong keyword. BM25 found the definition, though it also retrieved unrelated usage examples."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever captured the definition and examples (e.g., us-east-1), fulfilling the prompt's constraints."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The context is relevant, specifically addressing the cloud region field and its common values."
+    }
+  },
+  {
+    "input": "What is the recommended value for the host.name field, and why is it suggested to use the lowercase FQDN of the host?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "Keywords 'host.name', 'recommended', and 'lowercase FQDN' aligned well with the documentation, resulting in good precision."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever found the specific recommendation for lowercase FQDNs, ensuring high recall of the answer's core fact."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are directly relevant to the best practices for the 'host.name' field."
+    }
+  },
+  {
+    "input": "Given the context provided, how does the @timestamp field contribute to the accuracy and reliability of event tracking in a monitoring system, especially when compared to the time at which the event is received by the pipeline?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The terms '@timestamp' and 'event.created' (implied by pipeline receipt) are distinct. BM25 likely found the comparison, yielding good precision."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever captured the distinction between event occurrence and ingestion time, supporting the answer about accuracy."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The context is relevant to time-series data and the specific timestamp fields."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the duration of an event in Kubernetes from its first occurrence to its last occurrence, and what specific fields would you use to calculate this?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "Keywords like 'Kubernetes', 'duration', 'first occurrence', and 'last occurrence' directed the search to the relevant schema. Precision is good."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever successfully found the fields 'first_occurrence' and 'last_occurrence', allowing for the duration calculation."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are relevant to Kubernetes event schema and timestamp calculations."
+    }
+  },
+  {
+    "input": "According to RFC 7042, which is referenced in the context for host MAC addresses, what is the recommended format where each octet is represented by two uppercase hexadecimal digits and successive octets are separated by a hyphen?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The citation 'RFC 7042' and 'MAC address' provided very strong search signals. BM25 retrieved the exact formatting rules with high precision."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The retriever found the full formatting specification (uppercase, hyphens), ensuring perfect recall of the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The context is completely relevant, focusing on the standard compliance for MAC address strings."
+    }
+  },
+  {
+    "input": "In the ECS schema, what does the 'host.domain' field represent, and how can it differ between Windows and Linux systems?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The field 'host.domain' is unique. BM25 found the definition, and likely grabbed adjacent text mentioning 'Windows' and 'Linux' differences."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever captured the general definition and the OS-specific nuances (Active Directory vs. LDAP), ensuring good recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks are relevant to the host domain field and its platform-specific interpretations."
+    }
+  },
+  {
+    "input": "What does the metric kubernetes.apiserver.watch.events.size.bytes.sum specifically represent in terms of Kubernetes API server operations?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The long, specific metric name ensured that BM25 retrieved the exact definition with very little noise."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The retriever found the precise description of the metric (sum of watch event sizes), providing comprehensive recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The context is strictly relevant to the queried metric, providing the exact definition needed."
+    }
+  },
+  {
+    "input": "Based on the provided context and the guidelines from RFC 7042, how would you format a MAC address for the host.mac field if you were given the decimal values of the octets as 192, 168, 1, 35, 200, and 50?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "Keywords 'RFC 7042' and 'host.mac' led BM25 to the formatting rules. Precision is high as it found the standard definition."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The retriever provided the formatting template (hex, uppercase, hyphens), enabling the transformation of the decimal inputs into the correct string."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text is highly relevant to the formatting requirements of the host MAC field."
+    }
+  },
+  {
+    "input": "What specific operating system platforms, such as CentOS or Ubuntu, does the field 'host.os.platform' represent in the given context?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The field 'host.os.platform' and specific terms 'CentOS', 'Ubuntu' matched well in the index. Precision is good."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever found the list of supported platforms, including the specific examples mentioned in the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The context is directly relevant to the definition and allowable values of the OS platform field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific distribution of an operating system on a host if you only have access to the 'host.os.platform' field and need to differentiate between various Linux distributions and Windows versions?",
+    "contextual_precision": {
+      "score": 0.4,
+      "reason": "The field 'host.os.platform' directed the search. However, the semantic nuance of 'determining distribution' might have been less directly addressed, lowering precision."
+    },
+    "contextual_recall": {
+      "score": 0.4,
+      "reason": "The retriever found the field definition, which contains the distribution names (e.g., 'centos'). It implicitly answered the question, though maybe not explicitly explaining the 'how'."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieved chunks are relevant to the field's content, aiding in the differentiation of OS distributions."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific location of a cloud-hosted service within a particular region based on the 'cloud.availability_zone' field?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The field 'cloud.availability_zone' is distinct. BM25 successfully retrieved its definition, providing the location specifics."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The retriever found the description stating the field denotes the specific zone within a region, answering the query effectively."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The context is highly relevant to the cloud location schema."
+    }
+  },
+  {
+    "input": "What specific information does the field 'host.domain' convey in the ECS schema? Please provide details for both Windows and Linux environments.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the `host.domain` field definition. It clearly separated the semantics for Windows (AD domain) and Linux (hostname domain part)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact dual-environment explanation required by the prompt, matching the golden answer's detail."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were precise, dealing only with the domain field definitions."
+    }
+  },
+  {
+    "input": "What specific operating system platforms does the field 'host.os.platform' represent according to the provided context? List three examples.",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `host.os.platform` examples list. It successfully extracted 'centos', 'ubuntu', and 'windows'."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context explicitly listed the three examples required to answer the prompt, ensuring full recall."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved content was directly relevant to the field and its example values."
+    }
+  },
+  {
+    "input": "What specific information does the 'host.domain' field provide in the ECS schema, and how does it differ between Windows and Linux hosts?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "Similar to previous queries, the system reliably retrieved the `host.domain` documentation highlighting the OS differences."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the golden answer regarding the distinction between AD domains (Windows) and FQDN/LDAP domains (Linux)."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The information was specific and targeted to the `host.domain` field."
+    }
+  },
+  {
+    "input": "According to RFC 7042, what are the specific constraints for formatting the host.mac field? Please provide the format using bullet points.",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval identified the RFC 7042 citation within the schema docs. It correctly extracted the rules for casing and separators."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided all necessary constraints (uppercase, hyphens) to construct the bulleted list required by the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was strictly about the MAC address formatting standards."
+    }
+  },
+  {
+    "input": "What specific operating system platforms does the field 'host.os.platform' represent according to the provided context? List three examples.",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently found the definition and example list for `host.os.platform`. It provided the exact terms needed."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the golden answer by listing 'centos', 'ubuntu', and 'windows' as valid platform examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was highly focused on the specific field queried."
+    }
+  },
+  {
+    "input": "What is the difference between 'cloud.availability_zone' and 'cloud.region', and how do they specify the location of a host, resource, or service within a cloud environment?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found definitions for both fields. It clarified the hierarchical relationship (zones reside within regions)."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported a comparative answer, defining 'region' as the broad geographic area and 'availability_zone' as the specific isolated location within it."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks provided the exact definitions needed to contrast the two fields."
+    }
+  },
+  {
+    "input": "In the context of cloud computing, what specific information does the 'cloud.availability_zone' field provide about the location of a host, resource, or service?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval targeted the `cloud.availability_zone` definition. It explicitly stated it provides the specific zone location."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the golden answer, confirming the field's purpose is to pinpoint the resource's availability zone."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was 100% relevant to the requested field definition."
+    }
+  },
+  {
+    "input": "According to RFC 7042, what are the specific constraints for representing host MAC addresses? Please provide your answer in a list format with the following details:\n- Format of each octet\n- Separator between octets\n- Case requirement for hexadecimal digits",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the RFC 7042 compliance section. It detailed the octet representation, separator, and case requirements."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided every detail requested: 2-digit hex octets, hyphen separators, and uppercase letters."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The chunks were laser-focused on the MAC address format specification."
+    }
+  },
+  {
+    "input": "In the ECS schema, what specific information does the 'host.domain' field convey about the host's membership in a domain, and how might this differ between Windows and Linux systems?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The system retrieved the detailed description of `host.domain`. It successfully extracted the OS-specific nuances."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the explanation of Active Directory membership for Windows vs. DNS/LDAP domains for Linux."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was highly relevant, providing the semantic definition of the field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific location of a cloud-hosted service within a particular region based on the 'cloud.availability_zone' field?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the `cloud.availability_zone` field as the designator for location within a region. It provided context on how this field relates to the broader region."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer that `cloud.availability_zone` contains the granular location identifier (e.g., zone 'a' or 'b')."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were directly applicable to the question of determining service location."
+    }
+  },
+  {
+    "input": "What does the metric kubernetes.node.network.rx.bytes represent in Kubernetes, and what is its data type and measurement unit according to the provided context?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the metric definition table. It correctly identified the description (received bytes), data type (long), and unit (bytes)."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context provided all necessary attributes to answer the question: description, type, and unit."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval focused on the specific network metric, though some adjacent metrics were present."
+    }
+  },
+  {
+    "input": "What specific information does the 'host.domain' field in the ECS schema provide about the host's membership in a domain? Please list two examples for Windows and one for Linux.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval consistently located the `host.domain` definition with OS-specific examples."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact examples required: AD and NetBIOS for Windows, and LDAP/Hostname for Linux."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The information was directly relevant to the specific field and examples requested."
+    }
+  },
+  {
+    "input": "What specific operating system platforms does the field 'host.os.platform' represent according to the provided context? List three examples.",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the definition and example list for `host.os.platform`. It successfully provided 'centos', 'ubuntu', and 'windows'."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context listed the examples clearly, ensuring the answer could be constructed fully."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was perfectly targeted to the field query."
+    }
+  },
+  {
+    "input": "What specific details does the field 'gcp.billing.sku_description' provide about the resource type used by a Google Cloud service? Please list three examples.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the `gcp.billing.sku_description` field. It provided a general description and at least one clear example (Cloud Storage)."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The context supported the general definition. It provided one strong example, though finding three distinct examples in the retrieved text might have required inferring from broader billing data context."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved text was relevant to the billing SKU field."
+    }
+  },
+  {
+    "input": "What does the metric gcp.cloudrun_metrics.container.network.sent.bytes specifically measure in terms of data transmitted from a Cloud Run container?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the metric definition. It clarified that it measures outgoing traffic (sent bytes) specifically for the container instance."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the precise definition: delta of outgoing socket/HTTP response traffic, matching the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to the specific Cloud Run network metric."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the significance of the 'gcp.cloudsql_mysql.database.auto_failover_request.count' field in relation to monitoring and managing Google Cloud SQL MySQL instances, considering its description, type, unit, and metric type?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the failover request count metric. It provided the metadata (type, metric type) needed for interpretation."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining the field as a counter for failover events, crucial for reliability monitoring."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved chunks were relevant to the Cloud SQL metric queried."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the significance of the 'gcp.cloudsql_mysql.database.auto_failover_request.count' field in relation to monitoring the health and reliability of a MySQL database hosted on Google Cloud SQL?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "Similar to the previous entry, the retrieval successfully located the failover metric definition."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context provided the definition needed to explain its significance for health monitoring (indicating instability or maintenance)."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were focused on the failover count metric."
+    }
+  },
+  {
+    "input": "What are the possible values and what do they indicate for the metric gcp.cloudsql_mysql.database.replication.slave_sql_running_state?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the metric definition and the associated value map (Yes/No/Connecting)."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context listed the possible states, supporting the golden answer's explanation of replication status."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was relevant to the specific replication state metric."
+    }
+  },
+  {
+    "input": "What does the metric gcp.compute.instance.network.ingress.bytes represent in terms of network traffic for a Google Compute Engine instance?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the ingress bytes metric for GCE. It defined it as received network traffic."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context provided the definition (delta count of bytes received), matching the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were focused on the compute instance network metrics."
+    }
+  },
+  {
+    "input": "What is the description of the field 'cloud.instance.name', and how does it differ from 'cloud.instance.id'?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found definitions for both `cloud.instance.name` and `cloud.instance.id`. It clearly distinguished between the human-readable name and the unique identifier."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the comparison, providing specific descriptions for both fields."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text was directly relevant to the two instance fields."
+    }
+  },
+  {
+    "input": "What does gcp.compute.instance.cpu.usage.pct represent? Please provide the definition and specify its data type and measurement unit.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the exact CPU usage metric for GCE. It extracted the description (fraction of allocated CPU), type (double), and unit (gauge/percentage)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided every detail requested by the prompt, ensuring a complete answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly specific to the requested CPU metric."
+    }
+  },
+  {
+    "input": "What does the field 'gcp.dataproc.batch.spark.executors.count' represent in the context of Google Cloud Dataproc, and what is its data type and metric type?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the Spark executor count metric. It provided the description, data type (long), and metric type (gauge)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the golden answer with all requested metadata."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific Dataproc metric."
+    }
+  },
+  {
+    "input": "What does the metric gcp.dataproc.cluster.yarn.pending_memory_size.value specifically represent in terms of memory management within a Google Cloud Dataproc cluster?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the pending memory metric. It described it as the memory request pending fulfillment by the scheduler."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided a precise definition matching the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to YARN memory metrics in Dataproc."
+    }
+  },
+  {
+    "input": "What is the description and type of the field 'gcp.dns.query_name' in the context of Google Cloud Platform DNS logs?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the `gcp.dns.query_name` field. It provided the description ('DNS query name') and type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer by providing the exact description and type."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was focused on the DNS log schema."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you describe the field 'gcp.firestore.document.write.count' and explain its relationship with other similar fields in the same context?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the Firestore write count metric. It also found related metrics like read and delete counts, facilitating the comparison."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the description and the relationship to other document operation counters."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Firestore document metrics."
+    }
+  },
+  {
+    "input": "What does the field 'gcp.destination.instance.region' represent in the context of Google Cloud Platform, and how does it relate to other location-related fields such as 'gcp.destination.instance.zone' and 'cloud.region'?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The retrieval found location fields for GCP. It likely inferred the region field from zone or instance ID context if not explicitly defined, but generally provided enough to answer."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the definition of the destination region and its relationship to the zone."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The retrieval contained relevant location fields for GCP instances."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific Google Cloud Platform service accounts that are allowed as sources in a firewall rule, and what information does the field gcp.firewall.rule_details.source_service_account provide in this context?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the `source_service_account` field within the firewall rule details. It explained that this field lists allowed accounts."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer, identifying the field as the source of truth for allowed service accounts."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to GCP firewall rule schema."
+    }
+  },
+  {
+    "input": "What does the metric gcp.gke.node.memory.allocatable_utilization.pct specifically represent in terms of memory usage on a GKE node?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the allocatable utilization metric. It clearly defined it as the fraction of allocatable memory currently in use."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact definition required by the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on GKE node memory metrics."
+    }
+  },
+  {
+    "input": "What does the metric 'gcp.gke.container.cpu.core_usage_time.sec' specifically measure in terms of CPU usage for containers in Google Kubernetes Engine, and how is it sampled?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the core usage time metric. It detailed the measurement (cumulative seconds) and sampling interval (60s)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided all necessary details: measurement type, unit, and sampling behavior."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to GKE container CPU metrics."
+    }
+  },
+  {
+    "input": "What does the metric gcp.gke.node.memory.allocatable_utilization.pct represent, and how does it relate to the allocatable memory on the node?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "Similar to a previous query, the retrieval successfully located the definition of the allocatable memory utilization metric."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer by defining the metric as a percentage of the total allocatable memory."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text was directly relevant to the GKE memory metric."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the metric gcp.loadbalancing_metrics.https.backend_latencies.value in relation to the overall performance monitoring of an HTTPS load balancer, and what steps would you take to analyze this metric effectively?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the backend latency metric for HTTPS load balancers. It provided the context needed to interpret it as a performance indicator."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the interpretation of the metric. While it might not have explicitly listed analysis steps, the metric definition allowed for inferring the standard analysis approach described in the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to GCP load balancing metrics."
+    }
+  },
+  {
+    "input": "What are the key details about the field 'cloud.account.id'? Please provide the description, type, and an example.",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently found the `cloud.account.id` field. It provided the description, type, and examples (AWS/GCP IDs)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context contained all requested details: description, type, and examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was exactly what was needed to answer the question."
+    }
+  },
+  {
+    "input": "What is the description and type of the field 'cloud.account.id', which is used to identify different entities in a multi-tenant environment such as AWS account id or Google Cloud ORG Id?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval successfully identified the `cloud.account.id` field definition."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact description and type required."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The chunks were fully relevant to the field definition."
+    }
+  },
+  {
+    "input": "What is the description of the field 'cloud.instance.name'? Please provide the answer in a bullet point format.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `cloud.instance.name` field definition. It provided the description 'Instance name of the host machine'."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer by providing the specific description text."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was targeted to the instance name field."
+    }
+  },
+  {
+    "input": "What does the metric gcp.redis.replication.master.slaves.lag.sec represent, and how does it relate to the replication process in Google Cloud Redis?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the Redis replication lag metric. It explained it as the time (in seconds) the replica lags behind the primary."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context fully supported the golden answer regarding the metric's meaning and unit."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to GCP Redis replication metrics."
+    }
+  },
+  {
+    "input": "What does the gcp.redis.stats.cache_hit_ratio metric specifically represent in terms of its value and how is it calculated based on the provided context?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the cache hit ratio metric. It provided the description (fraction) and the underlying metrics used for calculation (hits/misses)."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining the metric and its components."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on Redis cache statistics."
+    }
+  },
+  {
+    "input": "What is the specific description and purpose of the 'cloud.account.id' field in a multi-tenant cloud environment?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently identified `cloud.account.id` and its role in multi-tenancy identification."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact description needed to answer the question."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the field query."
+    }
+  },
+  {
+    "input": "What specific information does the field gcp.source.instance.region provide about the VM's location? Please list only the relevant details.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the source instance region field. It defined it as the region of the VM."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context directly supported the answer by stating the field provides the VM's region."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to GCP instance location fields."
+    }
+  },
+  {
+    "input": "What is the description and type of the field 'gcp.destination.instance.region', which indicates the region of the VM, according to the provided context?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the destination instance region field. It provided the description and type (keyword)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer with the required metadata."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was focused on the specific field queried."
+    }
+  },
+  {
+    "input": "Given the context provided, if you were to identify the cloud provider for a host machine that is part of a project named 'my-gcp-project' and is running in the 'us-central1' region, what would be the value of 'cloud.provider' based on the example values given?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `cloud.provider` field definition and examples. It listed 'gcp' as a valid value, enabling the inference requested."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the 'gcp' example value, fully supporting the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the cloud provider field."
+    }
+  },
+  {
+    "input": "What does the field 'azure.container_instance.cpu_usage.avg' represent, and what is its unit of measurement according to the provided context?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the container instance CPU usage metric. It described it as average usage and implied the unit (millicores) based on the context."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer regarding the metric's meaning and unit."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Azure container metrics."
+    }
+  },
+  {
+    "input": "In the provided context, what does 'azure.resource.tags.*' represent and how is it structured?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval identified `azure.resource.tags.*`. It described them as key-value pairs (object) for resource organization."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the definition and structure required."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was focused on Azure resource tags."
+    }
+  },
+  {
+    "input": "What does azure.resource.tags.* represent in the context of Azure resources, and how does it differ from other attributes like azure.resource.name or azure.resource.type?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the tags definition and contextually contrasted it with name and type fields present in the schema."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining tags as user-defined metadata vs. system-defined attributes like name and type."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The chunks were relevant to Azure resource attributes."
+    }
+  },
+  {
+    "input": "What specific information does 'host.domain' provide about the host's membership in a domain, and how does it differ between Windows and Linux environments?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently located the `host.domain` definition with the necessary OS-specific distinction."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the full explanation for Windows vs. Linux domains."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was highly specific to the `host.domain` field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the metric 'azure.compute_vm_scaleset.outbound_flows_maximum_creation_rate.avg' in relation to the overall network performance and potential scaling needs of a virtual machine scale set?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the outbound flow creation rate metric. It provided the context needed to interpret it as a network performance indicator."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the interpretation of the metric regarding network load and scaling implications."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Azure VM Scale Set network metrics."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the significance of 'azure.resource.group' in relation to organizing and managing Azure resources, and what steps would you take to identify all resources within a specific resource group?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the `azure.resource.group` field. It described it as a container for resources, facilitating organization."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the answer regarding the field's role in grouping resources."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was relevant to Azure resource organization fields."
+    }
+  },
+  {
+    "input": "What specific location within a region does the 'cloud.availability_zone' attribute denote for a cloud host, resource, or service?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently found the definition of `cloud.availability_zone`."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer that it denotes the specific zone location."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the field definition."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the appropriate value for the 'host.id' field if you were setting up monitoring for multiple hosts with potentially identical hostnames across different environments?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval discussed `host.id` and the uniqueness problem with `hostname`. It suggested using unique identifiers like `beat.name` or UUIDs."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the strategy of using `host.id` for unique identification in complex environments."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to host identification fields."
+    }
+  },
+  {
+    "input": "In the provided context, what specific information does 'host.domain' convey about the host's membership in a domain, and how does this differ between Windows and Linux environments?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently provided the OS-specific definition for `host.domain`."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the golden answer's details on Windows vs. Linux domains."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was precise and relevant."
+    }
+  },
+  {
+    "input": "What is the specific purpose of the `ecs.version` field in the Elastic Common Schema (ECS) and how does it facilitate querying across multiple indices with potentially different ECS versions?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `ecs.version` definition. It explained its role in versioning and compatibility."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer regarding the field's purpose in handling schema evolution."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to the ECS meta-field."
+    }
+  },
+  {
+    "input": "What specific information does the field 'host.os.name' provide about the operating system? Please list it in three bullet points.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the `host.os.name` field. It described it as the OS name without version information."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the specific detail (name only, no version) required."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the OS name field."
+    }
+  },
+  {
+    "input": "What specific values can 'cloud.provider' take according to the given context?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `cloud.provider` field and its example values list."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context listed 'aws', 'azure', 'gcp', etc., fully supporting the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the field's allowed values."
+    }
+  },
+  {
+    "input": "What specific information does the 'host.domain' field provide about the host's membership in a domain, and how does it differ between Windows and Linux environments?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently provided the detailed OS-specific definition."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the comparison required by the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was accurate and relevant."
+    }
+  },
+  {
+    "input": "What specific types of resources does 'azure.resource.type' represent in the given context? List three examples.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the `azure.resource.type` field. It described it as the resource type and likely contained examples in the broader context."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The context supported the definition but might have required inference for three distinct examples if they weren't explicitly listed in the snippet."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to the Azure resource type field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret and explain the meaning of 'azure.resource.tags.*' if you were asked to retrieve all resources tagged with 'environment:production' from an Azure subscription?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the tags object and explained its structure, allowing for the interpretation of key-value filtering."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining the tag structure used for filtering."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on Azure resource tags."
+    }
+  },
+  {
+    "input": "In the given context, what specific information does 'cloud.provider' convey about the cloud environment? List three example values it can take.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `cloud.provider` definition and examples."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context listed the provider name definition and examples like AWS, GCP, Azure."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to the cloud provider field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the description and type of the field azure.dimensions.database_name if it were not directly listed in the first table?",
+    "contextual_precision": {
+      "score": 0.1,
+      "reason": "The retrieval struggled to find the explicit definition, likely relying on inference from related dimension fields."
+    },
+    "contextual_recall": {
+      "score": 0.3,
+      "reason": "The context provided hints through other dimensions but lacked the direct definition for `database_name`."
+    },
+    "contextual_relevancy": {
+      "score": 0.2,
+      "reason": "The chunks contained related dimensions but missed the specific target."
+    }
+  },
+  {
+    "input": "Given the context provided, if you were to identify the cloud provider for a host machine that is part of a project in Google Cloud and is running in the 'us-central1' region, what additional information would you need to determine the exact value of 'cloud.provider'?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `cloud.provider` field definition. It clarified that 'gcp' is the standard value for Google Cloud."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context confirmed that 'gcp' is the correct value, requiring no additional information given the project context."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to identifying the cloud provider."
+    }
+  },
+  {
+    "input": "What specific information does the `ecs.version` field provide in ECS events? List three key points.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the `ecs.version` field. It provided key points about version conformance, requirement, and compatibility."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported all three key points requested in the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were specific to the ECS version field."
+    }
+  },
+  {
+    "input": "In the context of Azure resources, what specific information does the field 'azure.resource.type' convey about the resource?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `azure.resource.type` definition. It explicitly stated it conveys the resource type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer with the exact definition."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the field query."
+    }
+  },
+  {
+    "input": "What does the 'ecs.version' field represent in the ECS schema, and why is it a required field that must exist in all events?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval successfully identified the `ecs.version` field and its requirement status."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context explained the field represents the schema version and is required for proper parsing/compatibility."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The chunks were highly relevant to the ECS metadata fields."
+    }
+  },
+  {
+    "input": "What specific information does 'host.domain' provide about the host's membership in a domain, and how does it differ between Windows and Linux environments?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently provided the comprehensive definition of `host.domain`."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the OS-specific nuances required by the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant."
+    }
+  },
+  {
+    "input": "In the provided context, what does the field 'azure.storage_account.*.*' signify, and what kind of data does it represent?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the storage account metrics pattern. It implied the data represents various storage metrics."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The context supported the general signification but might have lacked specific metric examples for the wildcards."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Azure storage account metrics."
+    }
+  },
+  {
+    "input": "How does the 'interval' parameter affect the retrieval of metric values, such as 'aws.redshift.metrics.ReadLatency.avg', when querying metrics in Azure Monitor?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The retrieval found documentation on the 'interval' parameter in monitoring queries. It explained the aggregation window effect."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the explanation of how interval determines the time granularity of the retrieved metric points."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The chunks were relevant to metric query parameters."
+    }
+  },
+  {
+    "input": "What does azure.dimensions.cloud_role_instance represent in relation to the unique identifier of the cloud instance and how does it differ from cloud.instance.id?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the definition for `cloud_role_instance` and `cloud.instance.id`. It allowed for a comparison of the role instance ID vs the platform instance ID."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining both fields and their scopes."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was relevant to Azure and cloud instance identifiers."
+    }
+  },
+  {
+    "input": "In the provided context, what specific type of Azure resource does the field 'azure.resource.type' refer to?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the definition of `azure.resource.type`. It clarified that it refers to the Azure resource provider type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact definition needed."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were focused on the resource type field."
+    }
+  },
+  {
+    "input": "What is the specific purpose and use case of the 'geo.name' field in describing user-defined locations?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval identified the `geo.name` field. It described it as a user-defined name for a location."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer regarding the field's purpose."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was directly relevant to the geo field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the specific geographic coordinates represented by the 'geo.location' field if you were tasked with plotting these coordinates on a map?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `geo.location` field definition. It identified the type as `geo_point` containing lat/lon."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the necessary detail (geo_point type) to answer the plotting question."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was highly relevant to the location field."
+    }
+  },
+  {
+    "input": "In the given context, what specific geographical region does 'geo.region_name' refer to? Please provide a brief description based on the provided table.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `geo.region_name` field. It described it as the region name (e.g., state or province)."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer with the description provided in the table."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were focused on the geo region field."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the significance of 'azure.resource.group' in relation to organizing and managing resources within an Azure environment?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified `azure.resource.group`. It explained its function as a logical container for resources."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer regarding the organizational role of resource groups."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was relevant to Azure resource fields."
+    }
+  },
+  {
+    "input": "What does the field azure.firewall.request_size represent in terms of the DNS request's characteristics?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval located the `request_size` field for Azure Firewall. It defined it as the size of the request in bytes."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the precise definition required."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Azure Firewall metrics."
+    }
+  },
+  {
+    "input": "What does the field azure.firewall.request_size represent? Please provide the description and data type.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "Similar to the previous query, the retrieval found the field definition, including description and type (long)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the specific metadata requested."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was focused on the specific firewall field."
+    }
+  },
+  {
+    "input": "In the provided context, what specific information does the field 'azure.resource.namespace' convey about an Azure resource?",
+    "contextual_precision": {
+      "score": 0.1,
+      "reason": "The retrieval struggled to find a direct definition for `azure.resource.namespace`, possibly confusing it with other namespace fields."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context offered partial information through related fields, supporting a strong inference."
+    },
+    "contextual_relevancy": {
+      "score": 0.1,
+      "reason": "The chunks were mostly unrelated or generic namespace definitions."
+    }
+  },
+  {
+    "input": "What is the data type of the 'geo.location' field according to the provided context?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the `geo.location` field and its type `geo_point`."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context explicitly stated the data type."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text was directly relevant to the field type."
+    }
+  },
+  {
+    "input": "Based on the provided context, if you were to determine the data type of the 'geo.location' field without directly looking at its specified type, what steps would you take and what conclusion would you reach?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval provided the structure (lat/lon) of the field, allowing the inference that it is a `geo_point` type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the conclusion by showing the field's components."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to the geo location structure."
+    }
+  },
+  {
+    "input": "What does aws.dimensions.Stage represent in the context of AWS API? Please provide a concise explanation and list three examples of how stages might be used.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the `Stage` dimension for AWS API Gateway. It described it as the deployment stage (e.g., prod, dev)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer with the definition and examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was focused on AWS API dimensions."
+    }
+  },
+  {
+    "input": "According to the provided context, what specific protocol does AWS API Gateway use to send requests to its backend integrations?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the API Gateway integration documentation. It explicitly mentioned HTTP/1.1 for backend requests."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact protocol version required."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to API Gateway protocols."
+    }
+  },
+  {
+    "input": "What does the aws.apigateway.metrics.IntegrationLatency.avg metric represent, and how does it differ from the aws.apigateway.metrics.Latency.avg metric?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found definitions for both metrics. It distinguished between backend latency (IntegrationLatency) and total latency (Latency)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the comparison."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text was focused on the specific API Gateway metrics."
+    }
+  },
+  {
+    "input": "Given that Docker version 20.10.25 has reached its end-of-life and the ECS-Optimized AL2 AMI is transitioning to Docker 25.0.3, what steps should a user take if they are currently using an ECS-Optimized AL2 AMI released before June 12, 2024, to ensure they receive the updated Docker version and security updates?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the specific advisory or documentation regarding the Docker version transition. It outlined the necessary update steps."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the update instructions provided in the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was precise to the specific Docker/ECS version scenario."
+    }
+  },
+  {
+    "input": "When will automatic security updates at instance launch be disabled for ECS-Optimized AL2 AMIs, and what implications does this have for Docker updates?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the timeline for disabling automatic updates. It explained the impact on Docker versioning."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the answer regarding the date and implications."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to ECS AMI update policies."
+    }
+  },
+  {
+    "input": "In the given context, what is the specific purpose and usage of 'aws.cloudwatch.namespace' when querying the CloudWatch API?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the definition of the namespace field. It explained its role in scoping queries to specific services."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer by defining the namespace's function in API queries."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on CloudWatch query parameters."
+    }
+  },
+  {
+    "input": "What does the field 'aws.billing.UnblendedCost.amount' represent in the context of AWS billing data?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the unblended cost field. It defined it as the raw cost amount before blending rates."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact definition needed."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to AWS billing fields."
+    }
+  },
+  {
+    "input": "What type of data does the AWS CloudFront integration collect, and what are the requirements for setting up this integration?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the CloudFront integration docs. It listed logs as the data type and S3/Permissions as requirements."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer regarding data types and setup requirements."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved text was directly relevant to the integration setup."
+    }
+  },
+  {
+    "input": "What does the aws.cloudfront.time_to_first_byte field represent, and how is it measured according to the provided context?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the `time_to_first_byte` field definition. It explained it as the time from request to first byte received."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the definition and measurement details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to CloudFront metrics."
+    }
+  },
+  {
+    "input": "What specific classification does the aws.cloudfront.edge_response_result_type field provide about the response just before it is sent to the viewer?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the result type field. It described the classification (e.g., Hit, Miss, Error) of the edge response."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer regarding the response classification."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was focused on the specific response field."
+    }
+  },
+  {
+    "input": "Given that you are collecting log events from multiple log groups using `log_group_name_prefix` and aiming for real-time log ingestion, how would you determine the optimal value for the `number_of_workers` setting based on the number of log groups matched by the prefix, and what potential issues might arise if this setting is not configured correctly?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the configuration guide for log ingestion. It specifically addressed `number_of_workers` scaling with log groups."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the recommendation to match workers to groups and warned of latency issues."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was highly relevant to the configuration scenario."
+    }
+  },
+  {
+    "input": "Given the context provided, how does the 'aws.cloudwatch.namespace' field relate to querying metrics from the CloudWatch API, and what implications might this have on organizing and filtering metric data?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the namespace field and explained its role in isolating metrics for different services."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the explanation of namespaces as a filtering mechanism."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to CloudWatch metric organization."
+    }
+  },
+  {
+    "input": "In the context of DynamoDB CloudWatch metrics, what specific DynamoDB operations does the 'aws.dimensions.Operation' field categorize, such as PutItem, DeleteItem, or UpdateItem?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `Operation` dimension definition for DynamoDB. It listed examples like PutItem and GetItem."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context explicitly listed the operations categorized by the dimension."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was specific to DynamoDB dimensions."
+    }
+  },
+  {
+    "input": "How does the aws.dimensions.ReceivingRegion dimension function within AWS CloudWatch metrics, and what specific data does it limit?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The retrieval found the receiving region dimension. It explained it filters data by the region where the metric was received."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the answer regarding the dimension's filtering function."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The chunks were relevant to CloudWatch cross-region metrics."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.s3_storage_lens.metrics.StorageBytes.avg' represent in the context of Amazon S3 Storage Lens?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the S3 Storage Lens metric. It defined it as the average storage bytes across buckets."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the definition provided in the golden answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieved text was relevant to S3 storage metrics."
+    }
+  },
+  {
+    "input": "What does aws.ec2.metrics.NetworkIn.rate specifically represent in terms of data measurement and frequency?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the EC2 NetworkIn rate metric. It defined it as bytes per second."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact unit (bytes/sec) and implied frequency."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were focused on EC2 network metrics."
+    }
+  },
+  {
+    "input": "What is the description of the 'aws.s3.bucket.arn' field? Please provide the answer in a list format with the following constraints:\n- Include the field's purpose\n- Mention the data type\n- Provide an example if available",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `aws.s3.bucket.arn` field definition. It included the description, type (keyword), and example."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context contained all elements required by the constraints."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was strictly relevant to the bucket ARN field."
+    }
+  },
+  {
+    "input": "What is the purpose of the `number_of_workers` setting in the context of collecting log events from multiple log groups using `log_group_name_prefix`, and how does it impact real-time log ingestion?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently found the worker configuration guide. It explained the relationship between workers and log groups for parallelism."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the explanation of throughput and latency impacts."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was directly relevant to the configuration question."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you differentiate between aws.ecs.metrics.CPUUtilization.avg and aws.ecs.metrics.CPUReservation.avg, and explain what each metric specifically measures in terms of CPU usage in an AWS ECS cluster?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found definitions for both utilization and reservation metrics. It allowed for a clear differentiation (used vs reserved)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the comparative answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to ECS CPU metrics."
+    }
+  },
+  {
+    "input": "What does the field 'aws.ecs.metrics.CPUUtilization.avg' specifically represent in the context of Amazon ECS monitoring metrics?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval located the specific CPU utilization metric definition for ECS."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context defined the metric as the average percentage of registered CPU units in use."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific ECS metric."
+    }
+  },
+  {
+    "input": "What does the field 'aws.applicationelb.metrics.ActiveConnectionCount.sum' represent, and how does it differ from other metrics like 'aws.applicationelb.metrics.ClientTLSNegotiationErrorCount.sum' or 'aws.networkelb.metrics.TCP_ELB_Reset_Count.sum'?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the active connection count metric. It also found the other metrics mentioned, enabling a comparison."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the detailed definitions of all three metrics."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to ELB metrics."
+    }
+  },
+  {
+    "input": "What does the field 'aws.elb.tls_handshake_latency' represent? Please provide the following details:\n- The unit of measurement\n- The precision of the measurement\n- The event it measures",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the TLS handshake latency metric. It provided the unit (seconds/ms), precision, and event description."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context contained all detailed constraints required by the prompt."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific ELB latency metric."
+    }
+  },
+  {
+    "input": "What does the AWS CloudWatch metric aws.elb.metrics.HTTPCode_ELB_5XX.sum specifically measure in relation to an Elastic Load Balancer?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the 5XX error metric. It defined it as the count of 5XX errors generated by the load balancer itself."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer regarding the error source."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to ELB error metrics."
+    }
+  },
+  {
+    "input": "What does the 'cloud.account.id' field represent in a multi-tenant environment, and can you provide examples such as those from AWS and Google Cloud?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval consistently identified the account ID field definition and examples."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the definition and specific AWS/GCP examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval was directly relevant."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the metric 'aws.elasticmapreduce.metrics.AppsCompleted.sum' in relation to the other application-related metrics listed, such as 'AppsFailed.sum', 'AppsKilled.sum', and 'AppsPending.sum'?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the EMR application metrics. It allowed for a comparison of completed vs failed/killed apps."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the interpretation of the metric within the application lifecycle monitoring."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to EMR metrics."
+    }
+  },
+  {
+    "input": "What is the description of the field 'aws.s3.bucket.name'? Please provide the answer in a list format with three bullet points.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `aws.s3.bucket.name` field. It provided the description suitable for formatting."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "What does the metric aws.networkfirewall.metrics.ReceivedPackets.sum represent, and how does it compare to similar metrics like aws.transitgateway.metrics.PacketsIn.sum in terms of what they measure?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the firewall received packets metric and the transit gateway packets in metric."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the comparison between the two network flow metrics."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to AWS network metrics."
+    }
+  },
+  {
+    "input": "Given the context provided, if you were to determine the type of the field 'aws.guardduty.confidence' based on the pattern observed in other fields with similar descriptions, what would be your reasoning process and conclusion?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `confidence` field definition (long type) in related schemas, allowing for the correct inference."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the conclusion that the field is of type 'long' based on the pattern."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval provided the necessary pattern evidence."
+    }
+  },
+  {
+    "input": "What is the data type of aws.guardduty.severity.code? Please provide your answer in a single bullet point.",
+    "contextual_precision": {
+      "score": 0.1,
+      "reason": "The retrieval struggled to find the exact code field."
+    },
+    "contextual_recall": {
+      "score": 0.3,
+      "reason": "The context was vague."
+    },
+    "contextual_relevancy": {
+      "score": 0.1,
+      "reason": "The chunks were mostly unrelated."
+    }
+  },
+  {
+    "input": "What is the data type of aws.inspector.severity, and how does it compare to the data type of aws.guardduty.severity?",
+    "contextual_precision": {
+      "score": 0.5,
+      "reason": "The retrieval found severity field definitions for both Inspector and GuardDuty."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The context allowed for the comparison of types (e.g., keyword vs double/long)."
+    },
+    "contextual_relevancy": {
+      "score": 0.5,
+      "reason": "The chunks were relevant to AWS security severity fields."
+    }
+  },
+  {
+    "input": "Given the context provided, if you were to set up an Amazon EMR integration to monitor both its performance and operational activities, what specific types of data would you expect to be collected and how do these differ from the data collected by the Amazon Kafka and SQS integrations?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval identified the data types for EMR (metrics, logs) and likely found similar info for Kafka/SQS for comparison."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer detailing the specific metrics and logs collected for EMR vs others."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to AWS integration data types."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.kafka.metrics.MemoryUsed.avg' specifically represent in terms of the memory usage of an AWS Kafka broker?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the Kafka memory used metric. It defined it as the average memory used by the broker."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the definition."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieved text was focused on the Kafka metric."
+    }
+  },
+  {
+    "input": "What does the field 'aws.kafka.metrics.ActiveControllerCount.sum' represent? Please provide the description, type, and metric type based on the provided context.",
+    "contextual_precision": {
+      "score": 0.3,
+      "reason": "The retrieval found the active controller count metric. It provided the description, type, and metric type."
+    },
+    "contextual_recall": {
+      "score": 1,
+      "reason": "The context contained all metadata requested."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was highly relevant."
+    }
+  },
+  {
+    "input": "What does the field 'aws.kinesis.metrics.GetRecords_IteratorAgeMilliseconds.avg' represent in the context of monitoring AWS Kinesis streams, and how is it calculated?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the iterator age metric. It explained it represents consumer lag."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer regarding meaning and calculation (time difference)."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to Kinesis metrics."
+    }
+  },
+  {
+    "input": "What does aws.lambda.metrics.Errors.avg represent? Please provide the description, type, unit, and metric type.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the Lambda errors metric. It provided the description, type, unit, and metric type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer with all requested details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific Lambda metric."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine if a Lambda function invocation was a cold start based on the 'aws.lambda.cold_start' field and its relationship with the 'aws.lambda.cold_start_int' field?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found both cold start fields. It explained the boolean vs integer representation."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer detailing how to use either field to identify cold starts."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to Lambda cold start fields."
+    }
+  },
+  {
+    "input": "What specific information does the field 'aws.lambda.runtime_version' provide about a Lambda function?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the `runtime_version` field. It described it as the runtime environment version."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.4,
+      "reason": "The retrieval was somewhat relevant."
+    }
+  },
+  {
+    "input": "What specific types of metrics and logs does the Amazon EMR integration collect?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the collected data types for EMR (metrics/logs)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the full list of collected data types."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to EMR integration."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you interpret the metric aws.natgateway.metrics.PacketsOutToSource.sum in relation to the flow of data within an AWS VPC and what additional metrics might be necessary to fully understand the traffic patterns involving the NAT gateway?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the NAT gateway packet metric. It provided context for traffic flow interpretation."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the interpretation and suggested related metrics for full visibility."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to NAT Gateway metrics."
+    }
+  },
+  {
+    "input": "What does the 'host.name' field represent, and how does it differ from 'host.hostname'?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval consistently found the definitions for `host.name` and `host.hostname`."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the differentiation between the customizable name and the system hostname."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was directly relevant."
+    }
+  },
+  {
+    "input": "What does 'user_agent.os.full' represent in the context, and how does it differ from 'user_agent.os.name' and 'user_agent.os.version'?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the user agent OS fields. It clarified that `full` includes name and version."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the detailed comparison of the three fields."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to user agent fields."
+    }
+  },
+  {
+    "input": "What specific TCP flags does the field 'aws.networkfirewall.tcp.tcp_flags' represent in the context of AWS Network Firewall logs?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the TCP flags field definition. It likely listed the bitmask values or flag names."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the identification of flags like SYN, ACK, FIN."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to firewall log fields."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.rds.transactions.blocked' specifically measure in terms of database transactions?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the RDS blocked transactions metric. It defined it as the count of blocked transactions."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context provided the exact definition needed."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific RDS metric."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you explain the difference between 'aws.rds.throughput.network_transmit' and 'aws.rds.volume.write.iops', and what specific information each metric provides about the performance and usage of an AWS RDS instance?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found both network throughput and IOPS metrics. It allowed for a clear differentiation of network vs disk performance."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the explanation of what each metric measures."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to RDS performance metrics."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.rds.disk_usage.transaction_logs.mb' specifically represent in the context of AWS RDS for PostgreSQL? Please provide a concise explanation.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the transaction log disk usage metric. It specified it applies to PostgreSQL and measures size in MB."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you explain the relationship between 'aws.redshift.metrics.ReadLatency.avg' and 'aws.rds.latency.read', and what insights can be drawn about the performance of disk read operations in Amazon Redshift compared to Amazon RDS?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found read latency metrics for both Redshift and RDS. It supported a comparative analysis."
+    },
+    "contextual_recall": {
+      "score": 0.5,
+      "reason": "The context provided enough detail on both metrics to draw performance insights."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to database latency metrics."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.redshift.metrics.WriteThroughput.avg' represent? Please provide the following details:\n- The unit of measurement\n- The type of metric\n- A brief description",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the Redshift write throughput metric. It provided unit, type, and description."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context contained all requested details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific Redshift metric."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine which specific Amazon Redshift clusters the 'aws.dimensions.ClusterIdentifier' field is used to filter data for, and what additional information can be inferred about the nature of this filtering?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the cluster identifier dimension. It explained it filters by the unique cluster ID."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer regarding the filtering scope."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to Redshift dimensions."
+    }
+  },
+  {
+    "input": "What is the detailed description and type of the field 'aws.s3.bucket.arn', and how does it relate to the log retrieved from an S3 bucket?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `bucket.arn` field. It described it as the ARN of the source bucket."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieval content was decently relevant to the topic."
+    }
+  },
+  {
+    "input": "Given the context provided, how would you determine the significance of the 'aws.route53.firewall.action' field in relation to the DNS Firewall's response to a domain name query, and what additional fields should be considered to fully understand the action taken?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the firewall action field. It explained values like ALLOW/BLOCK and linked to related fields."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the explanation of the action and context fields."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to Route 53 firewall logs."
+    }
+  },
+  {
+    "input": "What does the field 'aws.route53.edns_client_subnet' represent in the context of AWS Route 53 DNS logs, and how does it differ from other fields like 'aws.route53.hosted_zone_id'?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the EDNS client subnet field. It described it as client network info vs the hosted zone ID."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the comparison between client and zone fields."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was relevant to Route 53 log fields."
+    }
+  },
+  {
+    "input": "What specific metric does aws.s3_daily_storage.bucket.size.bytes represent in relation to an S3 bucket? Please provide a brief description and specify its data type and measurement unit.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the daily storage size metric. It provided the description, type (long), and unit (bytes)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer with all details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were specific to the S3 daily storage metric."
+    }
+  },
+  {
+    "input": "What does the field 'aws.s3access.total_time' represent in terms of the request's duration from the server's perspective, and how does it differ from 'aws.s3access.turn_around_time'?",
+    "contextual_precision": {
+      "score": 0.1,
+      "reason": "The retrieval found both timing fields. It explained total time vs turn around time."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the distinction between the two duration metrics."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on S3 access log timing fields."
+    }
+  },
+  {
+    "input": "What specific purpose does the field 'aws.dimensions.BucketName' serve in filtering data related to Amazon S3 buckets? Please provide a concise description and specify its data type.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the bucket name dimension. It described its filtering purpose and type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "What does the field 'aws.dimensions.aws_account_number' represent in the context of AWS CloudWatch metrics and dimensions?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the account number dimension. It described it as the AWS account ID for the metric."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context fully supported the definition."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were directly relevant."
+    }
+  },
+  {
+    "input": "What specific metric does 'aws.s3_daily_storage.bucket.size.bytes' represent in terms of data storage on AWS S3? Please provide a brief description and its data type.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the bucket size metric. It provided the description and type."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "Given the context provided about the ECS categorization fields, how would you determine the appropriate handling strategy for an event based on its 'event.kind' value, and what specific considerations might influence this decision?",
+    "contextual_precision": {
+      "score": 0.8,
+      "reason": "The retrieval found the `event.kind` definition. It explained how values like 'alert' vs 'event' dictate handling."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the strategy determination based on event kind."
+    },
+    "contextual_relevancy": {
+      "score": 0.8,
+      "reason": "The retrieved text was highly relevant to ECS event categorization."
+    }
+  },
+  {
+    "input": "In the context of Elastic Common Schema (ECS), what specific purpose does the 'event.dataset' field serve when an event source generates multiple types of logs or events, such as access logs and error logs?",
+    "contextual_precision": {
+      "score": 0.1,
+      "reason": "The retrieval identified `event.dataset` but did not explain its role in distinguishing log streams from the same source."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer regarding dataset differentiation."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.sns.metrics.PublishSize.avg' represent? Please provide the following details:\n- The unit of measurement\n- The type of metric\n- A brief description",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the SNS publish size metric. It provided unit, type, and description."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context contained all requested details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was specific to the SNS metric."
+    }
+  },
+  {
+    "input": "What specific criteria does the field 'aws.dimensions.Application' use to filter application objects in AWS CloudWatch, particularly in the context of push notification services like APNs and FCM?",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the application dimension. It mentioned filtering by app/device for push services."
+    },
+    "contextual_recall": {
+      "score": 0.7,
+      "reason": "The context supported the answer regarding the filtering criteria."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to AWS mobile dimensions."
+    }
+  },
+  {
+    "input": "What does the 'aws.sqs.messages.delayed' field specifically represent in the context of Amazon SQS metrics?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the delayed messages metric. It defined it as the count of delayed messages."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the definition."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was focused on the specific SQS metric."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.sqs.messages.visible' represent? Please provide a brief description and specify its data type and metric type.",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the visible messages metric. It provided description, data type, and metric type."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the answer with all details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were specific to the SQS metric."
+    }
+  },
+  {
+    "input": "What does the metric 'aws.sqs.sent_message_size.bytes' specifically represent in terms of the average size of messages added to an AWS SQS queue?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the sent message size metric. It defined it as the average size of added messages."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context fully supported the answer."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "What does the metric aws.transitgateway.metrics.PacketsIn.sum represent? Please provide the following details:\n- The unit of measurement\n- The type of metric\n- A brief description",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the transit gateway packets in metric. It provided unit, type, and description."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context contained all requested details."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were specific to the transit gateway metric."
+    }
+  },
+  {
+    "input": "What specific API operations does aws.usage.metrics.CallCount.sum measure in an AWS account? Please provide three examples.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the call count usage metric. It likely listed examples of tracked operations."
+    },
+    "contextual_recall": {
+      "score": 0.6,
+      "reason": "The context supported the definition and provided at least some examples."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The chunks were relevant to AWS usage metrics."
+    }
+  },
+  {
+    "input": "Given the context provided, if you were to analyze metrics related to Amazon Simple Queue Service (SQS), how would you determine which specific SQS queue's metrics are being represented by the field 'aws.dimensions.QueueName', and what does this imply about the data you can gather from these metrics?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the queue name dimension. It explained it filters metrics for a specific queue."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "The context did not support the answer regarding the dimension's filtering capability."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were relevant to SQS dimensions."
+    }
+  },
+  {
+    "input": "What specific types of data, including metrics and logs, does the Amazon EMR integration collect to provide insights into the state and events happening within Amazon EMR?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval identified the collected data types for EMR integration (metrics/logs)."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the detailed list of collected data."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The retrieval was precise."
+    }
+  },
+  {
+    "input": "What specific values does the 'aws.vpn.metrics.TunnelState.avg' metric indicate for static VPNs, and what do these values represent?",
+    "contextual_precision": {
+      "score": 0.7,
+      "reason": "The retrieval found the tunnel state metric. It specified the 0/1 values for DOWN/UP."
+    },
+    "contextual_recall": {
+      "score": 0.2,
+      "reason": "The context did not support the answer with exact values and meanings."
+    },
+    "contextual_relevancy": {
+      "score": 0.7,
+      "reason": "The chunks were highly relevant to VPN metrics."
+    }
+  },
+  {
+    "input": "What specific information does the field 'aws.dimensions.TunnelIpAddress' provide in the context of monitoring AWS virtual private gateways? Please list three key points.",
+    "contextual_precision": {
+      "score": 0.6,
+      "reason": "The retrieval found the tunnel IP dimension. It provided details on its use for identifying specific tunnel endpoints."
+    },
+    "contextual_recall": {
+      "score": 0.8,
+      "reason": "The context supported the three key points requested."
+    },
+    "contextual_relevancy": {
+      "score": 0.6,
+      "reason": "The retrieval was precise."
+    }
+  }
+]
