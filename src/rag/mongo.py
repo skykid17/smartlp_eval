@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
+import os
 import logging
 from enum import Enum
 import time
@@ -24,9 +24,10 @@ from typing import Dict, Iterable, List, Optional, Sequence, Any
 import spacy
 
 import numpy as np
-from pymongo import MongoClient
+from pymongo import ASCENDING, MongoClient
 from pymongo.collection import Collection
 from pymongo.errors import BulkWriteError, OperationFailure, ServerSelectionTimeoutError
+
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
@@ -154,6 +155,11 @@ class MongoHybridRetriever:
         self.filter_category = filter_category
 
     def invoke(self, query: str) -> List[Document]:
+        # Handle empty or whitespace-only queries
+        if not query or not query.strip():
+            logger.warning("Empty query provided to retriever")
+            return []
+        
         query_vector = self.embedding_fn([query])[0]
         query_text = extract_keywords(query)
 
@@ -173,34 +179,48 @@ class MongoHybridRetriever:
                 }}
             ]
 
-            text_pipeline = [
-                {"$search": {
-                    "index": self.text_index,
-                    "phrase": {"query": query_text, "path": "content"}
-                }},
-                {"$limit": self.keyword_candidates}
-            ]
+            # Only include text pipeline if we have keywords to search for
+            if query_text:
+                text_pipeline = [
+                    {"$search": {
+                        "index": self.text_index,
+                        "phrase": {"query": query_text, "path": "content"}
+                    }},
+                    {"$limit": self.keyword_candidates}
+                ]
 
-            pipeline = [
-                {"$rankFusion": {
-                    "input": {"pipelines": {
-                        "vectorPipeline": vector_pipeline,
-                        "fullTextPipeline": text_pipeline
+                pipeline = [
+                    {"$rankFusion": {
+                        "input": {"pipelines": {
+                            "vectorPipeline": vector_pipeline,
+                            "fullTextPipeline": text_pipeline
+                        }},
+                        "combination": {"weights": {
+                            "vectorPipeline": 0.5,
+                            "fullTextPipeline": 0.5
+                        }},
+                        "scoreDetails": True
                     }},
-                    "combination": {"weights": {
-                        "vectorPipeline": 0.5,
-                        "fullTextPipeline": 0.5
+                    {"$project": {
+                        "_id": 1,
+                        "content": 1,
+                        "metadata": 1,
+                        "scoreDetails": {"$meta": "scoreDetails"}
                     }},
-                    "scoreDetails": True
-                }},
-                {"$project": {
-                    "_id": 1,
-                    "content": 1,
-                    "metadata": 1,
-                    "scoreDetails": {"$meta": "scoreDetails"}
-                }},
-                {"$limit": self.top_k}
-            ]
+                    {"$limit": self.top_k}
+                ]
+            else:
+                # Fallback to vector-only search if no keywords extracted
+                logger.warning("No keywords extracted from query, using vector-only search")
+                pipeline = vector_pipeline + [
+                    {"$project": {
+                        "_id": 1,
+                        "content": 1,
+                        "metadata": 1,
+                        "score": {"$meta": "vectorSearchScore"}
+                    }},
+                    {"$limit": self.top_k}
+                ]
 
             fused = list(self.collection.aggregate(pipeline))
 
@@ -411,11 +431,11 @@ class LocalRetriever:
 class RAG:
     def __init__(
         self,
-        mongo_uri: str = "mongodb://localhost:27017/?directConnection=true",
+        mongo_uri: str = os.getenv("MONGO_URI", "mongodb://localhost:27017/?directConnection=true"),
         database: str = "smartlp",
         collection_name: str = "knowledge_base",
         embedding_dim: int = 384,
-        embedding_provider: str = "all-MiniLM-L6-v2",
+        embedding_provider: str = "models/all-MiniLM-L6-v2",
         vector_index: str = "vector_index",
         text_index: str = "text_index",
         text_paths: Sequence[str] = DEFAULT_TEXT_PATHS,
@@ -443,15 +463,39 @@ class RAG:
         self.client: Optional[MongoClient] = None
         self._embedding_model: Optional[SentenceTransformer] = None
         self.embedding_fn = lambda texts, show_progress=False: self.generate_embeddings(texts, show_progress)
-        self.local_retriever = LocalRetriever(
-            collection=self._ensure_collection(),
-            embedding_fn=self.embedding_fn,
-            text_index=self.text_index,
-        )
+        self.local_retriever: Optional[LocalRetriever] = None
 
-
-    # --- Index Creation Helpers ---
+    # --- Index Creation ---
     def _ensure_index(
+        self,
+        collection: Collection,
+        field: str,
+        unique: bool = False
+    ) -> None:
+        """
+        Ensure a standard MongoDB index exists on a field.
+        """
+        index_name = f"{field}_idx"
+
+        try:
+            existing_indexes = collection.index_information()
+            if index_name in existing_indexes:
+                logger.info("Index '%s' already exists.", index_name)
+                return
+
+            collection.create_index(
+                [(field, ASCENDING)],
+                name=index_name,
+                unique=unique,
+                background=True
+            )
+            logger.info("Index '%s' creation initiated.", index_name)
+
+        except OperationFailure as e:
+            logger.error("Failed to create index '%s': %s", index_name, e)
+
+    # --- Search Index Creation Helpers ---
+    def _ensure_search_index(
         self,
         collection: Collection,
         index_name: str,
@@ -510,17 +554,41 @@ class RAG:
         # --- Text index definition ---
         text_def = {"mappings": {"dynamic": True}}
 
-        # --- Ensure both indexes ---
-        self._ensure_index(coll, self.vector_index, "vectorSearch", vector_def)
-        self._ensure_index(coll, self.text_index, "search", text_def)
+        # --- Ensure both search indexes ---
+        self._ensure_search_index(coll, self.vector_index, "vectorSearch", vector_def)
+        self._ensure_search_index(coll, self.text_index, "search", text_def)
 
+        self._ensure_index(coll, "id", unique=True)
+        self._ensure_index(coll, "sigma_id", unique=False)
+
+        # preload embedding model
+        try:
+            self.get_embedding_model()
+        except Exception as e:
+            logger.error("Failed to preload embedding model: %s", e)
+            raise
+
+        self.local_retriever = LocalRetriever(
+            collection=self._ensure_collection(),
+            embedding_fn=self.embedding_fn,
+            text_index=self.text_index,
+        )
         logger.info("RAG initialization complete")
 
     # --- Embeddings ---
     def get_embedding_model(self) -> SentenceTransformer:
         if self._embedding_model is None:
-            logger.info("Loading SentenceTransformer: %s", self.embedding_provider)
-            self._embedding_model = SentenceTransformer(self.embedding_provider)
+            
+            model_id = self.embedding_provider
+
+            if not Path(model_id).exists():
+                raise RuntimeError(f"Embedding model not found locally at {model_id}. Download it once into /app/models/all-MiniLM-L6-v2 while online before running RAG.")
+            
+            self._embedding_model = SentenceTransformer(
+                model_id,
+                local_files_only=True,
+            )
+
         return self._embedding_model
 
     def generate_embeddings(self, texts: Sequence[str], show_progress: bool = False) -> List[List[float]]:
@@ -663,12 +731,12 @@ class RAG:
 
     # --- Chain builder ---
     def _build_chain(self, retriever: MongoHybridRetriever, model_override=None, url_override=None, api_key_override=None) -> RunnableLambda:
-        
+
         llm = ChatOpenAI(
-            model=model_override or "qwen25-coder-32b-awq",
-            base_url=url_override or "https://192.168.125.31:8000/v1",
-            api_key=api_key_override or "testing",
-            temperature=0
+            model="qwen25-coder-32b-awq",
+            base_url="http://192.168.125.31:8000/v1",
+            api_key="testing",
+            temperature=0.1,
         )
 
         prompt = PromptTemplate(
@@ -692,6 +760,12 @@ class RAG:
         start = time.time()
         try:
             coll = self._ensure_collection()
+            if self.local_retriever is None:
+                self.local_retriever = LocalRetriever(
+                    collection=coll,
+                    embedding_fn=self.embedding_fn,
+                    text_index=self.text_index,
+                )
             retriever = MongoHybridRetriever(
                 collection=coll,
                 embedding_fn=self.embedding_fn,
@@ -709,8 +783,9 @@ class RAG:
             
             chain = self._build_chain(retriever, kwargs.get("model_override"), kwargs.get("url_override"), kwargs.get("api_key_override"))
             answer = chain.invoke({"system_prompt": system_prompt or "", "question": user_prompt})
-
-            return {"success": True, "content": answer, "latency": round(time.time() - start, 3)}
+            result = {"success": True, "content": answer, "latency": round(time.time() - start, 3)}
+            logger.info("RAG Response: %s", result)
+            return result
 
         except Exception as e:
             return {"success": False, "error": str(e), "latency": round(time.time() - start, 3)}

@@ -3,8 +3,9 @@ import csv
 import re
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "input"
+# Point to project root (3 levels up: file -> generator -> src -> root)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+INPUT_DIR = BASE_DIR / "data" / "eval" / "input"
 INPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def extract_elastic_logtypes():

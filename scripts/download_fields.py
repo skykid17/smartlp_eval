@@ -3,9 +3,10 @@ import requests
 import pandas as pd
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+# Point to project root (3 levels up: file -> rag -> src -> root)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Keep downloaded assets inside the shared input directory
-INPUT_DIR = BASE_DIR / "input"
+INPUT_DIR = BASE_DIR / "data" / "eval" / "input"
 INPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def download_splunk_fields():

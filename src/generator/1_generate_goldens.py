@@ -1,14 +1,16 @@
+import pcre2
 import pandas as pd
 import re
 import json
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "input"
+# Point to project root (3 levels up: file -> generator -> src -> root)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+INPUT_DIR = BASE_DIR / "data" / "eval" / "input"
 INPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
-data = INPUT_DIR / 'elastic.csv'
+data = INPUT_DIR / 'ground_truth_regex.csv'
 
 print(f"Loading data from {data}...")
 df = pd.read_csv(data)
@@ -43,7 +45,3 @@ with open(INPUT_DIR / 'ground_truth_fields.json', 'w', encoding='utf-8') as f:
 # Show stats
 percent = (compiled_count / total) * 100 if total else 0
 print(f"Compiled successfully: {compiled_count}/{total} ({percent:.2f}%)")
-if failed_ids:
-    print("Failed to compile regex for log_ids:", ', '.join(failed_ids))
-else:
-    print("All regex patterns compiled successfully.")

@@ -897,7 +897,7 @@
     "functional_accuracy": 0.2,
     "field_precision": 0.2,
     "field_recall": 0.2,
-    "compilation_ratio": 0.6204819277108434,
+    "compilation_ratio": 0.7204819277108434,
     "extracted_fields": {
       "class_name": "org.apache.hadoop.yarn.util.RackResolver",
       "log_level": "INFO",
@@ -1392,7 +1392,7 @@
     "functional_accuracy": 0.0,
     "field_precision": 0,
     "field_recall": 0.0,
-    "compilation_ratio": 0.975,
+    "compilation_ratio": 1.0,
     "extracted_fields": {}
   },
   "94": {
@@ -1400,7 +1400,7 @@
     "functional_accuracy": 0.4,
     "field_precision": 0.0,
     "field_recall": 0.0,
-    "compilation_ratio": 0.46875,
+    "compilation_ratio": 0.76875,
     "extracted_fields": {
       "class": "dfs.FSNamesystem",
       "level": "INFO",
@@ -1478,7 +1478,7 @@
     "functional_accuracy": 0.0,
     "field_precision": 0.0,
     "field_recall": 0.0,
-    "compilation_ratio": 0.6204819277108434,
+    "compilation_ratio": 0.8204819277108434,
     "extracted_fields": {
       "class_name": "org.apache.hadoop.yarn.util.RackResolver",
       "log_level": "INFO",

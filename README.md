@@ -1,3 +1,68 @@
+# SOC RAG Project
+
+## Project Structure
+
+```
+soc_rag/
+├── src/                          # Source code modules
+│   ├── generator/               # Field extraction and regex generation
+│   │   ├── 0_extract_fields.py
+│   │   ├── 1_extract_logtypes.py
+│   │   ├── 1_generate_goldens.py
+│   │   └── 2_evaluate.py
+│   ├── retriever/               # Document retrieval and evaluation
+│   │   ├── 0_get_documents.py
+│   │   ├── 1_generate_goldens.py
+│   │   ├── 2_test.py
+│   │   ├── 3_evaluate_manual.py
+│   │   └── 3_evaluate.py
+│   └── rag/                     # RAG core implementations
+│       ├── chroma.py            # ChromaDB-based RAG
+│       └── mongo.py             # MongoDB-based RAG
+├── tests/                       # Test scripts
+│   ├── test_query.py
+│   ├── test_text_search.py
+│   └── test.py
+├── notebooks/                   # Jupyter notebooks for analysis
+│   ├── Evaluation_Analysis_Generation.ipynb
+│   └── Evaluation_Analysis_Retrieval.ipynb
+├── scripts/                     # Utility scripts
+│   ├── download_fields.py
+│   └── update_repository.py
+├── data/                        # Data files
+│   ├── eval/
+│   │   ├── input/              # Evaluation datasets
+│   │   └── output/             # Evaluation results
+│   ├── elastic/                # Elastic fields and packages
+│   └── splunk/                 # Splunk fields and packages
+├── README.md
+└── requirements.txt
+```
+
+## Running Scripts
+
+All scripts can be run from the project root directory:
+
+```bash
+# Generator scripts
+python -m src.generator.2_evaluate
+
+# Retriever scripts  
+python -m src.retriever.3_evaluate
+
+# RAG scripts (can also be imported)
+python -m src.rag.mongo init
+
+# Utility scripts
+python scripts/download_fields.py
+python scripts/update_repository.py
+
+# Tests
+python tests/test_query.py
+```
+
+## References
+
 Splunk Fields can be found on their CIM field reference documentation site.
 https://docs.splunk.com/Documentation/CIM/6.1.0/User/Overview
 
@@ -53,17 +118,17 @@ curl http://192.168.125.31:8000/v1/completions -H "Content-Type: application/jso
 
 This repository includes two RAG backends that share similar goals but target different deployment scenarios:
 
-- `rag_chroma.py`: local, file-based experimentation using ChromaDB.
-- `rag_mongo.py`: MongoDB-backed RAG pipeline using Atlas Search / `mongot`.
+- `chroma.py`: local, file-based experimentation using ChromaDB.
+- `mongo.py`: MongoDB-backed RAG pipeline using Atlas Search / `mongot`.
 
-### `rag_chroma.py` (Chroma)
+### `chroma.py` (Chroma)
 
 - Builds sentence-transformer embeddings (e.g., `all-MiniLM-L6-v2`) from files and folders.
 - Uses a local Chroma collection (`persist_directory`) as the vector store.
 - Provides `create_embeddings_from_path()` for ingestion with checkpointing and batching for large directories.
 - Exposes `query_rag()` to run RetrievalQA over a chosen collection using a remote LLM.
 
-### `rag_mongo.py` (MongoDB)
+### `mongo.py` (MongoDB)
 
 - CLI-driven workflow with modes:
 	- `init`: create text and vector search indexes.
