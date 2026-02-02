@@ -1,6 +1,4 @@
 {
-  "time_taken": 2061.565112352371,
-  "query_count": 171,
   "1": {
     "exact_match_accuracy": 0.8398576512455516,
     "functional_accuracy": 0.8,
@@ -16,19 +14,45 @@
     }
   },
   "2": {
-    "exact_match_accuracy": 0.06191950464396285,
-    "functional_accuracy": 0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 0.88,
+    "field_recall": 0.88,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "alert_id": "SAU1:ALRT",
+      "alert_id_number": "20",
+      "category": "Cyber",
+      "destination_ip": "192.168.120.234",
+      "destination_ip_2": "192.168.10.24",
+      "destination_mac_address": "00:21:31:10:33:CD",
+      "destination_type": "Server",
+      "destination_vendor": "Hewlett Packard",
+      "event_time": "2023-08-30T16:33:46.846392+08:00 IL-LAB-RDF01",
+      "hostname": "IL-LAB-RDF01",
+      "module": "6.5.11.14",
+      "port": "445",
+      "product": "radiflow",
+      "product_version": "isid",
+      "protocol_name": "SMB",
+      "rule_id": "71",
+      "severity": "High",
+      "source_ip": "197.158.9.211",
+      "source_ip_2": "192.168.120.250",
+      "source_ip_3": "192.168.120.250",
+      "source_mac_address": "00:0C:19:FF:61:3F",
+      "source_type": "Server",
+      "source_vendor": "VMware, Inc.",
+      "timestamp": "02 21 2025 12:33:42",
+      "title": "OS-WINDOWS DCERPC NCACN-IP-TCP srvsvc NetrPathCanonicalize overflow attempt"
+    }
+  },
+  "3": {
+    "exact_match_accuracy": 0.6010928961748634,
+    "functional_accuracy": 0.0,
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
-  },
-  "3": {
-    "exact_match_accuracy": 0.5922330097087378,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
-    "compilation_ratio": 1.0,
     "extracted_fields": {}
   },
   "4": {
@@ -176,20 +200,25 @@
     }
   },
   "14": {
-    "exact_match_accuracy": 0.5869565217391305,
+    "exact_match_accuracy": 0.3258426966292135,
     "functional_accuracy": 0.0,
     "field_precision": 0,
-    "field_recall": 0.0,
-    "compilation_ratio": 1.0,
+    "field_recall": 0,
+    "compilation_ratio": 0.0,
     "extracted_fields": {}
   },
   "15": {
-    "exact_match_accuracy": 0.475,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.75,
+    "field_precision": 0.75,
+    "field_recall": 0.75,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "hostname": "LabSZ",
+      "message": "input_userauth_request: invalid user test9 [preauth]",
+      "pid": "24206",
+      "timestamp": "Dec 10 07:07:38"
+    }
   },
   "16": {
     "exact_match_accuracy": 0.43529411764705883,
@@ -427,28 +456,54 @@
     }
   },
   "31": {
-    "exact_match_accuracy": 0.45595854922279794,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.8,
+    "field_recall": 0.8,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "hostname": "CLV010VLCBEDR01",
+      "message": "session-13536.scope: Succeeded.",
+      "pid": "1",
+      "process": "systemd",
+      "timestamp": "Feb  5 00:18:29"
+    }
   },
   "32": {
-    "exact_match_accuracy": 0.02406015037593985,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 0.6176808266360505,
+    "functional_accuracy": 0.7333333333333333,
+    "field_precision": 0.9166666666666666,
+    "field_recall": 0.7333333333333333,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "category": "Device",
+      "dvc": "192.168.10.34",
+      "id": "21",
+      "severity": "Medium",
+      "srcmac": "00:24:81:20:54:CD",
+      "srcname": "192.168.10.34",
+      "srctype": "Server",
+      "srcvendor": "Hewlett Packard",
+      "threatname": "Device became inactive",
+      "timestamp": "08",
+      "version": "6.5.11.14",
+      "vmid": "6"
+    }
   },
   "33": {
-    "exact_match_accuracy": 0.3726235741444867,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 1.0,
+    "field_recall": 1.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "action": "open",
+      "application": "Dropbox.exe",
+      "protocol": "HTTPS",
+      "proxy": "proxy.cse.cuhk.edu.hk:5070",
+      "proxy2": "proxy.cse.cuhk.edu.hk:5070",
+      "timestamp": "[10.30 17:14:20]"
+    }
   },
   "34": {
     "exact_match_accuracy": 0.2397003745318352,
@@ -852,20 +907,31 @@
     }
   },
   "62": {
-    "exact_match_accuracy": 0.47619047619047616,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.5,
+    "field_precision": 0.6,
+    "field_recall": 0.5,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "log_level": "INFO",
+      "message": "PacketResponder 1 for block blk_38865049064139660 terminating",
+      "module": "dfs.DataNode$PacketResponder",
+      "pid": "148",
+      "timestamp": "081109 203615"
+    }
   },
   "63": {
-    "exact_match_accuracy": 0.25806451612903225,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.75,
+    "field_precision": 0.75,
+    "field_recall": 0.75,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "hostname": "LabSZ",
+      "message": "Received disconnect from 52.80.34.196: 11: Bye Bye [preauth]",
+      "pid": "24206",
+      "timestamp": "Dec 10 07:07:45"
+    }
   },
   "64": {
     "exact_match_accuracy": 0.10224948875255624,
@@ -1305,28 +1371,47 @@
     }
   },
   "93": {
-    "exact_match_accuracy": 0.4265129682997118,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.8333333333333334,
+    "field_precision": 0.8333333333333334,
+    "field_recall": 0.8333333333333334,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "hostname": "combo",
+      "message": "authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root",
+      "pid": "20897",
+      "process": "sshd",
+      "service": "pam_unix",
+      "timestamp": "Aug 15 00:04:21"
+    }
   },
   "94": {
-    "exact_match_accuracy": 0.31223628691983124,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.8,
+    "field_recall": 0.8,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "log_level": "INFO",
+      "message": "BLOCK* NameSystem.addStoredBlock: blockMap updated: 10.250.11.85:50010 is added to blk_2377150260128098806 size 67108864",
+      "module": "dfs.FSNamesystem",
+      "pid": "34",
+      "timestamp": "081109 204453"
+    }
   },
   "95": {
-    "exact_match_accuracy": 0.39285714285714285,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0.0,
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.8,
+    "field_recall": 0.8,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {
+      "log_level": "INFO",
+      "message": "Receiving block blk_5792489080791696128 src: /10.251.30.6:33145 dest: /10.251.30.6:50010",
+      "module": "dfs.DataNode$DataXceiver",
+      "pid": "653",
+      "timestamp": "081109 204815"
+    }
   },
   "96": {
     "exact_match_accuracy": 0.11784511784511785,
@@ -1440,5 +1525,9 @@
       "trans_small_bytes": "83",
       "vlan_id": "null"
     }
-  }
+  },
+  "generation_time": 2061.565112352371,
+  "evaluation_time": 238.69497656822205,
+  "total_time": 2300.2600889205933,
+  "query_count": 171
 }

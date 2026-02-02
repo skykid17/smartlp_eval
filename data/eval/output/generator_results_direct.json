@@ -1,6 +1,4 @@
 {
-    "time_taken": 195.15129137039185,
-    "query_count": 100,
     "1": {
         "exact_match_accuracy": 0.6299694189602446,
         "functional_accuracy": 0.2,
@@ -1607,5 +1605,9 @@
             "transport_protocol": "udp",
             "vlan_id": ""
         }
-    }
+    },
+    "generation_time": 195.15129137039185,
+    "evaluation_time": 214.99488592147827,
+    "total_time": 410.1461772918701,
+    "query_count": 100
 }

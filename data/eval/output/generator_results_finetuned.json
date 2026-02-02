@@ -1,6 +1,4 @@
 {
-    "time_taken": 225.5248577594757,
-    "query_count": 100,
     "1": {
         "exact_match_accuracy": 0.6299694189602446,
         "functional_accuracy": 0.2,
@@ -1024,5 +1022,9 @@
         "field_recall": 0,
         "compilation_ratio": 0.0,
         "extracted_fields": {}
-    }
+    },
+    "generation_time": 225.5248577594757,
+    "evaluation_time": 234.6213195323944,
+    "total_time": 460.1461772918701,
+    "query_count": 100
 }

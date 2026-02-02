@@ -1,6 +1,4 @@
 {
-  "time_taken": 279.8931636810303,
-  "query_count": 100,
   "1": {
     "exact_match_accuracy": 0.7440476190476191,
     "functional_accuracy": 0.8,
@@ -173,12 +171,31 @@
     }
   },
   "10": {
-    "exact_match_accuracy": 0.10945273631840796,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 0.9444444444444444,
+    "field_recall": 0.9444444444444444,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "category": "general",
+      "device_name": "PA-VM",
+      "event_details": "",
+      "event_name": "syslog-conn-status",
+      "event_time": "2025/02/01 01:46:34",
+      "flags": "0x0,0,0,0,0",
+      "generated_time": "2025/02/01 01:46:34",
+      "hostname": "PA-VM",
+      "iso_timestamp": "2025-02-01T01:46:34.896",
+      "log_type": "SYSTEM",
+      "message": "Syslog connection failed to server['AF_INET.192.168.20.224:2516.']",
+      "priority": "11",
+      "serial": null,
+      "session_id": "7409859196046341764",
+      "severity": "high",
+      "subtype": "syslog",
+      "timestamp": "Feb  1 01:46:34",
+      "timezone": "+08:00"
+    }
   },
   "11": {
     "exact_match_accuracy": 0.7439613526570048,
@@ -280,12 +297,18 @@
     }
   },
   "17": {
-    "exact_match_accuracy": 0.5652173913043478,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 1.0,
+    "field_recall": 1.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "code": "30002312",
+      "date": "20171223",
+      "message": "onStandStepChanged 3579",
+      "module": "Step_LSC",
+      "time": "22:15:29:606"
+    }
   },
   "18": {
     "exact_match_accuracy": 0.6870229007633588,
@@ -306,12 +329,31 @@
     }
   },
   "19": {
-    "exact_match_accuracy": 0.1158021712907117,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 0.9444444444444444,
+    "field_recall": 0.9444444444444444,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "category": "general",
+      "device_name": "CYberlab-ENT-PA-440",
+      "event_details": "",
+      "event_name": "general",
+      "event_time": "2025/02/28 00:06:30",
+      "flags": "0x0,0,0,0,0",
+      "generated_time": "2025/02/28 00:06:30",
+      "hostname": "CYberlab-ENT-PA-440",
+      "iso_timestamp": "2025-02-28T00:06:30.194",
+      "log_type": "SYSTEM",
+      "message": "Failed to check IoT content upgrade info due to Unknown error",
+      "priority": "12",
+      "serial": "021201155690",
+      "session_id": "7444467286603257823",
+      "severity": "medium",
+      "subtype": "general",
+      "timestamp": "Feb 28 00:06:30",
+      "timezone": "+08:00"
+    }
   },
   "20": {
     "exact_match_accuracy": 0.18518518518518517,
@@ -340,12 +382,18 @@
     }
   },
   "21": {
-    "exact_match_accuracy": 0.6066350710900474,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 0.8,
+    "field_precision": 0.8,
+    "field_recall": 0.8,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "hostname": "CLV010VLCBEDR01",
+      "message": "Closed D-Bus User Message Bus Socket.",
+      "pid": "375924",
+      "process": "systemd",
+      "timestamp": "Mar 17 10:18:39"
+    }
   },
   "22": {
     "exact_match_accuracy": 0.5426829268292683,
@@ -469,12 +517,20 @@
     "extracted_fields": {}
   },
   "29": {
-    "exact_match_accuracy": 0.7664041994750657,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 1.0,
+    "field_recall": 1.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "class": "FastLeaderElection@774",
+      "ipv6": "0:0:0:0:0:0:0:0:2181",
+      "loglevel": "INFO",
+      "message": "Notification time out: 3200",
+      "myid": "1",
+      "process": "QuorumPeer[myid=1]/0:0:0:0:0:0:0:0:2181:FastLeaderElection@774",
+      "timestamp": "2015-07-29 17:41:44,747"
+    }
   },
   "30": {
     "exact_match_accuracy": 0.4444444444444444,
@@ -579,12 +635,17 @@
     }
   },
   "37": {
-    "exact_match_accuracy": 0.759493670886076,
-    "functional_accuracy": 0.0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "exact_match_accuracy": 1.0,
+    "functional_accuracy": 1.0,
+    "field_precision": 1.0,
+    "field_recall": 1.0,
+    "compilation_ratio": 1.0,
+    "extracted_fields": {
+      "loglevel": "INFO",
+      "message": "Slf4jLogger started",
+      "module": "slf4j.Slf4jLogger",
+      "timestamp": "17/06/09 20:10:41"
+    }
   },
   "38": {
     "exact_match_accuracy": 0.1716937354988399,
@@ -897,7 +958,7 @@
     "functional_accuracy": 0.2,
     "field_precision": 0.2,
     "field_recall": 0.2,
-    "compilation_ratio": 0.7204819277108434,
+    "compilation_ratio": 0.6204819277108434,
     "extracted_fields": {
       "class_name": "org.apache.hadoop.yarn.util.RackResolver",
       "log_level": "INFO",
@@ -934,11 +995,19 @@
   },
   "63": {
     "exact_match_accuracy": 0.5391849529780565,
-    "functional_accuracy": 0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "functional_accuracy": 0.25,
+    "field_precision": 0.14285714285714285,
+    "field_recall": 0.25,
+    "compilation_ratio": 0.8210526315789474,
+    "extracted_fields": {
+      "code": "11",
+      "hostname": "LabSZ",
+      "ip": "52.80.34.196",
+      "message": "",
+      "pid": "24206",
+      "process": "sshd",
+      "state": null
+    }
   },
   "64": {
     "exact_match_accuracy": 0.11552346570397112,
@@ -1392,7 +1461,7 @@
     "functional_accuracy": 0.0,
     "field_precision": 0,
     "field_recall": 0.0,
-    "compilation_ratio": 1.0,
+    "compilation_ratio": 0.975,
     "extracted_fields": {}
   },
   "94": {
@@ -1400,7 +1469,7 @@
     "functional_accuracy": 0.4,
     "field_precision": 0.0,
     "field_recall": 0.0,
-    "compilation_ratio": 0.76875,
+    "compilation_ratio": 0.46875,
     "extracted_fields": {
       "class": "dfs.FSNamesystem",
       "level": "INFO",
@@ -1478,7 +1547,7 @@
     "functional_accuracy": 0.0,
     "field_precision": 0.0,
     "field_recall": 0.0,
-    "compilation_ratio": 0.8204819277108434,
+    "compilation_ratio": 0.6204819277108434,
     "extracted_fields": {
       "class_name": "org.apache.hadoop.yarn.util.RackResolver",
       "log_level": "INFO",
@@ -1489,10 +1558,45 @@
   },
   "100": {
     "exact_match_accuracy": 0.46185737976782754,
-    "functional_accuracy": 0,
-    "field_precision": 0,
-    "field_recall": 0,
-    "compilation_ratio": 0.0,
-    "extracted_fields": {}
-  }
+    "functional_accuracy": 0.9,
+    "field_precision": 0.6666666666666666,
+    "field_recall": 0.6666666666666666,
+    "compilation_ratio": 0.9952324195470799,
+    "extracted_fields": {
+      "bpf_filter": "ip host 10.20.80.208 and ip host 96.45.45.45 and udp port 61952 and udp port 53",
+      "direction_is_known": "true",
+      "first_activity_time": "1753253399923",
+      "from": "10.20.80.208",
+      "from_ip": "10.20.80.208",
+      "from_port": "61952",
+      "from_zone": "10.20.80.0/24",
+      "id": "810.20.80.20896.45.45.45f20035198360bcd73",
+      "is_broadcast": "false",
+      "is_from_public": "false",
+      "is_to_public": "true",
+      "key": "96.45.45.45;53;10.20.80.208;61952;udp;8",
+      "last_activity_time": "1753253399966",
+      "protocol": "dns",
+      "status": "CLOSED",
+      "throughput_speed": "0",
+      "to": "96.45.45.45",
+      "to_ip": "96.45.45.45",
+      "to_port": "53",
+      "to_zone": "Internet",
+      "transferred_avg_packet_bytes": "234.5",
+      "transferred_biggest_packet_bytes": "386",
+      "transferred_bytes": "469",
+      "transferred_last_15m_bytes": "0",
+      "transferred_last_30m_bytes": "469",
+      "transferred_last_5m_bytes": "0",
+      "transferred_packets": "2",
+      "transferred_smallest_packet_bytes": "83",
+      "transport_protocol": "udp",
+      "vlan_id": ""
+    }
+  },
+  "generation_time": 279.8931636810303,
+  "evaluation_time": 230.25301361083984,
+  "total_time": 510.1461772918701,
+  "query_count": 100
 }
