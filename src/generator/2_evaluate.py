@@ -1,3 +1,4 @@
+import argparse
 import json
 import re
 import sys
@@ -412,7 +413,7 @@ def evaluate_results(df, truth_df, ground_truth_fields):
     
     return results
 
-def run_scenario(scenario):
+def run_scenario(scenario, skip_generation=False):
     """Run complete generation and evaluation for a scenario."""
     print(f"\n{'='*60}")
     print(f"Running scenario: {scenario}")
@@ -423,39 +424,61 @@ def run_scenario(scenario):
     with open(INPUT_DIR / "generator_golden_fields.json", encoding="utf-8") as f:
         ground_truth_fields = json.load(f)
     
-    # Generate regex (timed)
-    start_time = time()
-    query_count = 0
+    output_file = OUTPUT_DIR / f"generator_output_{scenario}.csv"
+    results_file = OUTPUT_DIR / f"generator_results_{scenario}.json"
     
-    if scenario == "direct":
-        result_df = generate_regex_direct(truth_df)
-    elif scenario == "finetuned":
-        result_df = generate_regex_finetuned(truth_df)
-    elif scenario == "rag":
-        result_df = generate_regex_rag(truth_df)
-    elif scenario == "decomposed_rag":
-        result_df, query_count = generate_regex_decomposed_rag(truth_df)
+    if skip_generation:
+        print(f"Skipping generation, loading existing results from {output_file}")
+        if not output_file.exists():
+            raise FileNotFoundError(f"Output file not found: {output_file}. Run generation first.")
+        result_df = pd.read_csv(output_file)
+        
+        # Load existing timing info from previous results if available
+        generation_time = 0
+        query_count = 0
+        if results_file.exists():
+            with open(results_file, "r") as f:
+                existing_results = json.load(f)
+                # Preserve existing generation_time (or time_taken from old format)
+                generation_time = existing_results.get("generation_time", existing_results.get("time_taken", 0))
+                query_count = existing_results.get("query_count", 0)
     else:
-        raise ValueError(f"Unknown scenario: {scenario}")
-    
-    generation_time = time() - start_time
-    print(f"\nGeneration completed in {generation_time:.2f} seconds")
-    
-    # Save generated regex
-    output_file = OUTPUT_DIR / f"generator_output_{scenario}_2.csv"
-    result_df.to_csv(output_file, index=False)
-    print(f"Saved regex to {output_file}")
+        # Generate regex (timed)
+        start_time = time()
+        query_count = 0
+        
+        if scenario == "direct":
+            result_df = generate_regex_direct(truth_df)
+        elif scenario == "finetuned":
+            result_df = generate_regex_finetuned(truth_df)
+        elif scenario == "rag":
+            result_df = generate_regex_rag(truth_df)
+        elif scenario == "decomposed_rag":
+            result_df, query_count = generate_regex_decomposed_rag(truth_df)
+        else:
+            raise ValueError(f"Unknown scenario: {scenario}")
+        
+        generation_time = time() - start_time
+        print(f"\nGeneration completed in {generation_time:.2f} seconds")
+        
+        # Save generated regex
+        result_df.to_csv(output_file, index=False)
+        print(f"Saved regex to {output_file}")
     
     # Evaluate immediately
     print("\nEvaluating results...")
+    eval_start = time()
     results = evaluate_results(result_df, truth_df, ground_truth_fields)
+    evaluation_time = time() - eval_start
     
     # Add timing info
-    results["time_taken"] = generation_time
+    results["generation_time"] = generation_time
+    results["evaluation_time"] = evaluation_time
+    results["total_time"] = generation_time + evaluation_time
     results["query_count"] = query_count
     
     # Save evaluation results
-    results_file = OUTPUT_DIR / f"generator_results_{scenario}_2.json"
+    results_file = OUTPUT_DIR / f"generator_results_{scenario}.json"
     with open(results_file, "w") as f:
         json.dump(results, f, indent=2)
     print(f"Saved results to {results_file}")
@@ -467,15 +490,32 @@ def run_scenario(scenario):
     print(f"{'='*60}")
     
     for metric in metrics:
-        values = [results[log_id][metric] for log_id in results if log_id not in ["time_taken", "query_count"]]
+        values = [results[log_id][metric] for log_id in results if log_id not in ["generation_time", "evaluation_time", "total_time", "query_count"]]
         avg = sum(values) / len(values) if values else 0
         print(f"{metric}: {avg:.4f}")
     
-    print(f"\nTotal time: {generation_time:.2f}s")
+    print(f"\n{'Timing Breakdown':-^60}")
+    print(f"Generation time: {generation_time:.2f}s")
+    print(f"Evaluation time: {evaluation_time:.2f}s")
+    print(f"Total time: {generation_time + evaluation_time:.2f}s")
     if query_count > 0:
-        print(f"Total queries: {query_count}")
+        print(f"Total RAG queries: {query_count}")
     print(f"{'='*60}\n")
 
 if __name__ == "__main__":
-    scenario = "decomposed_rag"  # Change this to switch scenarios: direct, finetuned, rag, decomposed_rag
-    run_scenario(scenario)
+    parser = argparse.ArgumentParser(description="Generate and evaluate regex patterns for log parsing")
+    parser.add_argument(
+        "--scenario",
+        type=str,
+        default="decomposed_rag",
+        choices=["direct", "finetuned", "rag", "decomposed_rag"],
+        help="Scenario to run: direct, finetuned, rag, or decomposed_rag"
+    )
+    parser.add_argument(
+        "--skip-generation",
+        action="store_true",
+        help="Skip regex generation and only evaluate existing output CSV"
+    )
+    
+    args = parser.parse_args()
+    run_scenario(args.scenario, skip_generation=args.skip_generation)
