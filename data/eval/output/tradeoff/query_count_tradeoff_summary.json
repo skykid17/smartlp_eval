@@ -1,0 +1,50 @@
+{
+  "cap_range": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "max_rounds_observed": 6,
+  "results": {
+    "1": {
+      "mean_latency": 3.15,
+      "compilation_rate": 12.0,
+      "functional_accuracy": 1.0,
+      "mean_rounds_used": 1.0
+    },
+    "2": {
+      "mean_latency": 5.49,
+      "compilation_rate": 23.0,
+      "functional_accuracy": 9.0,
+      "mean_rounds_used": 1.76
+    },
+    "3": {
+      "mean_latency": 7.52,
+      "compilation_rate": 48.0,
+      "functional_accuracy": 29.0,
+      "mean_rounds_used": 2.41
+    },
+    "4": {
+      "mean_latency": 8.73,
+      "compilation_rate": 68.0,
+      "functional_accuracy": 39.0,
+      "mean_rounds_used": 2.79
+    },
+    "5": {
+      "mean_latency": 9.31,
+      "compilation_rate": 76.0,
+      "functional_accuracy": 45.0,
+      "mean_rounds_used": 2.97
+    },
+    "6": {
+      "mean_latency": 9.62,
+      "compilation_rate": 85.0,
+      "functional_accuracy": 54.0,
+      "mean_rounds_used": 3.06
+    }
+  },
+  "methodology_note": "Latency for each sample under a given cap is estimated by prorating the recorded total generation time uniformly across the rounds actually used (per_round_latency = generation_time / query_count), then multiplying by min(query_count, cap).  For caps below a sample's actual round count the pattern is treated as truncated: compiled is set to False and functional accuracy to 0, representing a conservative lower bound on the quality of an incomplete assembly."
+}

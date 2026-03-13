@@ -1,0 +1,121 @@
+{
+  "note": "Correlation between retrieval metrics and generation quality metrics",
+  "n_samples": 364,
+  "modes_analyzed": [
+    "hybrid",
+    "text"
+  ],
+  "retrieval_metrics": [
+    "contextual_precision",
+    "contextual_recall",
+    "contextual_relevancy"
+  ],
+  "generation_metrics": [
+    "faithfulness",
+    "conciseness"
+  ],
+  "correlations": [
+    {
+      "x_metric": "contextual_precision",
+      "y_metric": "faithfulness",
+      "n": 364,
+      "spearman_r": -0.0391,
+      "spearman_p": 0.457168550641162,
+      "spearman_p_fmt": "p = 0.457",
+      "spearman_interpretation": "negligible negative correlation, not significant",
+      "pearson_r": -0.0097,
+      "pearson_p": 0.8538107516518768,
+      "pearson_p_fmt": "p = 0.854",
+      "pearson_interpretation": "negligible negative correlation, not significant"
+    },
+    {
+      "x_metric": "contextual_precision",
+      "y_metric": "conciseness",
+      "n": 364,
+      "spearman_r": -0.0167,
+      "spearman_p": 0.7511687717007799,
+      "spearman_p_fmt": "p = 0.751",
+      "spearman_interpretation": "negligible negative correlation, not significant",
+      "pearson_r": 0.1383,
+      "pearson_p": 0.008226782288910451,
+      "pearson_p_fmt": "p = 0.008",
+      "pearson_interpretation": "negligible positive correlation, significant"
+    },
+    {
+      "x_metric": "contextual_recall",
+      "y_metric": "faithfulness",
+      "n": 364,
+      "spearman_r": -0.0556,
+      "spearman_p": 0.2898810430125553,
+      "spearman_p_fmt": "p = 0.290",
+      "spearman_interpretation": "negligible negative correlation, not significant",
+      "pearson_r": -0.0295,
+      "pearson_p": 0.5749003605429154,
+      "pearson_p_fmt": "p = 0.575",
+      "pearson_interpretation": "negligible negative correlation, not significant"
+    },
+    {
+      "x_metric": "contextual_recall",
+      "y_metric": "conciseness",
+      "n": 364,
+      "spearman_r": 0.0359,
+      "spearman_p": 0.495262152067357,
+      "spearman_p_fmt": "p = 0.495",
+      "spearman_interpretation": "negligible positive correlation, not significant",
+      "pearson_r": 0.1612,
+      "pearson_p": 0.0020314318248632357,
+      "pearson_p_fmt": "p = 0.002",
+      "pearson_interpretation": "negligible positive correlation, significant"
+    },
+    {
+      "x_metric": "contextual_relevancy",
+      "y_metric": "faithfulness",
+      "n": 364,
+      "spearman_r": -0.042,
+      "spearman_p": 0.42487828438116126,
+      "spearman_p_fmt": "p = 0.425",
+      "spearman_interpretation": "negligible negative correlation, not significant",
+      "pearson_r": -0.0151,
+      "pearson_p": 0.7742445994450258,
+      "pearson_p_fmt": "p = 0.774",
+      "pearson_interpretation": "negligible negative correlation, not significant"
+    },
+    {
+      "x_metric": "contextual_relevancy",
+      "y_metric": "conciseness",
+      "n": 364,
+      "spearman_r": -0.0088,
+      "spearman_p": 0.8670649187625394,
+      "spearman_p_fmt": "p = 0.867",
+      "spearman_interpretation": "negligible negative correlation, not significant",
+      "pearson_r": 0.1505,
+      "pearson_p": 0.0040105114351545405,
+      "pearson_p_fmt": "p = 0.004",
+      "pearson_interpretation": "negligible positive correlation, significant"
+    }
+  ],
+  "correlation_matrix": {
+    "faithfulness": {
+      "contextual_precision": -0.0391,
+      "contextual_recall": -0.0556,
+      "contextual_relevancy": -0.042
+    },
+    "conciseness": {
+      "contextual_precision": -0.0167,
+      "contextual_recall": 0.0359,
+      "contextual_relevancy": -0.0088
+    }
+  },
+  "p_value_matrix": {
+    "faithfulness": {
+      "contextual_precision": 0.457168550641162,
+      "contextual_recall": 0.2898810430125553,
+      "contextual_relevancy": 0.42487828438116126
+    },
+    "conciseness": {
+      "contextual_precision": 0.7511687717007799,
+      "contextual_recall": 0.495262152067357,
+      "contextual_relevancy": 0.8670649187625394
+    }
+  }
+}

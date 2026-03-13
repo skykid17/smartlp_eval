@@ -1023,8 +1023,8 @@
         "compilation_ratio": 0.0,
         "extracted_fields": {}
     },
-    "generation_time": 225.5248577594757,
+    "total_generation_time": 225.5248577594757,
     "evaluation_time": 234.6213195323944,
     "total_time": 460.1461772918701,
-    "query_count": 100
+    "total_query_count": 100
 }

@@ -1,0 +1,43 @@
+{
+  "alignment_note": "Positional alignment: generator log_id k is paired with the k-th entry of retriever_results_hybrid.json (0-indexed).  The two pipelines use different query types, so this pairing is positional rather than semantic.  See methodology note in correlation_analysis.py.",
+  "n": 100,
+  "pair_1": {
+    "x_metric": "contextual_relevancy",
+    "y_metric": "functional_accuracy",
+    "n": 100,
+    "spearman_r": -0.0181,
+    "spearman_p": 0.858473042601509,
+    "spearman_p_fmt": "p = 0.858",
+    "spearman_interpretation": "negligible negative correlation, not significant at p < 0.05",
+    "pearson_r": -0.0684,
+    "pearson_p": 0.4986681420833696,
+    "pearson_p_fmt": "p = 0.499",
+    "pearson_interpretation": "negligible negative correlation, not significant at p < 0.05"
+  },
+  "pair_2": {
+    "x_metric": "contextual_precision",
+    "y_metric": "f1_score",
+    "n": 100,
+    "spearman_r": 0.0755,
+    "spearman_p": 0.4555899060253007,
+    "spearman_p_fmt": "p = 0.456",
+    "spearman_interpretation": "negligible positive correlation, not significant at p < 0.05",
+    "pearson_r": 0.0212,
+    "pearson_p": 0.8339898134686381,
+    "pearson_p_fmt": "p = 0.834",
+    "pearson_interpretation": "negligible positive correlation, not significant at p < 0.05"
+  },
+  "pair_3": {
+    "x_metric": "contextual_relevancy",
+    "y_metric": "compilation_ratio",
+    "n": 100,
+    "spearman_r": 0.0122,
+    "spearman_p": 0.9040562203432568,
+    "spearman_p_fmt": "p = 0.904",
+    "spearman_interpretation": "negligible positive correlation, not significant at p < 0.05",
+    "pearson_r": -0.084,
+    "pearson_p": 0.4061360377253051,
+    "pearson_p_fmt": "p = 0.406",
+    "pearson_interpretation": "negligible negative correlation, not significant at p < 0.05"
+  }
+}

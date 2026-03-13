@@ -1595,8 +1595,8 @@
       "vlan_id": ""
     }
   },
-  "generation_time": 279.8931636810303,
+  "total_generation_time": 279.8931636810303,
   "evaluation_time": 230.25301361083984,
   "total_time": 510.1461772918701,
-  "query_count": 100
+  "total_query_count": 100
 }

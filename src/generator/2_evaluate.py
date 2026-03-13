@@ -320,7 +320,7 @@ def generate_regex_rag(truth_df):
 def generate_regex_decomposed_rag(truth_df):
     """Generate regex using decomposed RAG approach."""
     results = []
-    query_count = 0
+    total_query_count = 0
     
     for idx, row in tqdm(truth_df.iterrows(), total=len(truth_df), desc="Generating (decomposed RAG)"):
         log_id = str(row['log_id'])
@@ -358,7 +358,7 @@ def generate_regex_decomposed_rag(truth_df):
             if not response:
                 break
             
-            query_count += 1
+            total_query_count += 1
             reduced_regex = reduce(remaining_log, response)
 
             try:
@@ -384,7 +384,7 @@ def generate_regex_decomposed_rag(truth_df):
         regex = escape_quotes(resolve_duplicate_capture_groups(regex))
         results.append({"log_id": int(log_id), "generated_regex": regex})
     
-    return pd.DataFrame(results), query_count
+    return pd.DataFrame(results), total_query_count
 
 def evaluate_results(df, truth_df, ground_truth_fields):
     """Evaluate generated regex patterns."""
@@ -434,18 +434,18 @@ def run_scenario(scenario, skip_generation=False):
         result_df = pd.read_csv(output_file)
         
         # Load existing timing info from previous results if available
-        generation_time = 0
-        query_count = 0
+        total_generation_time = 0
+        total_query_count = 0
         if results_file.exists():
             with open(results_file, "r") as f:
                 existing_results = json.load(f)
-                # Preserve existing generation_time (or time_taken from old format)
-                generation_time = existing_results.get("generation_time", existing_results.get("time_taken", 0))
-                query_count = existing_results.get("query_count", 0)
+                # Preserve existing total_generation_time (or time_taken from old format)
+                total_generation_time = existing_results.get("total_generation_time", existing_results.get("time_taken", 0))
+                total_query_count = existing_results.get("total_query_count", 0)
     else:
         # Generate regex (timed)
         start_time = time()
-        query_count = 0
+        total_query_count = 0
         
         if scenario == "direct":
             result_df = generate_regex_direct(truth_df)
@@ -454,12 +454,12 @@ def run_scenario(scenario, skip_generation=False):
         elif scenario == "rag":
             result_df = generate_regex_rag(truth_df)
         elif scenario == "decomposed_rag":
-            result_df, query_count = generate_regex_decomposed_rag(truth_df)
+            result_df, total_query_count = generate_regex_decomposed_rag(truth_df)
         else:
             raise ValueError(f"Unknown scenario: {scenario}")
         
-        generation_time = time() - start_time
-        print(f"\nGeneration completed in {generation_time:.2f} seconds")
+        total_generation_time = time() - start_time
+        print(f"\nGeneration completed in {total_generation_time:.2f} seconds")
         
         # Save generated regex
         result_df.to_csv(output_file, index=False)
@@ -472,10 +472,10 @@ def run_scenario(scenario, skip_generation=False):
     evaluation_time = time() - eval_start
     
     # Add timing info
-    results["generation_time"] = generation_time
+    results["total_generation_time"] = total_generation_time
     results["evaluation_time"] = evaluation_time
-    results["total_time"] = generation_time + evaluation_time
-    results["query_count"] = query_count
+    results["total_time"] = total_generation_time + evaluation_time
+    results["total_query_count"] = total_query_count
     
     # Save evaluation results
     results_file = OUTPUT_DIR / f"generator_results_{scenario}.json"
@@ -490,16 +490,16 @@ def run_scenario(scenario, skip_generation=False):
     print(f"{'='*60}")
     
     for metric in metrics:
-        values = [results[log_id][metric] for log_id in results if log_id not in ["generation_time", "evaluation_time", "total_time", "query_count"]]
+        values = [results[log_id][metric] for log_id in results if log_id not in ["total_generation_time", "evaluation_time", "total_time", "total_query_count"]]
         avg = sum(values) / len(values) if values else 0
         print(f"{metric}: {avg:.4f}")
     
     print(f"\n{'Timing Breakdown':-^60}")
-    print(f"Generation time: {generation_time:.2f}s")
+    print(f"Generation time: {total_generation_time:.2f}s")
     print(f"Evaluation time: {evaluation_time:.2f}s")
-    print(f"Total time: {generation_time + evaluation_time:.2f}s")
-    if query_count > 0:
-        print(f"Total RAG queries: {query_count}")
+    print(f"Total time: {total_generation_time + evaluation_time:.2f}s")
+    if total_query_count > 0:
+        print(f"Total RAG queries: {total_query_count}")
     print(f"{'='*60}\n")
 
 if __name__ == "__main__":

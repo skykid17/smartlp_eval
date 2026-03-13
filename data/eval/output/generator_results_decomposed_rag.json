@@ -11,7 +11,9 @@
       "procid": "DatabaseConnector",
       "severity_name": "INFO",
       "timestamp": "2025-03-07T11:37:22.109Z"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 11.631543
   },
   "2": {
     "exact_match_accuracy": 1.0,
@@ -45,7 +47,9 @@
       "source_vendor": "VMware, Inc.",
       "timestamp": "02 21 2025 12:33:42",
       "title": "OS-WINDOWS DCERPC NCACN-IP-TCP srvsvc NetrPathCanonicalize overflow attempt"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 16.161237
   },
   "3": {
     "exact_match_accuracy": 0.6010928961748634,
@@ -53,7 +57,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.513247
   },
   "4": {
     "exact_match_accuracy": 0.6129032258064516,
@@ -68,7 +74,9 @@
       "task_id": "task_1445144423722_0020_m_000001",
       "thread": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,869"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 10.285147
   },
   "5": {
     "exact_match_accuracy": 0.4735202492211838,
@@ -83,7 +91,9 @@
       "proxy_host": "proxy.cse.cuhk.edu.hk",
       "proxy_port": "5070",
       "timestamp": "10.30 17:10:37"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 9.316731
   },
   "6": {
     "exact_match_accuracy": 0.8068669527896996,
@@ -97,7 +107,9 @@
       "log_level": "INFO",
       "message": "Successfully started service 'sparkExecutorActorSystem' on port 55904.",
       "time": "20:10:41"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 11.472416
   },
   "7": {
     "exact_match_accuracy": 0.1103448275862069,
@@ -114,7 +126,9 @@
       "process_id": "1117989508",
       "source": "R36-M0-NA-C:J17-U01",
       "timestamp": "2005-06-05-09.38.28.957918"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.119946
   },
   "8": {
     "exact_match_accuracy": 0.4956521739130435,
@@ -122,7 +136,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 2.441249
   },
   "9": {
     "exact_match_accuracy": 0.18904109589041096,
@@ -148,7 +164,9 @@
       "timestamp": "2025-03-12T07:17:35.258212200Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 12.176033
   },
   "10": {
     "exact_match_accuracy": 0.057736720554272515,
@@ -156,7 +174,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.56372
   },
   "11": {
     "exact_match_accuracy": 0.6046511627906976,
@@ -171,7 +191,9 @@
       "month": "Mar",
       "procid": "systemd",
       "time": "02:18:39"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 9.539015
   },
   "12": {
     "exact_match_accuracy": 0.3215686274509804,
@@ -179,7 +201,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.567495
   },
   "13": {
     "exact_match_accuracy": 0.30021141649048627,
@@ -197,7 +221,9 @@
       "timestamp": "Mar 13 2025, 23:10:16",
       "url": "/search",
       "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 11.894384
   },
   "14": {
     "exact_match_accuracy": 0.3258426966292135,
@@ -205,7 +231,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.262733
   },
   "15": {
     "exact_match_accuracy": 1.0,
@@ -218,7 +246,9 @@
       "message": "input_userauth_request: invalid user test9 [preauth]",
       "pid": "24206",
       "timestamp": "Dec 10 07:07:38"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 5.699486
   },
   "16": {
     "exact_match_accuracy": 0.43529411764705883,
@@ -226,7 +256,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 4.034128
   },
   "17": {
     "exact_match_accuracy": 0.5170731707317073,
@@ -239,7 +271,9 @@
       "label": "Step_LSC",
       "message": "onStandStepChanged 3579",
       "timestamp": "20171223-22:15:29:606"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 4.865572
   },
   "18": {
     "exact_match_accuracy": 0.8666666666666667,
@@ -253,7 +287,9 @@
       "pid": "375924",
       "procid": "systemd",
       "timestamp": "Feb 19 07:18:39"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 9.284767
   },
   "19": {
     "exact_match_accuracy": 0.07306889352818371,
@@ -276,7 +312,9 @@
       "timestamp": "Feb 28 00:06:30",
       "type": "general",
       "version": "1"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 17.919203
   },
   "20": {
     "exact_match_accuracy": 0.19273743016759776,
@@ -302,7 +340,9 @@
       "timestamp": "2025-03-12T07:16:35.251125300Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 18.900901
   },
   "21": {
     "exact_match_accuracy": 0.5168539325842697,
@@ -315,7 +355,9 @@
       "message": "Closed D-Bus User Message Bus Socket.",
       "procid": "systemd[375924]",
       "timestamp": "Mar 17 10:18:39"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 4.919669
   },
   "22": {
     "exact_match_accuracy": 0.4594594594594595,
@@ -335,7 +377,9 @@
       "structured_data": "",
       "time": "20:10:40",
       "timestamp": "executor.CoarseGrainedExecutorBackend:"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 12.365732
   },
   "23": {
     "exact_match_accuracy": 0.013657056145675266,
@@ -361,7 +405,9 @@
       "timestamp": "2025-02-28T07:41:19.880782800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 20.660785
   },
   "24": {
     "exact_match_accuracy": 0.02120141342756184,
@@ -369,7 +415,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.286736
   },
   "25": {
     "exact_match_accuracy": 0.3542116630669546,
@@ -388,7 +436,9 @@
       "timestamp": "Jun 16 07:03:22",
       "tty": "NODEVssh",
       "user": "root"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 8.676578
   },
   "26": {
     "exact_match_accuracy": 0.3974358974358974,
@@ -396,7 +446,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.285766
   },
   "27": {
     "exact_match_accuracy": 0.013196480938416423,
@@ -422,7 +474,9 @@
       "timestamp": "2025-01-31T16:00:00.013931800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 18.28469
   },
   "28": {
     "exact_match_accuracy": 0.039045553145336226,
@@ -430,7 +484,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 2.643595
   },
   "29": {
     "exact_match_accuracy": 0.5507246376811594,
@@ -438,7 +494,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.206234
   },
   "30": {
     "exact_match_accuracy": 0.3898305084745763,
@@ -453,7 +511,9 @@
       "submodule": "LicenseProtection",
       "timestamp": "2024-05-09 16:24:24.641",
       "timestamp2": "8:00"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 15.727169
   },
   "31": {
     "exact_match_accuracy": 1.0,
@@ -467,7 +527,9 @@
       "pid": "1",
       "process": "systemd",
       "timestamp": "Feb  5 00:18:29"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.329286
   },
   "32": {
     "exact_match_accuracy": 0.6176808266360505,
@@ -488,7 +550,9 @@
       "timestamp": "08",
       "version": "6.5.11.14",
       "vmid": "6"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 11.942275
   },
   "33": {
     "exact_match_accuracy": 1.0,
@@ -503,7 +567,9 @@
       "proxy": "proxy.cse.cuhk.edu.hk:5070",
       "proxy2": "proxy.cse.cuhk.edu.hk:5070",
       "timestamp": "[10.30 17:14:20]"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 15.29734
   },
   "34": {
     "exact_match_accuracy": 0.2397003745318352,
@@ -511,7 +577,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.574698
   },
   "35": {
     "exact_match_accuracy": 0.17553191489361702,
@@ -519,7 +587,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.607733
   },
   "36": {
     "exact_match_accuracy": 1.0,
@@ -533,7 +603,9 @@
       "pid": "375934",
       "process": "CROND",
       "timestamp": "Jan 27 12:38:01"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 11.236257
   },
   "37": {
     "exact_match_accuracy": 0.9957081545064378,
@@ -546,7 +618,9 @@
       "message": "Slf4jLogger started",
       "module": "slf4j.Slf4jLogger",
       "timestamp": "17/06/09 20:10:41"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 8.166155
   },
   "38": {
     "exact_match_accuracy": 0.07420494699646643,
@@ -554,7 +628,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 2.469746
   },
   "39": {
     "exact_match_accuracy": 0.03454231433506045,
@@ -574,7 +650,9 @@
       "thread_id": "0x1130",
       "timestamp": "2024-05-09 16:24:24.435",
       "timestamp2": "8:00"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 10.904785
   },
   "40": {
     "exact_match_accuracy": 0.30669546436285094,
@@ -591,7 +669,9 @@
       "timestamp": "Mar 13 2025, 10:41:29",
       "url": "/blog?sort=price_desc&page=2",
       "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.563106
   },
   "41": {
     "exact_match_accuracy": 0.7714285714285715,
@@ -605,7 +685,9 @@
       "message": "Operation failed for user 166",
       "server": "server52",
       "timestamp": "2025-03-07T20:22:19.897Z"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 14.06616
   },
   "42": {
     "exact_match_accuracy": 0.04132231404958678,
@@ -642,7 +724,9 @@
       "timestamp_month_day": "Feb 28",
       "timestamp_time": "02:48:52",
       "version": "1"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 19.933533
   },
   "43": {
     "exact_match_accuracy": 0.0782312925170068,
@@ -661,7 +745,9 @@
       "source": "CORE       ",
       "thread_id": "0x1130",
       "timestamp": "2024-05-09 16:24:24.507"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.786085
   },
   "44": {
     "exact_match_accuracy": 0.7572815533980582,
@@ -676,7 +762,9 @@
       "task_id": "task_1445144423722_0020_m_000002",
       "thread": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,869"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 12.485321
   },
   "45": {
     "exact_match_accuracy": 0.8471615720524017,
@@ -689,7 +777,9 @@
       "log_level": "INFO",
       "message": "Changing modify acls to: yarn,curi",
       "timestamp": "17/06/09 20:10:41"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 4.746557
   },
   "46": {
     "exact_match_accuracy": 0.013677811550151976,
@@ -715,7 +805,9 @@
       "timestamp": "2025-02-28T07:41:19.880782800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 20.043572
   },
   "47": {
     "exact_match_accuracy": 0.38922155688622756,
@@ -723,7 +815,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.743952
   },
   "48": {
     "exact_match_accuracy": 0.21951219512195122,
@@ -731,7 +825,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.121295
   },
   "49": {
     "exact_match_accuracy": 0.3274021352313167,
@@ -742,7 +838,9 @@
     "extracted_fields": {
       "user_id": "0",
       "user_name": "cb"
-    }
+    },
+    "query_count": 1,
+    "generation_time": 2.545718
   },
   "50": {
     "exact_match_accuracy": 1.0,
@@ -757,7 +855,9 @@
       "process": "su",
       "service": "pam_unix",
       "timestamp": "Sep 05 14:26:18"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 11.487838
   },
   "51": {
     "exact_match_accuracy": 0.3402061855670103,
@@ -770,7 +870,9 @@
       "protection": "Protection",
       "provider": "provider DLL C:\\Program Files (x86)\\AVEVA\\Citect SCADA 2018",
       "timestamp": "2024-05-09 16:24:24.286"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 7.428203
   },
   "52": {
     "exact_match_accuracy": 0.39285714285714285,
@@ -778,7 +880,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.952427
   },
   "53": {
     "exact_match_accuracy": 1.0,
@@ -793,7 +897,9 @@
       "thread_id": "140",
       "timestamp": "2024-05-03 15:44:43.726",
       "timezone": "+08:00"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 11.683542
   },
   "54": {
     "exact_match_accuracy": 0.07253886010362694,
@@ -801,7 +907,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.887168
   },
   "55": {
     "exact_match_accuracy": 0.013888888888888888,
@@ -827,7 +935,9 @@
       "timestamp": "2025-02-28T07:41:19.880782800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 19.748779
   },
   "56": {
     "exact_match_accuracy": 0.8333333333333334,
@@ -841,7 +951,9 @@
       "message": "Resolved MSRA-SA-41.fareast.corp.microsoft.com to /default-rack",
       "thread": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,869"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 9.257306
   },
   "57": {
     "exact_match_accuracy": 0.08349900596421471,
@@ -856,7 +968,9 @@
       "process_name": "SogouCloud.exe",
       "status": "close",
       "timestamp": "10.30 17:11:43"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 9.533806
   },
   "58": {
     "exact_match_accuracy": 0.3883495145631068,
@@ -869,7 +983,9 @@
       "message": "Saw change in network reachability (isReachable=0)",
       "process": "cdpd[11807]",
       "timestamp": "Jul  1 09:00:56"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 5.703156
   },
   "59": {
     "exact_match_accuracy": 0.6190476190476191,
@@ -877,7 +993,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 4.011749
   },
   "60": {
     "exact_match_accuracy": 0.852112676056338,
@@ -891,7 +1009,9 @@
       "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack",
       "thread_name": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,869"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 14.715606
   },
   "61": {
     "exact_match_accuracy": 0.6375545851528385,
@@ -904,7 +1024,9 @@
       "message": "Stopping User Manager for UID 992",
       "procid": "systemd[1]",
       "timestamp": "Feb 12 11:18:39"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 7.863886
   },
   "62": {
     "exact_match_accuracy": 1.0,
@@ -918,7 +1040,9 @@
       "module": "dfs.DataNode$PacketResponder",
       "pid": "148",
       "timestamp": "081109 203615"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 7.871824
   },
   "63": {
     "exact_match_accuracy": 1.0,
@@ -931,7 +1055,9 @@
       "message": "Received disconnect from 52.80.34.196: 11: Bye Bye [preauth]",
       "pid": "24206",
       "timestamp": "Dec 10 07:07:45"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 6.465154
   },
   "64": {
     "exact_match_accuracy": 0.10224948875255624,
@@ -939,7 +1065,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 2.321726
   },
   "65": {
     "exact_match_accuracy": 0.36724565756823824,
@@ -954,7 +1082,9 @@
       "severity": "WARN",
       "thread_id": "188978561024",
       "timestamp": "2015-07-29 19:22:46,680"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.618001
   },
   "66": {
     "exact_match_accuracy": 0.09210526315789473,
@@ -962,7 +1092,9 @@
     "field_precision": 0,
     "field_recall": 0,
     "compilation_ratio": 0.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.696142
   },
   "67": {
     "exact_match_accuracy": 0.8326180257510729,
@@ -976,7 +1108,9 @@
       "message": "Starting remoting",
       "source": "Remoting:",
       "time": "20:10:41"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 11.994215
   },
   "68": {
     "exact_match_accuracy": 0.013846153846153847,
@@ -1002,7 +1136,9 @@
       "timestamp": "2025-02-28T07:41:19.880782800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 19.007886
   },
   "69": {
     "exact_match_accuracy": 1.0,
@@ -1016,7 +1152,9 @@
       "module": "dfs.DataNode$PacketResponder",
       "pid": "512",
       "timestamp": "081109 204525"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 7.228052
   },
   "70": {
     "exact_match_accuracy": 0.43349753694581283,
@@ -1029,7 +1167,9 @@
       "procid": "workerEnv.init()",
       "severity_name": "notice",
       "timestamp": "Sun Dec 04 04:51:14 2005"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 6.809637
   },
   "71": {
     "exact_match_accuracy": 0.40264026402640263,
@@ -1037,7 +1177,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 3.940028
   },
   "72": {
     "exact_match_accuracy": 0.6972477064220184,
@@ -1050,7 +1192,9 @@
       "message": "Reached target Shutdown.",
       "procid": "systemd[375924]",
       "timestamp": "Mar 28 12:18:39"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 4.965475
   },
   "73": {
     "exact_match_accuracy": 0.6643835616438356,
@@ -1066,7 +1210,9 @@
       "priority": "134681",
       "procid": "1",
       "timestamp": "1077804742"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 12.634399
   },
   "74": {
     "exact_match_accuracy": 0.7168141592920354,
@@ -1080,7 +1226,9 @@
       "msgid": "6512",
       "severity_name": "ERROR",
       "timestamp": "Feb 19 02:32:24"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 13.222892
   },
   "75": {
     "exact_match_accuracy": 0.15,
@@ -1098,7 +1246,9 @@
       "timestamp": "Mar 17 2025, 10:24:22",
       "url": "/login",
       "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 15.890712
   },
   "76": {
     "exact_match_accuracy": 0.014150943396226415,
@@ -1124,7 +1274,9 @@
       "timestamp": "2020-10-08T12:52:10.274186300Z",
       "user_id": "S-1-5-18",
       "version": "3"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 23.439559
   },
   "77": {
     "exact_match_accuracy": 0.7818181818181819,
@@ -1137,7 +1289,9 @@
       "message": "Reached target Timers.",
       "procid": "systemd",
       "timestamp": "Feb 27 00:18:01"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 7.165754
   },
   "78": {
     "exact_match_accuracy": 0.852112676056338,
@@ -1151,7 +1305,9 @@
       "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack",
       "thread_name": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,869"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 13.84385
   },
   "79": {
     "exact_match_accuracy": 0.013245033112582781,
@@ -1177,7 +1333,9 @@
       "timestamp": "2025-02-28T07:41:19.880782800Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 21.023945
   },
   "80": {
     "exact_match_accuracy": 0.29605263157894735,
@@ -1185,7 +1343,9 @@
     "field_precision": 0,
     "field_recall": 0.0,
     "compilation_ratio": 1.0,
-    "extracted_fields": {}
+    "extracted_fields": {},
+    "query_count": 1,
+    "generation_time": 2.918711
   },
   "81": {
     "exact_match_accuracy": 0.6163522012578616,
@@ -1196,7 +1356,9 @@
     "extracted_fields": {
       "message": "WatsonReport: Registering setup log files with watson",
       "timestamp": "03/10/2025 01:25:27.876"
-    }
+    },
+    "query_count": 1,
+    "generation_time": 3.42707
   },
   "82": {
     "exact_match_accuracy": 0.37554585152838427,
@@ -1208,7 +1370,9 @@
       "end_time": "2024-05-03 15:41:01.",
       "message": "Client loaded _Categor RDB",
       "timestamp": "2024-05-09 16:24:24.569"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 5.742079
   },
   "83": {
     "exact_match_accuracy": 0.47058823529411764,
@@ -1230,7 +1394,9 @@
       "tty": "NODEVssh",
       "uid": "0",
       "user": "root"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 23.111838
   },
   "84": {
     "exact_match_accuracy": 1.0,
@@ -1243,7 +1409,9 @@
       "message": "SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(yarn, curi); users with modify permissions: Set(yarn, curi)",
       "module": "spark.SecurityManager",
       "timestamp": "17/06/09 20:10:41"
-    }
+    },
+    "query_count": 2,
+    "generation_time": 6.03314
   },
   "85": {
     "exact_match_accuracy": 1.0,
@@ -1258,7 +1426,9 @@
       "proxy": "proxy.cse.cuhk.edu.hk:5070",
       "proxy2": "proxy.cse.cuhk.edu.hk:5070",
       "timestamp": "[10.30 17:11:12]"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 7.911162
   },
   "86": {
     "exact_match_accuracy": 1.0,
@@ -1272,7 +1442,9 @@
       "module": "dfs.DataNode$PacketResponder",
       "pid": "567",
       "timestamp": "081109 204722"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 6.882793
   },
   "87": {
     "exact_match_accuracy": 1.0,
@@ -1286,7 +1458,9 @@
       "module": "dfs.FSNamesystem",
       "pid": "26",
       "timestamp": "081109 204132"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 6.642358
   },
   "88": {
     "exact_match_accuracy": 0.762589928057554,
@@ -1300,7 +1474,9 @@
       "server": "server52",
       "service": "UserService",
       "timestamp": "2025-02-06T05:15:06.534Z"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 12.830123
   },
   "89": {
     "exact_match_accuracy": 0.024390243902439025,
@@ -1317,7 +1493,9 @@
       "structured_data": "-",
       "timestamp": "2025-07-23T06:44:37.453210Z",
       "version": "1"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 13.087522
   },
   "90": {
     "exact_match_accuracy": 0.24944320712694878,
@@ -1335,7 +1513,9 @@
       "timestamp": "Mar 15 2025, 08:35:21",
       "url": "/search",
       "user_agent": "\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15\""
-    }
+    },
+    "query_count": 4,
+    "generation_time": 8.753249
   },
   "91": {
     "exact_match_accuracy": 0.022566995768688293,
@@ -1350,7 +1530,9 @@
       "structured_data": "9|externalId=10025 cs6Label=policy_name cs6= SMB communication from  DMZ server Detected cf1Label=cluster_log_id cf1=10024 duser=920-WINSRV01-A dpt=445 dst=10.92.0.10 suser=920-TERMSRV01 src=10.20.100.20 proto=TCP cat=NetworkEvents",
       "timestamp": "3.18.58",
       "version": ""
-    }
+    },
+    "query_count": 3,
+    "generation_time": 10.483405
   },
   "92": {
     "exact_match_accuracy": 0.1399548532731377,
@@ -1368,7 +1550,9 @@
       "timestamp": "Mar 18 2025, 11:08:58",
       "url": "/api/users",
       "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Safari/605.1.15"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 9.138639
   },
   "93": {
     "exact_match_accuracy": 1.0,
@@ -1383,7 +1567,9 @@
       "process": "sshd",
       "service": "pam_unix",
       "timestamp": "Aug 15 00:04:21"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 6.901665
   },
   "94": {
     "exact_match_accuracy": 1.0,
@@ -1397,7 +1583,9 @@
       "module": "dfs.FSNamesystem",
       "pid": "34",
       "timestamp": "081109 204453"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 6.700402
   },
   "95": {
     "exact_match_accuracy": 1.0,
@@ -1411,7 +1599,9 @@
       "module": "dfs.DataNode$DataXceiver",
       "pid": "653",
       "timestamp": "081109 204815"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 8.372681
   },
   "96": {
     "exact_match_accuracy": 0.11784511784511785,
@@ -1430,7 +1620,9 @@
       "size_received": "13.5 KB",
       "size_sent": "35.0 KB",
       "timestamp": "09.30 17:12:14"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 12.5336
   },
   "97": {
     "exact_match_accuracy": 0.058577405857740586,
@@ -1445,7 +1637,9 @@
       "lifetime": "00:31",
       "process": "chrome.exe",
       "timestamp": "10.20 17:11:08"
-    }
+    },
+    "query_count": 4,
+    "generation_time": 10.776184
   },
   "98": {
     "exact_match_accuracy": 0.19273743016759776,
@@ -1471,7 +1665,9 @@
       "timestamp": "2025-02-26T05:59:00.054350300Z",
       "user_id": "S-1-5-19",
       "version": "0"
-    }
+    },
+    "query_count": 6,
+    "generation_time": 18.478918
   },
   "99": {
     "exact_match_accuracy": 0.8248175182481752,
@@ -1485,7 +1681,9 @@
       "message": "Resolved MSRA-SA-39.fareast.corp.microsoft.com to /default-rack",
       "thread": "AsyncDispatcher event handler",
       "timestamp": "2015-10-18 18:01:53,838"
-    }
+    },
+    "query_count": 3,
+    "generation_time": 9.54045
   },
   "100": {
     "exact_match_accuracy": 1.0,
@@ -1524,10 +1722,12 @@
       "trans_proto": "udp",
       "trans_small_bytes": "83",
       "vlan_id": "null"
-    }
+    },
+    "query_count": 5,
+    "generation_time": 17.616925
   },
-  "generation_time": 961.565112352371,
+  "total_generation_time": 961.565112352371,
   "evaluation_time": 238.69497656822205,
   "total_time": 1200.2600889205933,
-  "query_count": 171
+  "total_query_count": 306
 }
